@@ -274,15 +274,15 @@ while currentprocess<len(list_row):
 			
 			subprocess.call('echo ' + env_1 + ' ' + env_2 + ' ' + env_3 + ' ' + env_4 + ' >> ' + \
 				env_CartilageSegOutDIR + '/patch-' + node_env_ID + '.txt', shell=True)
-	print('Registered ' + var_n + '/' + var_n_all + ' images')
+	print('Registered ' + str(var_n) + '/' + str(var_n_all) + ' images')
 
 	# computing the probability maps for femoral and for tibial cartilage
 	print('Computing the probability maps for femoral and tibial cartilage')
 	subprocess.call(env_ksrtAppDIR + '/ImageMath ' + \
-		env_CartilageSegOutDIR + '/fem-fusion-' + node_env_ID + '.nhdr -constOper 3,' + var_n + ' -outfile ' + \
+		env_CartilageSegOutDIR + '/fem-fusion-' + node_env_ID + '.nhdr -constOper 3,' + str(var_n) + ' -outfile ' + \
 		env_CartilageSegOutDIR + '/fem-fusion-' + node_env_ID + '.nhdr -type float', shell=True)
 	subprocess.call(env_ksrtAppDIR + '/ImageMath ' + \
-		env_CartilageSegOutDIR + '/tib-fusion-' + node_env_ID + '.nhdr -constOper 3,' + var_n + ' -outfile ' + \
+		env_CartilageSegOutDIR + '/tib-fusion-' + node_env_ID + '.nhdr -constOper 3,' + str(var_n) + ' -outfile ' + \
 		env_CartilageSegOutDIR + '/tib-fusion-' + node_env_ID + '.nhdr -type float', shell=True)
 
 	# computing the patch information
