@@ -1,0 +1,85 @@
+https://www.broadinstitute.org/gatk/guide/article?id=1317
+https://www.broadinstitute.org/gatk/guide/presentations?id=4765
+https://www.broadinstitute.org/gatk/guide/tagged?tag=intervals
+
+
+#Reference File
+fasta=/data/Annotation/GATK/hg19/ucsc.hg19.fasta
+knownvcf=/data/Annotation/GATK/hg19/NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.hg19.sites.vcf
+knownindel=/data/Annotation/GATK/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf
+capture=/data/Annotation/GATK/Agilent/SureSelectExonV5+UTRs/S04380219_Covered.bed
+
+# Programs
+bwa=/opt/NGS/bwa-0.7.12/bwa
+sortsam=/opt/NGS/picard-tools-1.119/SortSam.jar
+markdup=/opt/NGS/picard-tools-1.119/MarkDuplicates.jar
+buildbamindex=/opt/NGS/picard-tools-1.119/BuildBamIndex.jar
+gatk=/opt/NGS/GATK/GenomeAnalysisTK.jar
+
+bwacore=10
+
+# Lane
+f1=/ssddata/Patz/Reads/Sample_CF33C/CF33C_CGATGT_L001_R1_001.fastq.gz
+f2=/ssddata/Patz/Reads/Sample_CF33C/CF33C_CGATGT_L001_R2_001.fastq.gz
+rg="@RG\tID:CF33C.L001\tSM:CF33C\tPL:ILLUMINA"
+
+
+samfile=CF33C_CGATGT_L001.sam
+bamfilesort=CF33C_CGATGT_L001-sort.bam
+bamfilesortdup=CF33C_CGATGT_L001-sort-dup.bam
+metricfile=CF33C_CGATGT_L001-dup-metrics.txt
+bamfilerealigned=CF33C_CGATGT_L001-sort-dup-realign.bam
+recaltable=CF33C_CGATGT_L001-recal-table.txt
+realignint=CF33C_CGATGT_L001-realign.intervals
+recalbam=CF33C_CGATGT_L001-recal.bam
+
+STEP 1 (Align Lane)
+# align samples
+bwa mem -aM -t $bwacore -R $rg $fasta $f1 $f2 > $samfile
+
+STEP 2 (Sort Lane)
+java -jar $sortsam I=$samfile  O=$bamfilesort  SO=coordinate 
+
+STEP 3 (Mark Duplicates)
+
+java -jar $markdup I=$bamfilesort O=$bamfilesortdup M=$metricfile 
+
+STEP 4 (Index BAM file)
+java -jar $buildbamindex INPUT=$bamfilesortdup
+
+STEP 5 (Local Realignment)
+
+Step 5a: Create the targets
+java -jar $gatk -T RealignerTargetCreator -R $fasta -I $bamfilesortdup --known $knownindel -o $realignint 
+https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php
+
+Step 5b: Realign
+java -jar $gatk -T IndelRealigner -R $fasta -I $bamfilesortdup -known $knownindel -targetIntervals $realignint  -o $bamfilerealigned --filter_bases_not_stored 
+
+
+STEP 6 (Base Recalibration)
+
+Step 6a
+https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_bqsr_BaseRecalibrator.php
+java -jar $gatk  -T BaseRecalibrator -R $fasta -I $bamfilerealigned -knownSites $knownvcf -knownSites $knownindel -L $capture -o $recaltable
+
+
+STEP 6b
+java –jar $gatk –T PrintReads -R $fasta -I $bamfilerealigned   –BQSR $recaltable –o  $recalbam
+
+
+STEP 7 Combine the four lanes
+# Now you have the deduped/realigned/recalibrated bam file for lane 001.
+# Repeat these steps to get bam files for lanes 002, 003, and 004 and then merge them into a single bam
+
+https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_readutils_PrintReads.php
+java -jar gatk -T PrintReads  -R fasta  -o CF33-merged.bam -I L002-recal.bam -I L002-recal.bam -I L003-recal.bam -I L004-recal.bam --read_filter MappingQualityZero
+
+
+java -jar $markdup I=CF33-merged.bam O=CF33-merged-dedup.bam M=CF33-merged-metric.txt
+java -jar $buildbamindex INPUT=CF33-merged-dedup.bam
+
+java -jar $gatk -T RealignerTargetCreator -R $fasta -I CF33-merged-dedup.bam -known $knownindel -targetIntervals CF33-merged-dedup-target.txt
+java -jar $gatk -T IndelRealigner -R $fasta -I CF33-merged-dedup.bam -known $knownindel -targetIntervals  CF33-merged-dedup-target.txt -o  CF33-merged-dedup-realigned.bam--filter_bases_not_stored 
+java -jar $gatk  -T BaseRecalibrator -R $fasta -I  CF33-merged-dedup-realigned.bam -knownSites $knownvcf -knownSites $knownindel -L $capture -o CF33-merged-recaltable.txt
+java -jar $gatk -T PrintReads -R $fasta -I CF33-merged-dedup-realigned.bam -BQSR CF33-merged-recaltable.txt  –o CF33-merged-dedup-realigned-recal.bam
