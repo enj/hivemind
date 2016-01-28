@@ -13,7 +13,6 @@ class Task(object):
 
     def run(self):
         call([self.exe] + self.args, cwd=self.exe_path)
-        return self.next
 
     def link(self, next):
         self.next = next

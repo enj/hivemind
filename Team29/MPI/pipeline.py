@@ -5,7 +5,6 @@
 class Pipeline(object):
 
     def __init__(self, *tasks):
-        assert tasks
         self.len = 1
         i = tasks.__iter__()
         self.head = i.next()
