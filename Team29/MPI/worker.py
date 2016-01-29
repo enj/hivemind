@@ -31,4 +31,4 @@ class Worker(object):
         self.tag = tags.DONE
         self.send(self.task.next)
         self.tag = tags.READY
-        self.receive()
+        #self.receive() #Move this to the master in a loop
