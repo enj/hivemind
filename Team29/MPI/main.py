@@ -27,10 +27,11 @@ q = TaskQueue(sp, mp)
 print("Pipelines added to Queue")
 
 rank = MPI.COMM_WORLD.Get_rank()
+print("My rank is ", rank)
 
 if rank == MASTER:
     m = Master(MPI, q)
-    while m.completed_tasks != m.num_tasks:
+    while m.completed_tasks != m.queue.num_tasks:
         m.receive()
 else:
     w = Worker(MPI)

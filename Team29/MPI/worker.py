@@ -17,7 +17,7 @@ class Worker(object):
         self.rank = self.comm.rank
         self.status = mpi.Status()
         self.tag = tags.READY
-        print("I am worker " + self.rank)
+        print("I am worker ", self.rank)
         self.send(None)
         self.receive()
 
