@@ -26,7 +26,7 @@ mp = Pipeline(m1, m2, m3)
 q = TaskQueue(sp, mp)
 print("Pipelines added to Queue")
 
-rank = MPI.COMM_WORLD.rank
+rank = MPI.COMM_WORLD.Get_rank()
 
 if rank == MASTER:
     m = Master(MPI, q)
