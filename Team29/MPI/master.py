@@ -13,6 +13,7 @@ class Master(object):
         self.name = mpi.Get_processor_name()
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
+        print("I am master")
         self.receive()
 
     def send(self, target, task, tag):

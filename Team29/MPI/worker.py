@@ -17,6 +17,7 @@ class Worker(object):
         self.rank = self.comm.rank
         self.status = mpi.Status()
         self.tag = tags.READY
+        print("I am worker " + self.rank)
         self.send(None)
         self.receive()
 
@@ -30,7 +31,7 @@ class Worker(object):
             self.run()
         #elif self.tag == tags.EXIT:
         #    self.send(None)
-        elif self.tag == tag.WAIT:
+        elif self.tag == tags.WAIT:
             sleep(self.SLEEP_TIME)
             self.tag = tags.READY
 
