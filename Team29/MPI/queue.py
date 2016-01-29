@@ -2,8 +2,9 @@
 # encoding: utf-8
 
 
-class JobQueue(object):
+class TaskQueue(object):
     def __init__(self, *pipelines):
+        self.num_tasks = sum(len(p) for p in pipelines)
         self.queue = [p.head for p in pipelines]
 
     def push(self, task):

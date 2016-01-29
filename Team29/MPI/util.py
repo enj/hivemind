@@ -8,5 +8,5 @@ def enum(*sequential, **named):
     enums = dict(zip(sequential, range(len(sequential))), **named)
     return type('Enum', (), enums)
 
-tags = enum('READY', 'DONE', 'EXIT', 'START')
+tags = enum('READY', 'DONE', 'EXIT', 'START', 'WAIT')
 MASTER = 0
