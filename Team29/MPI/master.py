@@ -13,7 +13,7 @@ class Master(object):
         self.name = mpi.Get_processor_name()
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
-        print("I am master")
+        print "I am master"
         self.receive()
 
     def send(self, target, task, tag):
@@ -28,9 +28,12 @@ class Master(object):
             self.completed_tasks += 1
         elif tag == tags.READY:
             if self.queue:
+                print "Master sending START"
                 self.send(source, self.queue.pop(), tags.START)
                 self.sent_tasks += 1
             elif self.sent_tasks == self.queue.num_tasks:
+                print "Master sending EXIT"
                 self.send(source, None, tags.EXIT)
             else:
+                print "Master sending WAIT"
                 self.send(source, None, tags.WAIT)
