@@ -17,7 +17,6 @@ class Worker(object):
         self.rank = self.comm.rank
         self.status = mpi.Status()
         self.tag = tags.READY
-        print "I am worker", self.rank
         self.send(None)
         self.receive()
 
@@ -28,17 +27,19 @@ class Worker(object):
         self.task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
         self.tag = self.status.Get_tag()
         if self.tag == tags.START:
-            print "STARTing"
             self.run()
         #elif self.tag == tags.EXIT:
         #    self.send(None)
         elif self.tag == tags.WAIT:
-            print "WAITing"
+            print "Worker", self.rank, "WAITing"
             sleep(self.SLEEP_TIME)
             self.tag = tags.READY
+            self.send(None)
 
     def run(self):
+#        print "Worker", self.rank, "starting task", self.task.exe
         self.task.run()
         self.tag = tags.DONE
         self.send(self.task.next)
         self.tag = tags.READY
+        self.send(None)
