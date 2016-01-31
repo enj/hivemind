@@ -5,18 +5,11 @@
 class Pipeline(object):
 
     def __init__(self, *tasks):
-        self.len = 1
-        i = tasks.__iter__()
-        self.head = i.next()
-        current = self.head
-        try:
-            while True:
-                temp = i.next()
-                current.link(temp)
-                current = temp
-                self.len += 1
-        except StopIteration, _:
-            pass
+        self.len = len(tasks)
+        self.head = tasks[0]
+
+        for i in xrange(len(tasks) - 1):
+            tasks[i].link(tasks[i + 1])
 
     def __len__(self):
         return self.len
