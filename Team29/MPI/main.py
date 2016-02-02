@@ -28,6 +28,8 @@ q = TaskQueue(sp, mp)
 rank = MPI.COMM_WORLD.Get_rank()
 size = MPI.COMM_WORLD.size - 1
 
+print "I am node", rank, "running on processor", MPI.Get_processor_name()
+
 if rank == MASTER:
     m = Master(MPI, q)
 #    while m.completed_tasks != m.queue.num_tasks:
