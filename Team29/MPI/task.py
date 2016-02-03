@@ -16,8 +16,8 @@ class Task(object):
         :type exe_path: string
         :param exe: The name of the executable
         :type exe: string
-        :param args: The list of parameters needed to the run the executable
-        :type args: iterable of strings
+        :param *args: The list of parameters needed to the run the executable
+        :type *args: iterable of strings
         """
         self.exe_path = exe_path
         self.exe = "./" + exe
@@ -25,9 +25,17 @@ class Task(object):
         self.next = None
 
     def run(self):
-        """TODO."""
+        """[summary].
+
+        [description]
+        """
         call([self.exe] + self.args, cwd=self.exe_path)
 
     def link(self, next):
-        """TODO."""
+        """[summary].
+
+        [description]
+        :param next: [description]
+        :type next: Task
+        """
         self.next = next

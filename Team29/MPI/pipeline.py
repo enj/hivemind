@@ -5,13 +5,14 @@
 
 
 class Pipeline(object):
-    """A Pipeline is a series of sequential Tasks"""
+    """A Pipeline is a series of sequential Tasks."""
 
     def __init__(self, *tasks):
-        """Contstruct a Pipeline based on the given Tasks
+        """Contstruct a Pipeline based on the given Tasks.
 
-        :param tasks: A list of Tasks from which to create the Pipeline
-        :type tasks: iterable of Tasks
+        [description]
+        :param *tasks: A list of Tasks from which to create the Pipeline
+        :type *tasks: iterable of Tasks
         """
         self.len = len(tasks)
         self.head = tasks[0]
@@ -20,8 +21,9 @@ class Pipeline(object):
             tasks[i].link(tasks[i + 1])
 
     def __len__(self):
-        """Returns the length of the Pipeline
+        """Determine the length of the Pipeline.
 
         :returns: the number of tasks in this Pipeline
+        :rtype: {int}
         """
         return self.len

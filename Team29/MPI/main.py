@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+
+"""TODO."""
 
 from mpi4py import MPI
 
