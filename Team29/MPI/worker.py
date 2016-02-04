@@ -26,6 +26,7 @@ class Worker(object):
         self.mpi = mpi
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
+        self.tag = None
 
         if __debug__:
             name = mpi.Get_processor_name()
@@ -42,16 +43,17 @@ class Worker(object):
         :param task: the Task to send
         :type task: Task
         """
+        self.tag = tag
         self.comm.send(task, dest=MASTER, tag=tag)
 
     def receive(self):
         """Receive and act upon a message from the Master node."""
         task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
-        tag = self.status.Get_tag()
+        self.tag = self.status.Get_tag()
 
-        if tag == tags.START:
+        if self.tag == tags.START:
             self.run(task)
-        elif tag == tags.WAIT:
+        elif self.tag == tags.WAIT:
 
             if __debug__:
                 self.log.debug("WAITing")
@@ -66,7 +68,7 @@ class Worker(object):
         :type task: Task
         """
         if __debug__:
-            self.log.debug("Start Task", task.exe, task.args)
+            self.log.debug("Start Task " + ' '.join(task.cmd))
 
         task.run()
         self.done(task)

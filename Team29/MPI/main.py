@@ -35,7 +35,7 @@ q = TaskQueue(sp, mp)
 rank = MPI.COMM_WORLD.Get_rank()
 
 if __debug__:
-    log.debug("I am node", rank, "running on processor", MPI.Get_processor_name())
+    log.debug("I am node %d running on processor %s" % (rank, MPI.Get_processor_name()))
 
 if rank == MASTER:
     m = Master(MPI, q)
@@ -48,4 +48,4 @@ else:
         w.receive()
 
 if __debug__:
-    log.debug("Node", rank, "running on processor", MPI.Get_processor_name(), "EXITing")
+    log.debug("Node %d running on processor %s EXITing" % (rank, MPI.Get_processor_name()))

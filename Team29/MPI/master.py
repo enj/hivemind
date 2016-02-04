@@ -63,7 +63,7 @@ class Master(object):
             elif self.sent_tasks == self.queue.num_tasks:
 
                 if __debug__:
-                    self.log.debug("Tell", source, "to exit")
+                    self.log.debug("Tell %d to exit" % source)
 
                 self.send(source, None, tags.EXIT)
                 self.closed_workers += 1
