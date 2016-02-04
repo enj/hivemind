@@ -59,6 +59,9 @@ class Master(object):
         :param tag: the specified Tag
         :type tag: Tag Enum
         """
+        if __debug__:
+            self.log.debug("Sending %s to %d with Tag %d" % (task, target, tag))
+
         self.comm.send(task, dest=target, tag=tag)
 
     def receive(self):
@@ -67,6 +70,10 @@ class Master(object):
         self.queue.append(task)
         source = self.status.Get_source()
         self.workers.append(source)
+
+        if __debug__:
+            self.log.debug("Received %s from %d" % (task, source))
+
         #tag = self.status.Get_tag()
 
         #if tag == tags.DONE:

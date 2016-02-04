@@ -37,3 +37,6 @@ class Task(object):
         :type next: Task
         """
         self.next = next
+
+    def __str__(self):
+        return ' '.join(self.cmd)
