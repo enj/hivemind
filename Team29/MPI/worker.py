@@ -3,7 +3,7 @@
 
 """Represents a Worker node."""
 
-from time import sleep
+#from time import sleep
 
 from util import tags, MASTER
 
@@ -15,7 +15,7 @@ class Worker(object):
     :type SLEEP_TIME: int
     """
 
-    SLEEP_TIME = 10
+    #SLEEP_TIME = 10
 
     def __init__(self, mpi):
         """Construct a Worker with the global MPI object.
@@ -35,7 +35,7 @@ class Worker(object):
             from logging import getLogger
             self.log = getLogger("%s %s %d" % (__name__, name, rank))
 
-    def send(self, task, tag):
+    def send(self, task=None):
         """Send the given Task to the Master node using the supplied Tag.
 
         :param tag: the Tag of the message
@@ -43,23 +43,26 @@ class Worker(object):
         :param task: the Task to send
         :type task: Task
         """
-        self.tag = tag
-        self.comm.send(task, dest=MASTER, tag=tag)
+        # self.tag = tag
+        self.comm.send(task, dest=MASTER, tag=None)
 
     def receive(self):
         """Receive and act upon a message from the Master node."""
         task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
         self.tag = self.status.Get_tag()
 
-        if self.tag == tags.START:
+        if self.tag != tags.EXIT:
             self.run(task)
-        elif self.tag == tags.WAIT:
 
-            if __debug__:
-                self.log.debug("WAITing")
-
-            sleep(self.SLEEP_TIME)
-            self.ready()
+        # if self.tag == tags.START:
+        #     self.run(task)
+        # elif self.tag == tags.WAIT:
+        #
+        #     if __debug__:
+        #         self.log.debug("WAITing")
+        #
+        #     sleep(self.SLEEP_TIME)
+        #     self.ready()
 
     def run(self, task):
         """Run the given Task.
@@ -71,19 +74,19 @@ class Worker(object):
             self.log.debug("Start Task " + ' '.join(task.cmd))
 
         task.run()
-        self.done(task)
-        self.ready()
+        #self.done(task)
+        self.send(task.next)
 
-    def done(self, task):
-        """Signal to the Master that this Worker is done with the given Task.
+    # def ready(self, task=None):
+    #     """Signal to the Master that this Worker is done with the given Task.
+    #
+    #     This is accomplished by sending the next Task in the Pipeline to the Master.
+    #
+    #     :param task: the current (completed) Task in the Pipeline
+    #     :type task: Task
+    #     """
+    #     self.send(task, tags.WORK) # TODO probably don't need WORK anymore
 
-        This is accomplished by sending the next Task in the Pipeline to the Master.
-
-        :param task: the current (completed) Task in the Pipeline
-        :type task: Task
-        """
-        self.send(task.next, tags.DONE)
-
-    def ready(self):
-        """Signal to the Master that this Worker is ready for more Tasks."""
-        self.send(None, tags.READY)
+    # def ready(self):
+    #     """Signal to the Master that this Worker is ready for more Tasks."""
+    #     self.send(None, tags.READY)

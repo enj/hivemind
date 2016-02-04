@@ -4,6 +4,7 @@
 """Represents the Master node."""
 
 from util import tags
+from queue import WorkerQueue
 
 
 class Master(object):
@@ -18,6 +19,7 @@ class Master(object):
         :type queue: TaskQueue
         """
         self.queue = queue
+        self.workers = WorkerQueue()
         self.sent_tasks = 0
         # self.completed_tasks = 0
         self.closed_workers = 0
@@ -32,6 +34,20 @@ class Master(object):
 
             from logging import getLogger
             self.log = getLogger("%s %s" % (__name__, name))
+
+    def orchestrate(self):
+        """TODO"""
+        while self.queue and self.workers:
+            w = self.workers.popleft()
+            t = self.queue.popleft()
+            self.send(w, t, tags.WORK)
+            self.sent_tasks += 1
+
+        if self.sent_tasks == self.queue.num_tasks:
+            while self.workers:
+                w = self.workers.popleft()
+                self.send(w, None, tags.EXIT)
+                self.closed_workers += 1
 
     def send(self, target, task, tag):
         """Send the given Task to the target Worker node with the specified Tag.
@@ -48,24 +64,25 @@ class Master(object):
     def receive(self):
         """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
-        self.queue.push(task)
+        self.queue.append(task)
         source = self.status.Get_source()
-        tag = self.status.Get_tag()
+        self.workers.append(source)
+        #tag = self.status.Get_tag()
 
-        if tag == tags.DONE:
-            pass
+        #if tag == tags.DONE:
+            #pass
             # TODO do we need done?
             # self.completed_tasks += 1
-        elif tag == tags.READY:
-            if self.queue:
-                self.send(source, self.queue.pop(), tags.START)
-                self.sent_tasks += 1
-            elif self.sent_tasks == self.queue.num_tasks:
-
-                if __debug__:
-                    self.log.debug("Tell %d to exit" % source)
-
-                self.send(source, None, tags.EXIT)
-                self.closed_workers += 1
-            else:
-                self.send(source, None, tags.WAIT)
+        #elif tag == tags.READY:
+            # if self.queue:
+            #     self.send(source, self.queue.popleft(), tags.START)
+            #     self.sent_tasks += 1
+            # elif self.sent_tasks == self.queue.num_tasks:
+            #
+            #     if __debug__:
+            #         self.log.debug("Tell %d to exit" % source)
+            #
+            #     self.send(source, None, tags.EXIT)
+            #     self.closed_workers += 1
+            # else:
+            #     self.send(source, None, tags.WAIT)

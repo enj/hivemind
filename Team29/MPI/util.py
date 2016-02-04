@@ -19,7 +19,7 @@ def enum(*sequential, **named):
     return type('Enum', (), enums)
 
 # Each of the different states a worker can be in
-tags = enum('READY', 'DONE', 'EXIT', 'START', 'WAIT')
+tags = enum('WORK', 'EXIT')
 
 # The MPI rank of the master
 MASTER = 0

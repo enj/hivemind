@@ -39,11 +39,13 @@ if __debug__:
 
 if rank == MASTER:
     m = Master(MPI, q)
-    while m.closed_workers < m.total_workers:
+    m.orchestrate()
+    while m.closed_workers != m.total_workers:
         m.receive()
+        m.orchestrate()
 else:
     w = Worker(MPI)
-    w.ready()
+    w.send()
     while w.tag != tags.EXIT:
         w.receive()
 
