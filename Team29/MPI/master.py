@@ -1,70 +1,71 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""TODO."""
+"""Represents the Master node."""
 
 from util import tags
 
 
 class Master(object):
-    """[summary].
-
-    [description]
-    """
+    """The Master node controls the Worker nodes."""
 
     def __init__(self, mpi, queue):
-        """[summary].
+        """Construct a Master node that will work on the given TaskQueue.
 
-        [description]
-        :param mpi: [description]
-        :type mpi: [type]
-        :param queue: [description]
-        :type queue: [type]
+        :param mpi: the global MPI object
+        :type mpi: global MPI object
+        :param queue: the TaskQueue to work on
+        :type queue: TaskQueue
         """
         self.queue = queue
         self.sent_tasks = 0
-        self.completed_tasks = 0
+        # self.completed_tasks = 0
         self.closed_workers = 0
+
         self.mpi = mpi
-        self.name = mpi.Get_processor_name()
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
-        self.receive()
+        self.total_workers = self.comm.Get_size() - 1
+
+        if __debug__:
+            name = mpi.Get_processor_name()
+
+            from logging import getLogger
+            self.log = getLogger("%s %s" % (__name__, name))
 
     def send(self, target, task, tag):
-        """[summary].
+        """Send the given Task to the target Worker node with the specified Tag.
 
-        [description]
-        :param target: [description]
-        :type target: [type]
-        :param task: [description]
-        :type task: [type]
-        :param tag: [description]
-        :type tag: [type]
+        :param target: the rank of the Worker node to send to
+        :type target: int
+        :param task: the Task to send
+        :type task: Task
+        :param tag: the specified Tag
+        :type tag: Tag Enum
         """
         self.comm.send(task, dest=target, tag=tag)
 
     def receive(self):
-        """[summary].
-
-        [description]
-        """
+        """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
         self.queue.push(task)
         source = self.status.Get_source()
         tag = self.status.Get_tag()
+
         if tag == tags.DONE:
-            self.completed_tasks += 1
+            pass
+            # TODO do we need done?
+            # self.completed_tasks += 1
         elif tag == tags.READY:
             if self.queue:
                 self.send(source, self.queue.pop(), tags.START)
                 self.sent_tasks += 1
             elif self.sent_tasks == self.queue.num_tasks:
-                # print "Master telling node", source, "to exit"
+
+                if __debug__:
+                    self.log.debug("Tell", source, "to exit")
+
                 self.send(source, None, tags.EXIT)
                 self.closed_workers += 1
             else:
-                # print "Master telling node", source, "to exit"
                 self.send(source, None, tags.WAIT)
-#                self.send(source, None, tags.EXIT)
-#                self.closed_workers += 1

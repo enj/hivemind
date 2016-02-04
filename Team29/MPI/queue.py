@@ -1,50 +1,48 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""TODO."""
+"""Represents a Queue of Tasks."""
+
+from collections import deque
 
 
 class TaskQueue(object):
-    """[summary].
+    """A TaskQueue is a set of Tasks that belong to different Pipelines.
 
-    [description]
+    The order of Tasks is arbitrary as they are unrelated.
     """
 
     def __init__(self, *pipelines):
-        """[summary].
+        """Construct a TaskQueue based on the given Pipelines.
 
-        [description]
-        :param *pipelines: [description]
-        :type *pipelines: [type]
+        :param *pipelines: the Pipelines to queue
+        :type *pipelines: iterable of Pipelines
         """
         self.num_tasks = sum(len(p) for p in pipelines)
-        self.queue = [p.head for p in pipelines]
+        self.queue = deque(p.head for p in pipelines)
 
     def push(self, task):
-        """[summary].
+        """Add the given Task to the right of the TaskQueue.
 
-        [description]
-        :param task: [description]
-        :type task: [type]
+        :param task: the Task to add
+        :type task: Task
         """
         if task:
             self.queue.append(task)
 
     def pop(self):
-        """[summary].
+        """Remove the leftmost Task from the TaskQueue.
 
-        [description]
-        :returns: [description]
-        :rtype: {[type]}
+        :returns: the leftmost Task from the TaskQueue
+        :rtype: {Task}
         """
         if self.queue:
-            return self.queue.pop(0)
+            return self.queue.popleft()
 
     def __len__(self):
-        """[summary].
+        """Determine the length of the TaskQueue.
 
-        [description]
-        :returns: [description]
-        :rtype: {[type]}
+        :returns: the number of Tasks in this TaskQueue
+        :rtype: {int}
         """
         return self.queue.__len__()

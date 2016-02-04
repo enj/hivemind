@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""TODO."""
+"""Demo of running a MPI Pipeline."""
 
 from mpi4py import MPI
 
@@ -11,6 +11,11 @@ from util import MASTER, tags
 from master import Master
 from worker import Worker
 from queue import TaskQueue
+
+if __debug__:
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+    log = logging.getLogger(__name__)
 
 s1 = Task("/pvfs2/srbaucom/bin", "app", "This ")
 s2 = Task("/pvfs2/srbaucom/bin", "app", "is ")
@@ -28,18 +33,19 @@ mp = Pipeline(m1, m2, m3)
 q = TaskQueue(sp, mp)
 
 rank = MPI.COMM_WORLD.Get_rank()
-size = MPI.COMM_WORLD.size - 1
 
-print "I am node", rank, "running on processor", MPI.Get_processor_name()
+if __debug__:
+    log.debug("I am node", rank, "running on processor", MPI.Get_processor_name())
 
 if rank == MASTER:
     m = Master(MPI, q)
-#    while m.completed_tasks != m.queue.num_tasks:
-    while m.closed_workers < size:
+    while m.closed_workers < m.total_workers:
         m.receive()
 else:
     w = Worker(MPI)
+    w.ready()
     while w.tag != tags.EXIT:
         w.receive()
 
-print "Node", rank, "EXITing"
+if __debug__:
+    log.debug("Node", rank, "running on processor", MPI.Get_processor_name(), "EXITing")

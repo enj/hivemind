@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""TODO."""
+"""Represents a Worker node."""
 
 from time import sleep
 
@@ -9,65 +9,79 @@ from util import tags, MASTER
 
 
 class Worker(object):
-    """[summary].
+    """A Worker node runs Tasks that are provided by the Master node.
 
-    [description]
-    :param SLEEP_TIME: [description]
-    :type SLEEP_TIME: number
+    :param SLEEP_TIME: Time to sleep during WAIT stage
+    :type SLEEP_TIME: int
     """
 
     SLEEP_TIME = 10
 
     def __init__(self, mpi):
-        """[summary].
+        """Construct a Worker with the global MPI object.
 
-        [description]
-        :param mpi: [description]
-        :type mpi: [type]
+        :param mpi: the global MPI object
+        :type mpi: MPI
         """
         self.mpi = mpi
-        self.name = mpi.Get_processor_name()
         self.comm = mpi.COMM_WORLD
-        self.rank = self.comm.rank
         self.status = mpi.Status()
-        self.tag = tags.READY
-        self.send(None)
-        self.receive()
 
-    def send(self, task):
-        """[summary].
+        if __debug__:
+            name = mpi.Get_processor_name()
+            rank = self.comm.Get_rank()
 
-        [description]
-        :param task: [description]
-        :type task: [type]
+            from logging import getLogger
+            self.log = getLogger("%s %s %d" % (__name__, name, rank))
+
+    def send(self, task, tag):
+        """Send the given Task to the Master node using the supplied Tag.
+
+        :param tag: the Tag of the message
+        :type tag: Tag Enum
+        :param task: the Task to send
+        :type task: Task
         """
-        self.comm.send(task, dest=MASTER, tag=self.tag)
+        self.comm.send(task, dest=MASTER, tag=tag)
 
     def receive(self):
-        """[summary].
+        """Receive and act upon a message from the Master node."""
+        task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
+        tag = self.status.Get_tag()
 
-        [description]
-        """
-        self.task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
-        self.tag = self.status.Get_tag()
-        if self.tag == tags.START:
-            self.run()
-        # elif self.tag == tags.EXIT:
-        #    self.send(None)
-        elif self.tag == tags.WAIT:
-            print "Worker", self.rank, "WAITing"
+        if tag == tags.START:
+            self.run(task)
+        elif tag == tags.WAIT:
+
+            if __debug__:
+                self.log.debug("WAITing")
+
             sleep(self.SLEEP_TIME)
-            self.tag = tags.READY
-            self.send(None)
+            self.ready()
 
-    def run(self):
-        """[summary].
+    def run(self, task):
+        """Run the given Task.
 
-        [description]
+        :param task: the Task to run
+        :type task: Task
         """
-#        print "Worker", self.rank, "starting task", self.task.exe
-        self.task.run()
-        self.tag = tags.DONE
-        self.send(self.task.next)
-        self.tag = tags.READY
-        self.send(None)
+        if __debug__:
+            self.log.debug("Start Task", task.exe, task.args)
+
+        task.run()
+        self.done(task)
+        self.ready()
+
+    def done(self, task):
+        """Signal to the Master that this Worker is done with the given Task.
+
+        This is accomplished by sending the next Task in the Pipeline to the Master.
+
+        :param task: the current (completed) Task in the Pipeline
+        :type task: Task
+        """
+        self.send(task.next, tags.DONE)
+
+    def ready(self):
+        """Signal to the Master that this Worker is ready for more Tasks."""
+        self.send(None, tags.READY)

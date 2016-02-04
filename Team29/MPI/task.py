@@ -20,22 +20,20 @@ class Task(object):
         :type *args: iterable of strings
         """
         self.exe_path = exe_path
-        self.exe = "./" + exe
-        self.args = list(args)
+        self.cmd = ["./" + exe]
+        self.cmd.extend(args)
         self.next = None
 
     def run(self):
-        """[summary].
-
-        [description]
-        """
-        call([self.exe] + self.args, cwd=self.exe_path)
+        """Run the executable associated with this Task."""
+        call(self.cmd, cwd=self.exe_path)
 
     def link(self, next):
-        """[summary].
+        """Link this Task to the provided Task.
 
-        [description]
-        :param next: [description]
+        This signifies that this Task must be completed before the next Task.
+
+        :param next: the Task to link to
         :type next: Task
         """
         self.next = next
