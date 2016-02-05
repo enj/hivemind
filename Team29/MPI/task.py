@@ -33,3 +33,19 @@ class Task(object):
 
     def __str__(self):
         return ' '.join(self.cmd)
+
+    def __hash__(self):
+        return hash((
+                    self.uid,
+                    self.skip,
+                    tuple(self.requires),
+                    self.exe_path,
+                    tuple(self.cmd),
+                    self.pid
+                    ))
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
