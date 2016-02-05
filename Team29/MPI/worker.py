@@ -52,7 +52,7 @@ class Worker(object):
         self.tag = self.status.Get_tag()
 
         if self.tag == tags.WORK:
-            self.run(task)
+            self.task = task
 
         # if self.tag == tags.START:
         #     self.run(task)
@@ -64,12 +64,16 @@ class Worker(object):
         #     sleep(self.SLEEP_TIME)
         #     self.ready()
 
-    def run(self, task):
+    def run(self):
         """Run the given Task.
 
         :param task: the Task to run
         :type task: Task
         """
+        if self.tag == tags.EXIT:
+            return
+        task = self.task
+        self.task = None
         if __debug__:
             self.log.debug("Start Task %s" % task)
 
