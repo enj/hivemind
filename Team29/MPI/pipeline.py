@@ -3,7 +3,7 @@
 
 """Represents a Pipeline of Tasks."""
 
-import networkx as nx
+from networkx import DiGraph
 
 
 class Pipeline(object):
@@ -21,15 +21,15 @@ class Pipeline(object):
         #for i in xrange(len(tasks) - 1):
             #tasks[i].link(tasks[i + 1])
 
-        self.dag = nx.DiGraph()
-        self.tasks = {}
+        self.dag = DiGraph()
+        task_dict = {}
         for task in tasks:
             self.dag.add_node(task)
-            self.tasks.update({task.uid: task})
+            task_dict[task.uid] = task
 
         for task in tasks:
             for req_uid in task.requires:
-                self.dag.add_edge(self.tasks[req_uid], task)
+                self.dag.add_edge(task_dict[req_uid], task)
 
     def __len__(self):
         """Determine the length of the Pipeline.
