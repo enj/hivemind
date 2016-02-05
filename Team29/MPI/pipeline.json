@@ -1,0 +1,54 @@
+[
+    {
+        "args": [
+            "-in", 
+            "$$A1IN$$", 
+            "-out", 
+            "$$A1OUT$$", 
+            "-cat", 
+            "$$A1CAT$$", 
+            "-sleep", 
+            "$$A1SLEEP$$"
+        ], 
+        "exe": "catter", 
+        "exe_path": "/pvfs2/srbaucom/bin", 
+        "uid": "A1"
+    }, 
+    {
+        "args": [
+            "-in", 
+            "$$A2IN$$", 
+            "-out", 
+            "$$A2OUT$$", 
+            "-cat", 
+            "$$A2CAT$$", 
+            "-sleep", 
+            "$$A2SLEEP$$"
+        ], 
+        "exe": "catter", 
+        "exe_path": "/pvfs2/srbaucom/bin", 
+        "requires": [
+            "A1"
+        ], 
+        "skip": "$$skip$$", 
+        "uid": "A2"
+    }, 
+    {
+        "args": [
+            "-in", 
+            "$$A3IN$$", 
+            "-out", 
+            "$$A3OUT$$", 
+            "-cat", 
+            "$$A3CAT$$", 
+            "-sleep", 
+            "$$A3SLEEP$$"
+        ], 
+        "exe": "catter", 
+        "exe_path": "/pvfs2/srbaucom/bin", 
+        "requires": [
+            "A2"
+        ], 
+        "uid": "A3"
+    }
+]

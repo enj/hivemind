@@ -3,6 +3,10 @@
 
 """Represents utility functions."""
 
+from json import load
+
+from task import Task
+
 
 def enum(*sequential, **named):
     """Handy way to fake an enumerated type in Python.
@@ -23,3 +27,15 @@ tags = enum('WORK', 'EXIT')
 
 # The MPI rank of the master
 MASTER = 0
+
+def json_to_tasks(f):
+    with open(f, 'r') as fp:
+        return load(fp, object_hook=task_decoder)
+
+def task_decoder(t):
+    return Task(t["uid"],
+                t.get("skip", False),
+                t.get("requires", []),
+                t["exe_path"],
+                t["exe"],
+                *t.get("args", []))
