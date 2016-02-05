@@ -217,9 +217,6 @@ while currentprocess<len(list_row):
 		+ env_DataDIROut + '/' + node_env_ID + '/preprocess/image-' + node_env_ID + '-correct-scale.nhdr -m 100')
 
 	print('Performing anisotropic smoothing')
-	os.system(env_ksrtAppDIR + '/ImageMath ' 
-		+ env_DataDIROut + '/' + node_env_ID + '/preprocess/image-' + node_env_ID + '-correct-scale.nhdr -smooth -curveEvol -iter 20 -outfile ' 
-		+ env_DataDIROut + '/' + node_env_ID + '/preprocess/image-' + node_env_ID + '-correct-scale-smooth.nhdr')
 	os.system(env_ksrtAppDIR + '/CurvatureAnisotropicDiffusion --timeStep 0.01 --iterations 50 '
 		+ env_DataDIROut + '/' + node_env_ID + '/preprocess/image-' + node_env_ID + '-correct-scale.nhdr '
 		+ env_DataDIROut + '/' + node_env_ID + '/preprocess/image-' + node_env_ID + '-correct-scale-smooth.nhdr')
