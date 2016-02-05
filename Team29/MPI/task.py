@@ -45,7 +45,7 @@ class Task(object):
                     ))
 
     def __eq__(self, other):
-        return hash(self) == hash(other)
+        return self.uid == other.uid and self.pid == other.pid and hash(self) == hash(other)
 
     def __ne__(self, other):
         return not self.__eq__(other)
