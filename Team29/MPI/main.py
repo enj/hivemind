@@ -28,7 +28,7 @@ if rank == MASTER:
     s2 = Task("/pvfs2/srbaucom/bin", "app", "is ")
     s3 = Task("/pvfs2/srbaucom/bin", "app", "a ")
     s4 = Task("/pvfs2/srbaucom/bin", "app", "test ")
-    s5 = Task("/pvfs2/srbaucom/bin", "app", "sentence.")
+    s5 = Task("/pvfs2/srbaucom/bin", "app", "sentence.\n")
     sp = Pipeline(s1, s2, s3, s4, s5)
 
     m1 = Task("/pvfs2/srbaucom/bin", "catter", "-in", "t1.txt", "-out", "t2.txt", "-cat", "This ", "-sleep", "5000")
@@ -38,7 +38,6 @@ if rank == MASTER:
 
     q = TaskQueue(sp, mp)
     m = Master(MPI, q)
-    m.orchestrate()
     while m.closed_workers != m.total_workers:
         m.receive()
         m.orchestrate()

@@ -73,23 +73,3 @@ class Master(object):
 
         if __debug__:
             self.log.debug("Received %s from %d" % (task, source))
-
-        #tag = self.status.Get_tag()
-
-        #if tag == tags.DONE:
-            #pass
-            # TODO do we need done?
-            # self.completed_tasks += 1
-        #elif tag == tags.READY:
-            # if self.queue:
-            #     self.send(source, self.queue.popleft(), tags.START)
-            #     self.sent_tasks += 1
-            # elif self.sent_tasks == self.queue.num_tasks:
-            #
-            #     if __debug__:
-            #         self.log.debug("Tell %d to exit" % source)
-            #
-            #     self.send(source, None, tags.EXIT)
-            #     self.closed_workers += 1
-            # else:
-            #     self.send(source, None, tags.WAIT)
