@@ -34,7 +34,7 @@ def checkfile(filepath):
 		return True
 
 
-os.system('/home/sdmoore/.ksrt_profile')
+os.system('~/.ksrt_profile')
 
 # os.system('export HOMEDIR=/home/sdmoore/updatedKSRT')
 
