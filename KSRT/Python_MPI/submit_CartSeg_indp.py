@@ -23,7 +23,7 @@ def checkfile(filepath):
 	else:
 		return True
 
-subprocess.call('/home/sdmoore/.ksrt_profile', shell=True)
+subprocess.call('~/.ksrt_profile', shell=True)
 
 # subprocess.call('export HOMEDIR=/home/sdmoore/updatedKSRT', shell=True)
 
