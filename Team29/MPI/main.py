@@ -13,9 +13,9 @@ from worker import Worker
 from queue import TaskQueue
 
 if __debug__:
-    import logging
-    logging.basicConfig(level=logging.DEBUG)
-    log = logging.getLogger(__name__)
+    from logging import basicConfig, getLogger, DEBUG
+    basicConfig(level=DEBUG)
+    log = getLogger(__name__)
 
 
 rank = MPI.COMM_WORLD.Get_rank()
