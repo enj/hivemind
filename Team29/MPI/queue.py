@@ -30,6 +30,15 @@ class TaskQueue(object):
         if task:
             self.queue.append(task)
 
+    def extend(self, tasks):
+        """Add the given Task to the right of the TaskQueue.
+
+        :param task: the Task to add
+        :type task: Task
+        """
+        if tasks:
+            self.queue.extend(tasks)
+
     def popleft(self):
         """Remove the leftmost Task from the TaskQueue.
 

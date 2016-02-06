@@ -24,7 +24,7 @@ class Pipeline(object):
         self.dag = DiGraph()
         task_dict = {}
         for task in tasks:
-            self.dag.add_node(task)
+            self.dag.add_node(task, done=False)
             task_dict[task.uid] = task
 
         for task in tasks:
@@ -38,6 +38,23 @@ class Pipeline(object):
         :rtype: {int}
         """
         return self.len
+
+    def set_done(self, task):
+        self.dag.node[task]['done'] = True
+
+    def is_done(self, task):
+        return self.dag.node[task]['done']
+
+    def get_ready_successors(self, task):
+        ready_successors = []
+        for successor in self.dag.successors(task):
+            for predecessor in self.dag.predecessors(successor):
+                if not self.is_done(predecessor):
+                    break
+            else:
+                ready_successors.append(successor)
+
+        return ready_successors
 
 
 class PipelineFramework(Pipeline):
