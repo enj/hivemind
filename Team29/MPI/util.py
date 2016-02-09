@@ -33,9 +33,13 @@ def json_to_tasks(f):
         return load(fp, object_hook=task_decoder)
 
 def task_decoder(t):
-    return Task(t["uid"],
-                t.get("skip", False),
-                t.get("requires", []),
-                t["exe_path"],
-                t["exe"],
-                *t.get("args", []))
+    return (
+        Task(
+            t["uid"],
+            t.get("skip", False),
+            t["exe_path"],
+            t["exe"],
+            *t.get("args", [])
+        ),
+        t.get("requires", []),
+    )
