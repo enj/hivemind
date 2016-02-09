@@ -4,6 +4,7 @@
 """Represents utility functions."""
 
 from json import load
+from csv import DictReader
 
 from task import Task
 
@@ -43,3 +44,7 @@ def task_decoder(t):
         ),
         t.get("requires", []),
     )
+
+def read_csv(f):
+    return DictReader(open(f), delimiter=',')
+    

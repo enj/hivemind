@@ -4,6 +4,7 @@
 """Represents a Pipeline of Tasks."""
 
 from networkx import DiGraph
+from re import compile
 
 
 class PipelineFramework(object):
@@ -26,10 +27,30 @@ class PipelineFramework(object):
             for req_uid in reqs:
                 self.dag.add_edge(task_dict[req_uid], task)
 
+
 class ConcretePipeline(object):
 
-    def __init__(self):
-        pass
+    def __init__(self, framework, data):
+        self.dag = framework.dag.copy()
+        self.framework_to_concrete(data)
+
+    def framework_to_concrete(self, data):
+        for node in self.dag.nodes():
+            for k, v in vars(node).iteritems():
+                if k.startswith('_'):
+                    continue
+                if isinstance(v, list):
+                    for i, s in enumerate(v):
+                        vars(node)[k][i] = self.replace_variable(s, data)
+                elif isinstance(v, str):
+                    vars(node)[k] = self.replace_variable(s, data)
+
+    def replace_variable(self, string, data):
+        pattern = compile(r'\b(' + '|'.join(data.keys()) + r')\b')
+        return pattern.sub(lambda x: data[x.group()], string)
+
+
+
 
     def __len__(self):
         """Determine the length of the Pipeline.
