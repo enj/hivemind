@@ -8,7 +8,7 @@
             "-cat", 
             "$$A1CAT$$", 
             "-sleep", 
-            "$$A1SLEEP$$"
+            "$$SLEEP$$"
         ], 
         "exe": "catter", 
         "exe_path": "/pvfs2/srbaucom/bin", 
@@ -23,7 +23,7 @@
             "-cat", 
             "$$A2CAT$$", 
             "-sleep", 
-            "$$A2SLEEP$$"
+            "$$SLEEP$$"
         ], 
         "exe": "catter", 
         "exe_path": "/pvfs2/srbaucom/bin", 
@@ -42,7 +42,7 @@
             "-cat", 
             "$$A3CAT$$", 
             "-sleep", 
-            "$$A3SLEEP$$"
+            "$$SLEEP$$"
         ], 
         "exe": "catter", 
         "exe_path": "/pvfs2/srbaucom/bin", 

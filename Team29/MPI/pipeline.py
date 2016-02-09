@@ -21,7 +21,7 @@ class PipelineFramework(object):
         task_dict = {}
         for task, _ in tasks_reqs:
             self.dag.add_node(task, done=False)
-            task_dict[task.uid] = task
+            task_dict[task._uid] = task
 
         for task, reqs in tasks_reqs:
             for req_uid in reqs:
@@ -35,19 +35,24 @@ class ConcretePipeline(object):
         self.framework_to_concrete(data)
 
     def framework_to_concrete(self, data):
+        pattern = compile("^\$\$.*\$\$$")
         for node in self.dag.nodes():
             for k, v in vars(node).iteritems():
                 if k.startswith('_'):
                     continue
                 if isinstance(v, list):
                     for i, s in enumerate(v):
-                        vars(node)[k][i] = self.replace_variable(s, data)
+                        if pattern.match(s):
+                            vars(node)[k][i] = self.replace_variable(s, data)
                 elif isinstance(v, str):
-                    vars(node)[k] = self.replace_variable(s, data)
+                    if pattern.match(s):
+                        vars(node)[k] = self.replace_variable(s, data)
 
     def replace_variable(self, string, data):
         pattern = compile(r'\b(' + '|'.join(data.keys()) + r')\b')
-        return pattern.sub(lambda x: data[x.group()], string)
+        new = pattern.sub(lambda x: data[x.group()], data[string])
+        print "replacing", string, "with", new
+        return new
 
 
 
@@ -67,6 +72,7 @@ class ConcretePipeline(object):
         return self.dag.node[task]['done']
 
     def get_ready_successors(self, task):
+        print task
         ready_successors = []
         for successor in self.dag.successors(task):
             for predecessor in self.dag.predecessors(successor):
