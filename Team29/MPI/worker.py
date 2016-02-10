@@ -57,10 +57,10 @@ class Worker(object):
         """
         if self.tag == tags.EXIT:
             return
-        task = self.task
-        self.task = None
+        #task = self.task
+        #self.task = None
         if __debug__:
-            self.log.debug("Start Task %s" % task)
+            self.log.debug("Start Task %s" % self.task)
 
-        task.run()
-        self.send(task.next)
+        self.task.run()
+        self.send(self.task)

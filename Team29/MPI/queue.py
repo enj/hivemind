@@ -5,6 +5,8 @@
 
 from collections import deque
 
+from pipeline import ConcretePipeline
+
 
 class TaskQueue(object):
     """A TaskQueue is a set of Tasks that belong to different Pipelines.
@@ -12,14 +14,17 @@ class TaskQueue(object):
     The order of Tasks is arbitrary as they are unrelated.
     """
 
-    def __init__(self, *pipelines):
+    def __init__(self, pipelines):
         """Construct a TaskQueue based on the given Pipelines.
 
         :param *pipelines: the Pipelines to queue
         :type *pipelines: iterable of Pipelines
         """
+        self.queue = deque()
         self.num_tasks = sum(len(p) for p in pipelines)
-        self.queue = deque(p.head for p in pipelines)
+        for p in pipelines:
+            self.extend(p.get_ready_tasks())
+        #self.queue = deque(p.head for p in pipelines)
 
     def append(self, task):
         """Add the given Task to the right of the TaskQueue.

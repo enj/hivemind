@@ -53,7 +53,7 @@ class ConcretePipeline(object):
     def replace_variable(self, string, data):
         pattern = compile(r'\b(' + '|'.join(data.keys()) + r')\b')
         new = pattern.sub(lambda x: data[x.group()], data[string])
-        print "replacing", string, "with", new
+        #print "replacing", string, "with", new
         return new
 
 
@@ -74,7 +74,7 @@ class ConcretePipeline(object):
         return self.dag.node[task]['done']
 
     def get_ready_successors(self, task):
-        print task
+        #print task
         ready_successors = []
         for successor in self.dag.successors(task):
             for predecessor in self.dag.predecessors(successor):
@@ -84,3 +84,12 @@ class ConcretePipeline(object):
                 ready_successors.append(successor)
 
         return ready_successors
+
+    def get_ready_tasks(self):
+        ready_tasks = []
+        for node in self.dag:
+            if not self.dag.predecessors(node):
+                #print "Adding task", node._uid, "to queue"
+                ready_tasks.append(node)
+
+        return ready_tasks

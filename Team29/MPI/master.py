@@ -4,13 +4,13 @@
 """Represents the Master node."""
 
 from util import tags
-from queue import WorkerQueue
+from queue import TaskQueue, WorkerQueue
 
 
 class Master(object):
     """The Master node controls the Worker nodes."""
 
-    def __init__(self, mpi, queue):
+    def __init__(self, mpi, concrete_pipelines):
         """Construct a Master node that will work on the given TaskQueue.
 
         :param mpi: the global MPI object
@@ -18,8 +18,9 @@ class Master(object):
         :param queue: the TaskQueue to work on
         :type queue: TaskQueue
         """
-        self.queue = queue
+        self.queue = TaskQueue(concrete_pipelines)
         self.workers = WorkerQueue()
+        self.concrete_pipelines = concrete_pipelines
         self.sent_tasks = 0
         # self.completed_tasks = 0
         self.closed_workers = 0
@@ -67,10 +68,11 @@ class Master(object):
     def receive(self):
         """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
-        patient_dag = self.concrete_pipelines[task.pid]
-        patient_dag.set_done(task)
-        ready_successors = patient_dag.get_ready_successors(task)
-        self.queue.extend(ready_successors)
+        if task:
+            patient_dag = self.concrete_pipelines[task._pid]
+            patient_dag.set_done(task)
+            ready_successors = patient_dag.get_ready_successors(task)
+            self.queue.extend(ready_successors)
 
         source = self.status.Get_source()
         self.workers.append(source)
