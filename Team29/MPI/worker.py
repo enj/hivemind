@@ -57,8 +57,7 @@ class Worker(object):
         """
         if self.tag == tags.EXIT:
             return
-        #task = self.task
-        #self.task = None
+
         if __debug__:
             self.log.debug("Start Task %s" % self.task)
 

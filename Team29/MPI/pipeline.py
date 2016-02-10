@@ -36,7 +36,7 @@ class ConcretePipeline(object):
         self.framework_to_concrete(data)
 
     def framework_to_concrete(self, data):
-        pattern = compile("^\$\$.*\$\$$")
+        pattern = compile("\$\$.*?\$\$")
         for node in self.dag.nodes():
             vars(node)["_pid"] = self.pid
             for k, v in vars(node).iteritems():
@@ -51,13 +51,9 @@ class ConcretePipeline(object):
                         vars(node)[k] = self.replace_variable(s, data)
 
     def replace_variable(self, string, data):
-        pattern = compile(r'\b(' + '|'.join(data.keys()) + r')\b')
-        new = pattern.sub(lambda x: data[x.group()], data[string])
-        #print "replacing", string, "with", new
-        return new
-
-
-
+        print "Replacing", string, "with", data[string]
+        pattern = compile('|'.join(data.keys()))
+        return pattern.sub(lambda x: data[x.group()], data[string])
 
     def __len__(self):
         """Determine the length of the Pipeline.

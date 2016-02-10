@@ -1,3 +1,3 @@
-Name,$$A1IN$$,$$A1OUT$$,$$A1CAT$$,$$SLEEP$$,$$A2IN$$,$$A2OUT$$,$$A2CAT$$,$$A3IN$$,$$A3OUT$$,$$A3CAT$$
-Mo,m1.txt,m2.txt,This,5000,m2.txt,m3.txt,is,m3.txt,m4.txt,Mo.
-Sarah,s1.txt,s2.txt,This,7000,s2.txt,s3.txt,is,s3.txt,s4.txt,Sarah
+Name,$$A1IN$$,$$A1OUT$$,$$A1CAT$$,$$SLEEP$$,$$A2OUT$$,$$A2CAT$$,$$A3OUT$$,$$A3CAT$$
+Mo,m1.txt,m2.txt,"This ",5000,m3.txt,"is ",m4.txt,"Mo."
+Sarah,s1.txt,s2.txt,"This, 3000 ",7000,s3.txt,"is ",s4.txt,"Sarah."

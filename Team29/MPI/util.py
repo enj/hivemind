@@ -4,7 +4,7 @@
 """Represents utility functions."""
 
 from json import load
-from csv import DictReader
+import csv
 
 from task import Task
 
@@ -29,9 +29,11 @@ tags = enum('WORK', 'EXIT')
 # The MPI rank of the master
 MASTER = 0
 
+
 def json_to_tasks(f):
     with open(f, 'r') as fp:
         return load(fp, object_hook=task_decoder)
+
 
 def task_decoder(t):
     return (
@@ -45,6 +47,6 @@ def task_decoder(t):
         t.get("requires", []),
     )
 
+
 def read_csv(f):
-    return DictReader(open(f), delimiter=',')
-    
+    return csv.DictReader(open(f), delimiter=',')

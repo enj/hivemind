@@ -71,7 +71,7 @@ for i, row in enumerate(patients):
 for p in concrete_pipelines:
     edge_colours = ['black' for edge in p.dag.edges()]
     black_edges = [edge for edge in p.dag.edges()]
-    pos = nx.spectral_layout(p.dag,scale=1)
+    pos = nx.spring_layout(p.dag,scale=1)
     nx.draw_networkx_nodes(p.dag, pos, cmap=plt.get_cmap('jet'), node_color='y')
     #nx.draw_networkx_edges(p.dag, pos, edgelist=red_edges, edge_color='r', arrows=True)
     nx.draw_networkx_edges(p.dag, pos, edgelist=black_edges, arrows=True)

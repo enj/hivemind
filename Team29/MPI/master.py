@@ -69,9 +69,9 @@ class Master(object):
         """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
         if task:
-            patient_dag = self.concrete_pipelines[task._pid]
-            patient_dag.set_done(task)
-            ready_successors = patient_dag.get_ready_successors(task)
+            pipeline = self.concrete_pipelines[task._pid]
+            pipeline.set_done(task)
+            ready_successors = pipeline.get_ready_successors(task)
             self.queue.extend(ready_successors)
 
         source = self.status.Get_source()
