@@ -30,13 +30,15 @@ class PipelineFramework(object):
 
 class ConcretePipeline(object):
 
-    def __init__(self, framework, data):
+    def __init__(self, pid, framework, data):
         self.dag = framework.dag.copy()
+        self.pid = pid
         self.framework_to_concrete(data)
 
     def framework_to_concrete(self, data):
         pattern = compile("^\$\$.*\$\$$")
         for node in self.dag.nodes():
+            vars(node)["_pid"] = self.pid
             for k, v in vars(node).iteritems():
                 if k.startswith('_'):
                     continue

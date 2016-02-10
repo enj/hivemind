@@ -30,16 +30,16 @@ class Task(object):
         """Run the executable associated with this Task."""
         call(self.cmd, cwd=self.exe_path)
 
-    def __str__(self):
-        return ' '.join(self.cmd)
+    #def __str__(self):
+    #    return ' '.join(self.cmd)
 
     def __hash__(self):
         return hash((
                     self._uid,
-                    self.skip,
-                    self.exe_path,
-                    tuple(self.cmd),
-                    self._pid
+                    #self.skip,
+                    #self.exe_path,
+                    #tuple(self.cmd),
+                    #self._pid
                     ))
 
     def __eq__(self, other):
