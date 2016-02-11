@@ -6,6 +6,8 @@
 from networkx import DiGraph
 from re import compile
 
+from util import to_bool
+
 
 class PipelineFramework(object):
     """A Pipeline is a series of sequential Tasks."""
@@ -32,28 +34,35 @@ class ConcretePipeline(object):
 
     def __init__(self, pid, framework, data):
         self.dag = framework.dag.copy()
-        self.pid = pid
-        self.framework_to_concrete(data)
+        self.framework_to_concrete(pid, data)
 
-    def framework_to_concrete(self, data):
-        pattern = compile("\$\$.*?\$\$")
-        for node in self.dag.nodes():
-            vars(node)["_pid"] = self.pid
-            for k, v in vars(node).iteritems():
-                if k.startswith('_'):
-                    continue
-                if isinstance(v, list):
-                    for i, s in enumerate(v):
-                        if pattern.match(s):
-                            vars(node)[k][i] = self.replace_variable(s, data)
-                elif isinstance(v, str):
-                    if pattern.match(s):
-                        vars(node)[k] = self.replace_variable(s, data)
+    def framework_to_concrete(self, pid, data):
+        for task in self.dag.nodes():
+            task._pid = pid
+            all_fields = vars(task).iteritems()
+            public_fields = {field: value for field, value in all_fields if not field.startswith('_')}
+            for field, value in public_fields:
+                fields[field] = self.replace_values(value, data)
+                validate_field(fields[field])
+            task.skip = to_bool(task.skip)
+
+    def replace_values(self, value, data):
+        if isinstance(value, str):
+            return self.replace_variable(value, data)
+        elif isinstance(value, list):
+            return [self.replace_variable(v, data) for v in value]
+        else:
+            raise Exception
 
     def replace_variable(self, string, data):
         print "Replacing", string, "with", data[string]
         pattern = compile('|'.join(data.keys()))
         return pattern.sub(lambda x: data[x.group()], data[string])
+
+    def validate_field(self, field):
+        pattern = compile('\$\$.*\$\$')
+        if pattern.match(field):
+            raise Exception
 
     def __len__(self):
         """Determine the length of the Pipeline.
@@ -70,22 +79,10 @@ class ConcretePipeline(object):
         return self.dag.node[task]['done']
 
     def get_ready_successors(self, task):
-        #print task
         ready_successors = []
         for successor in self.dag.successors(task):
-            for predecessor in self.dag.predecessors(successor):
-                if not self.is_done(predecessor):
-                    break
-            else:
+            predecessors = self.dag.predecessors_iter(successor)
+            predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
+            if all(predecessor_state):
                 ready_successors.append(successor)
-
         return ready_successors
-
-    def get_ready_tasks(self):
-        ready_tasks = []
-        for node in self.dag:
-            if not self.dag.predecessors(node):
-                #print "Adding task", node._uid, "to queue"
-                ready_tasks.append(node)
-
-        return ready_tasks

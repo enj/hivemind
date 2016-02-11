@@ -4,8 +4,10 @@
 """Represents a Task in a pipeline."""
 
 from subprocess import call
+from functools import total_ordering
 
 
+@total_ordering
 class Task(object):
     """A Task is the smallest unit of work in a pipeline."""
 
@@ -25,6 +27,7 @@ class Task(object):
         self.cmd = ["./" + exe]
         self.cmd.extend(args)
         self._pid = None
+        self._rank = None
 
     def run(self):
         """Run the executable associated with this Task."""
@@ -33,21 +36,19 @@ class Task(object):
     def __str__(self):
         return ' '.join(self.cmd)
 
+    def __repr__(self):
+        return "%s %d %d" % (self._uid, self._pid, self._rank)
+
     def __hash__(self):
-        return hash((
-                    self._uid,
-                    #self.skip,
-                    #self.exe_path,
-                    #tuple(self.cmd),
-                    #self._pid
-                    ))
+        return hash(self._uid)
 
     def __eq__(self, other):
         return self._uid == other._uid and \
             self.skip == other.skip and \
             self.exe_path == other.exe_path and \
             self.cmd == other.cmd and \
-            self._pid == other._pid
+            self._pid == other._pid and \
+            self._rank == other._rank
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
+    def __lt__(self, other):
+        return self._rank < other._rank

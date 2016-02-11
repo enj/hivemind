@@ -6,6 +6,7 @@
 from collections import deque
 
 from pipeline import ConcretePipeline
+from util import zero_in_degree
 
 
 class TaskQueue(object):
@@ -23,8 +24,7 @@ class TaskQueue(object):
         self.queue = deque()
         self.num_tasks = sum(len(p) for p in pipelines)
         for p in pipelines:
-            self.extend(p.get_ready_tasks())
-        #self.queue = deque(p.head for p in pipelines)
+            self.extend(zero_in_degree(p.dag)) #TODO test
 
     def append(self, task):
         """Add the given Task to the right of the TaskQueue.
