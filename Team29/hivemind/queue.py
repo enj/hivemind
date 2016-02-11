@@ -5,8 +5,8 @@
 
 from collections import deque
 
-from pipeline import ConcretePipeline
-from util import zero_in_degree
+from .pipeline import ConcretePipeline
+from .util import zero_in_degree
 
 
 class TaskQueue(object):

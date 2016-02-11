@@ -6,7 +6,7 @@
 from networkx import DiGraph
 from re import compile
 
-from util import to_bool
+from .util import to_bool
 
 
 class PipelineFramework(object):

@@ -3,9 +3,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import cPickle as pickle
 
-from task import Task
-from pipeline import PipelineFramework, ConcretePipeline
-from util import json_to_tasks, read_csv
+from hivemind.task import Task
+from hivemind.pipeline import PipelineFramework, ConcretePipeline
+from hivemind.util import json_to_tasks, read_csv
 
 
 a = Task(1, False, [], "", "")

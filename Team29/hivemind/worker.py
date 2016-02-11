@@ -3,7 +3,7 @@
 
 """Represents a Worker node."""
 
-from util import tags, MASTER
+from .util import tags, MASTER
 
 
 class Worker(object):
@@ -61,6 +61,7 @@ class Worker(object):
         if __debug__:
             self.log.debug("Start Task %s" % self.task)
 
-        if self.task.skip is False:
+        if self.task.skip is False:  # TODO should we log this?
             self.task.run()
+
         self.send(self.task)

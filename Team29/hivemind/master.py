@@ -3,8 +3,8 @@
 
 """Represents the Master node."""
 
-from util import tags
-from queue import TaskQueue, WorkerQueue
+from .util import tags
+from .queue import TaskQueue, WorkerQueue
 
 
 class Master(object):

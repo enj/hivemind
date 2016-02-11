@@ -5,10 +5,10 @@
 
 from mpi4py import MPI
 
-from pipeline import PipelineFramework, ConcretePipeline
-from util import MASTER, tags, json_to_tasks, read_csv
-from master import Master
-from worker import Worker
+from hivemind.pipeline import PipelineFramework, ConcretePipeline
+from hivemind.util import MASTER, tags, json_to_tasks, read_csv
+from hivemind.master import Master
+from hivemind.worker import Worker
 
 if __debug__:
     from logging import basicConfig, getLogger, DEBUG

@@ -6,7 +6,7 @@
 from json import load
 from csv import DictReader
 
-from task import Task
+from .task import Task
 
 
 def enum(*sequential, **named):
@@ -46,7 +46,7 @@ def json_to_tasks(f):
     with open(f, 'r') as fp:
         return load(fp, object_hook=task_decoder)
 
-#TODO fix dangling file pointer
+# TODO fix dangling file pointer
 def read_csv(f):
     return DictReader(open(f), delimiter=',')
 

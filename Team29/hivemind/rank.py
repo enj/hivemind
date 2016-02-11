@@ -1,11 +1,12 @@
-from util import zero_in_degree
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""Custom rank functions."""
+
+from .util import zero_in_degree
 
 
 def rank_by_total_successors(framework):
-
-    def set_ranks():
-        for task in zero_in_degree(framework.dag):
-            rank(task)
 
     def rank(task):
         if task._rank is not None:
@@ -18,4 +19,5 @@ def rank_by_total_successors(framework):
         task._rank = r
         return r
 
-    set_ranks()
+    for task in zero_in_degree(framework.dag):
+        rank(task)
