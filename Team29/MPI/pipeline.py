@@ -39,11 +39,11 @@ class ConcretePipeline(object):
     def framework_to_concrete(self, pid, data):
         for task in self.dag.nodes():
             task._pid = pid
-            all_fields = vars(task).iteritems()
-            public_fields = {field: value for field, value in all_fields if not field.startswith('_')}
-            for field, value in public_fields:
-                fields[field] = self.replace_values(value, data)
-                validate_field(fields[field])
+            all_fields = vars(task)
+            public_fields = {field: value for field, value in all_fields.iteritems() if not field.startswith('_')}
+            for field, value in public_fields.iteritems():
+                all_fields[field] = self.replace_values(value, data)
+                self.validate_field(all_fields[field])
             task.skip = to_bool(task.skip)
 
     def replace_values(self, value, data):
@@ -51,15 +51,29 @@ class ConcretePipeline(object):
             return self.replace_variable(value, data)
         elif isinstance(value, list):
             return [self.replace_variable(v, data) for v in value]
+        elif isinstance(value, bool):
+            return value
+        elif isinstance(value, unicode):
+            return self.replace_values(value.encode('ascii', 'ignore'), data)
         else:
             raise Exception
 
     def replace_variable(self, string, data):
-        print "Replacing", string, "with", data[string]
+        if not data.get(string):
+            return string
         pattern = compile('|'.join(data.keys()))
         return pattern.sub(lambda x: data[x.group()], data[string])
 
     def validate_field(self, field):
+        if isinstance(field, bool):
+            return
+        if field is None:
+            return
+        if isinstance(field, list):
+            for a in field:
+                self.validate_field(a)
+            return
+
         pattern = compile('\$\$.*\$\$')
         if pattern.match(field):
             raise Exception

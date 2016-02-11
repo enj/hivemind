@@ -61,10 +61,14 @@ def to_bool(val):
         'false': False,
         't': True,
         'f': False,
+        '': False,
+        None: False,
         1: True,
         0: False
     }
 
+    if isinstance(val, unicode):
+        val = val.encode('ascii', 'ignore')
     if isinstance(val, str):
         val = val.lower()
 

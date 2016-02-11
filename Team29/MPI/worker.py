@@ -61,5 +61,6 @@ class Worker(object):
         if __debug__:
             self.log.debug("Start Task %s" % self.task)
 
-        self.task.run()
+        if self.task.skip is False:
+            self.task.run()
         self.send(self.task)

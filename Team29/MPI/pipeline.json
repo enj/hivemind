@@ -30,7 +30,7 @@
         "_requires": [
             "A1"
         ],
-        "skip": "$$skip$$",
+        "skip": "$$skipA2$$",
         "_uid": "A2"
     },
     {
