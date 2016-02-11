@@ -12,7 +12,7 @@ from .util import to_bool
 class PipelineFramework(object):
     """A Pipeline is a series of sequential Tasks."""
 
-    def __init__(self, *tasks_reqs):
+    def __init__(self, tasks_reqs):
         """Construct a Pipeline based on the given Tasks by linking them together.
 
         :param *tasks: A list of Tasks from which to create the Pipeline
@@ -40,10 +40,10 @@ class ConcretePipeline(object):
         for task in self.dag.nodes():
             task._pid = pid
             all_fields = vars(task)
-            public_fields = {field: value for field, value in all_fields.iteritems() if not field.startswith('_')}
-            for field, value in public_fields.iteritems():
-                all_fields[field] = self.replace_values(value, data)
-                self.validate_field(all_fields[field])
+            for field, value in all_fields.iteritems():
+                if not field.startswith('_'):
+                    all_fields[field] = self.replace_values(value, data)
+                    self.validate_field(all_fields[field])
             task.skip = to_bool(task.skip)
 
     def replace_values(self, value, data):

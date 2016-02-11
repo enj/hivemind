@@ -46,9 +46,9 @@ def json_to_tasks(f):
     with open(f, 'r') as fp:
         return load(fp, object_hook=task_decoder)
 
-# TODO fix dangling file pointer
 def read_csv(f):
-    return DictReader(open(f), delimiter=',')
+    with open(f, 'r') as fp:
+        return list(DictReader(fp, delimiter=','))
 
 def to_bool(val):
     if isinstance(val, bool):

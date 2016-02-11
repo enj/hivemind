@@ -27,7 +27,7 @@ tasks = json_to_tasks('pipeline.json')
 
 
 #p = PipelineFramework(a, b, c, d, e, f, p.dag, h, i, j)
-framework = PipelineFramework(*tasks)
+framework = PipelineFramework(tasks)
 
 
 patients = read_csv('test.csv')

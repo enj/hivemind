@@ -22,7 +22,6 @@ class Master(object):
         self.workers = WorkerQueue()
         self.concrete_pipelines = concrete_pipelines
         self.sent_tasks = 0
-        # self.completed_tasks = 0
         self.closed_workers = 0
 
         self.mpi = mpi

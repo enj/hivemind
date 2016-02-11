@@ -25,7 +25,7 @@ if __debug__:
 
 if rank == MASTER:
     tasks = json_to_tasks(json_file)
-    framework = PipelineFramework(*tasks)
+    framework = PipelineFramework(tasks)
     patients = read_csv(csv_file)
     concrete_pipelines = []
     for i, row in enumerate(patients):
