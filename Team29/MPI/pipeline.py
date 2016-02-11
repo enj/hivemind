@@ -50,25 +50,24 @@ class ConcretePipeline(object):
         if isinstance(value, str):
             return self.replace_variable(value, data)
         elif isinstance(value, list):
-            return [self.replace_variable(v, data) for v in value]
+            return [self.replace_values(v, data) for v in value]
         elif isinstance(value, bool):
             return value
         elif isinstance(value, unicode):
-            return self.replace_values(value.encode('ascii', 'ignore'), data)
+            return self.replace_variable(value.encode('ascii', 'ignore'), data)
         else:
             raise Exception
 
     def replace_variable(self, string, data):
-        if not data.get(string):
+        if data.get(string) is None:
             return string
         pattern = compile('|'.join(data.keys()))
         return pattern.sub(lambda x: data[x.group()], data[string])
 
     def validate_field(self, field):
-        if isinstance(field, bool):
+        if field is None or isinstance(field, bool):
             return
-        if field is None:
-            return
+
         if isinstance(field, list):
             for a in field:
                 self.validate_field(a)
