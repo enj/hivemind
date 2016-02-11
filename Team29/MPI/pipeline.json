@@ -1,54 +1,54 @@
 [
     {
         "args": [
-            "-in", 
-            "$$A1IN$$", 
-            "-out", 
-            "$$A1OUT$$", 
-            "-cat", 
-            "$$A1CAT$$", 
-            "-sleep", 
+            "-in",
+            "$$A1IN$$",
+            "-out",
+            "$$A1OUT$$",
+            "-cat",
+            "$$A1CAT$$",
+            "-sleep",
             "$$SLEEP$$"
-        ], 
-        "exe": "catter", 
-        "exe_path": "/pvfs2/srbaucom/bin", 
-        "uid": "A1"
-    }, 
+        ],
+        "exe": "catter",
+        "exe_path": "/pvfs2/srbaucom/bin",
+        "_uid": "A1"
+    },
     {
         "args": [
-            "-in", 
-            "$$A1OUT$$", 
-            "-out", 
-            "$$A2OUT$$", 
+            "-in",
+            "$$A1OUT$$",
+            "-out",
+            "$$A2OUT$$",
             "-cat", 
-            "$$A2CAT$$", 
-            "-sleep", 
+            "$$A2CAT$$",
+            "-sleep",
             "$$SLEEP$$"
-        ], 
-        "exe": "catter", 
-        "exe_path": "/pvfs2/srbaucom/bin", 
-        "requires": [
+        ],
+        "exe": "catter",
+        "exe_path": "/pvfs2/srbaucom/bin",
+        "_requires": [
             "A1"
-        ], 
-        "skip": "$$skip$$", 
-        "uid": "A2"
-    }, 
+        ],
+        "skip": "$$skip$$",
+        "_uid": "A2"
+    },
     {
         "args": [
-            "-in", 
-            "$$A2OUT$$", 
-            "-out", 
-            "$$A3OUT$$", 
-            "-cat", 
-            "$$A3CAT$$", 
-            "-sleep", 
+            "-in",
+            "$$A2OUT$$",
+            "-out",
+            "$$A3OUT$$",
+            "-cat",
+            "$$A3CAT$$",
+            "-sleep",
             "$$SLEEP$$"
-        ], 
-        "exe": "catter", 
-        "exe_path": "/pvfs2/srbaucom/bin", 
-        "requires": [
+        ],
+        "exe": "catter",
+        "exe_path": "/pvfs2/srbaucom/bin",
+        "_requires": [
             "A2"
-        ], 
-        "uid": "A3"
+        ],
+        "_uid": "A3"
     }
 ]
