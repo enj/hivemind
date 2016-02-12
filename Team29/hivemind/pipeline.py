@@ -7,6 +7,7 @@ from networkx import DiGraph
 from re import compile
 
 from .util import to_bool
+from .rank import rank_by_total_successors, rank_by_successors
 
 
 class PipelineFramework(object):
@@ -28,6 +29,8 @@ class PipelineFramework(object):
         for task, reqs in tasks_reqs:
             for req_uid in reqs:
                 self.dag.add_edge(task_dict[req_uid], task)
+
+        rank_by_total_successors(self)
 
 
 class ConcretePipeline(object):

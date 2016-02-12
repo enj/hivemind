@@ -3,7 +3,9 @@
 
 """Represents the Master node."""
 
-from .util import tags
+from Queue import PriorityQueue
+
+from .util import tags, zero_in_degree
 from .queue import TaskQueue, WorkerQueue
 
 
@@ -18,7 +20,8 @@ class Master(object):
         :param queue: the TaskQueue to work on
         :type queue: TaskQueue
         """
-        self.queue = TaskQueue(concrete_pipelines)
+        #self.queue = TaskQueue(concrete_pipelines)
+        self.queue = PriorityQueue()
         self.workers = WorkerQueue()
         self.concrete_pipelines = concrete_pipelines
         self.sent_tasks = 0
@@ -29,6 +32,11 @@ class Master(object):
         self.status = mpi.Status()
         self.total_workers = self.comm.Get_size() - 1
 
+        self.num_tasks = sum(len(p) for p in self.concrete_pipelines)
+        for p in self.concrete_pipelines:
+            for task in zero_in_degree(p.dag):
+                self.queue.put(task)
+
         if __debug__:
             name = mpi.Get_processor_name()
 
@@ -37,13 +45,13 @@ class Master(object):
 
     def orchestrate(self):
         """TODO"""
-        while self.queue and self.workers:
+        while not self.queue.empty() and self.workers:
             w = self.workers.popleft()
-            t = self.queue.popleft()
+            t = self.queue.get(True)
             self.send(w, t, tags.WORK)
             self.sent_tasks += 1
 
-        if self.sent_tasks == self.queue.num_tasks:
+        if self.sent_tasks == self.num_tasks:
             while self.workers:
                 w = self.workers.popleft()
                 self.send(w, None, tags.EXIT)
@@ -67,14 +75,14 @@ class Master(object):
     def receive(self):
         """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
+        source = self.status.Get_source()
+        if __debug__:
+            self.log.debug("Received %s from %d" % (task, source))
         if task:
             pipeline = self.concrete_pipelines[task._pid]
             pipeline.set_done(task)
             ready_successors = pipeline.get_ready_successors(task)
-            self.queue.extend(ready_successors)
+            for t in ready_successors:
+                self.queue.put(t)
 
-        source = self.status.Get_source()
         self.workers.append(source)
-
-        if __debug__:
-            self.log.debug("Received %s from %d" % (task, source))

@@ -64,4 +64,7 @@ class Worker(object):
         if self.task.skip is False:  # TODO should we log this?
             self.task.run()
 
+        if __debug__:
+            self.log.debug("Finished Task %s" % self.task)
+
         self.send(self.task)
