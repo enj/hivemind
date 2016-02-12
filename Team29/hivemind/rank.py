@@ -9,8 +9,8 @@ from .util import zero_in_degree
 def rank_by_total_successors(framework):
 
     def rank(task):
-        #if task._rank is not None:
-        #    return task._rank
+        if task._rank is not None:
+            return task._rank
 
         r = 0
         for successor in framework.dag.successors_iter(task):
@@ -26,4 +26,9 @@ def rank_by_total_successors(framework):
 def rank_by_successors(framework):
 
     for task in framework.dag.nodes():
-        task._rank = 0 - framework.dag.out_degree(task)
+        task._rank = -framework.dag.out_degree(task)
+
+
+def rank_by_fifo(framework):
+    for task in framework.dag.nodes():
+        task._rank = 0

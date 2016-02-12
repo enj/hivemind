@@ -7,7 +7,7 @@ from networkx import DiGraph
 from re import compile
 
 from .util import to_bool
-from .rank import rank_by_total_successors, rank_by_successors
+from .rank import rank_by_total_successors, rank_by_successors, rank_by_fifo
 
 
 class PipelineFramework(object):

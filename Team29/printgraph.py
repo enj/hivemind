@@ -23,7 +23,7 @@ j = Task(10, False, [8, 9], "", "")
 test = Task(6, False, [4, 5], "", "")
 pickled = pickle.dumps(test)
 
-tasks = json_to_tasks('pipeline.json')
+tasks = json_to_tasks('sarah_pipeline.json')
 
 
 #p = PipelineFramework(a, b, c, d, e, f, p.dag, h, i, j)
@@ -71,7 +71,7 @@ for i, row in enumerate(patients):
 for p in concrete_pipelines:
     edge_colours = ['black' for edge in p.dag.edges()]
     black_edges = [edge for edge in p.dag.edges()]
-    pos = nx.spring_layout(p.dag,scale=1)
+    pos = nx.fruchterman_reingold_layout(p.dag,scale=1)
     nx.draw_networkx_nodes(p.dag, pos, cmap=plt.get_cmap('jet'), node_color='y')
     #nx.draw_networkx_edges(p.dag, pos, edgelist=red_edges, edge_color='r', arrows=True)
     nx.draw_networkx_edges(p.dag, pos, edgelist=black_edges, arrows=True)

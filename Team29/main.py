@@ -16,7 +16,7 @@ if __debug__:
     log = getLogger(__name__)
 
 
-json_file = 'pipeline.json'
+json_file = 'sarah_pipeline.json'
 csv_file = 'test.csv'
 rank = MPI.COMM_WORLD.Get_rank()
 
