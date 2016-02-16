@@ -34,10 +34,10 @@ class PipelineFramework(object):
 class ConcretePipeline(object):
 
     def __init__(self, pid, framework, data, checkpoint_dir):
+        self.pid = pid
+        self.checkpoint_dir = checkpoint_dir
         self.dag = framework.dag.copy()
         self.framework_to_concrete(data)
-        self.checkpoint_dir = checkpoint_dir
-        self.pid = pid
 
     def framework_to_concrete(self, data):
         for task in self.dag.nodes_iter():
