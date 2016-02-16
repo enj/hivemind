@@ -22,7 +22,6 @@ class Master(object):
         :param queue: the TaskQueue to work on
         :type queue: TaskQueue
         """
-        #self.queue = TaskQueue(concrete_pipelines)
         self.queue = PriorityQueue()
         self.workers = WorkerQueue()
         self.concrete_pipelines = concrete_pipelines
@@ -38,9 +37,6 @@ class Master(object):
         for p in self.concrete_pipelines:
             for task in p.get_ready_tasks():
                 self.queue.put(task)
-            # for task in zero_in_degree(p.dag):
-            #     if not p.is_done(task):
-            #         self.queue.put(task)
 
         if __debug__:
             name = mpi.Get_processor_name()
@@ -86,14 +82,15 @@ class Master(object):
         if task:
             pipeline = self.concrete_pipelines[task._pid]
             pipeline.set_done(task)
-            self.checkpoint("progress/" + str(task._pid) + "/" + task._uid + "/_.done")
+            self.checkpoint(task._pid, task._uid)
             ready_successors = pipeline.get_ready_successors(task)
             for t in ready_successors:
                 self.queue.put(t)
 
         self.workers.append(source)
 
-    def checkpoint(self, path):
+    def checkpoint(self, pid, uid):
+        path = "progress/" + str(pid) + "/" + uid + "/_.done"
         basedir = dirname(path)
         if not exists(basedir):
             makedirs(basedir)
