@@ -4,6 +4,7 @@
 """Demo of running a MPI Pipeline."""
 
 from mpi4py import MPI
+from os.path import isfile
 
 from hivemind.pipeline import PipelineFramework, ConcretePipeline
 from hivemind.util import MASTER, tags, json_to_tasks, read_csv
@@ -16,8 +17,8 @@ if __debug__:
     log = getLogger(__name__)
 
 
-json_file = 'sarah_pipeline.json'
-csv_file = 'test.csv'
+json_file = 'sarah.json'
+csv_file = 'sarah.csv'
 rank = MPI.COMM_WORLD.Get_rank()
 
 if __debug__:
@@ -28,10 +29,18 @@ if rank == MASTER:
     framework = PipelineFramework(tasks)
     patients = read_csv(csv_file)
     concrete_pipelines = []
+    completed_tasks = 0
     for i, row in enumerate(patients):
-        concrete_pipelines.append(ConcretePipeline(i, framework, row))
+        p = ConcretePipeline(i, framework, row)
+        concrete_pipelines.append(p)
+        for task in p.dag.nodes():
+            f = "progress/" + str(i) + "/" + task._uid + "/_.done"
+            if isfile(f):
+                p.set_done(task)
+                completed_tasks += 1
 
     m = Master(MPI, concrete_pipelines)
+    m.sent_tasks = completed_tasks
     while m.closed_workers != m.total_workers:
         m.receive()
         m.orchestrate()

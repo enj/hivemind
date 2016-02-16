@@ -102,3 +102,12 @@ class ConcretePipeline(object):
             if all(predecessor_state):
                 ready_successors.append(successor)
         return ready_successors
+
+    def get_ready_tasks(self):
+        ready_tasks = []
+        for task in self.dag.nodes():
+            predecessors = self.dag.predecessors_iter(task)
+            predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
+            if not self.is_done(task) and all(predecessor_state):
+                ready_tasks.append(task)
+        return ready_tasks

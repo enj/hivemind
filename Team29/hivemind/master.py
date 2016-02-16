@@ -4,6 +4,8 @@
 """Represents the Master node."""
 
 from Queue import PriorityQueue
+from os.path import dirname, exists
+from os import makedirs
 
 from .util import tags, zero_in_degree
 from .queue import TaskQueue, WorkerQueue
@@ -34,8 +36,11 @@ class Master(object):
 
         self.num_tasks = sum(len(p) for p in self.concrete_pipelines)
         for p in self.concrete_pipelines:
-            for task in zero_in_degree(p.dag):
+            for task in p.get_ready_tasks():
                 self.queue.put(task)
+            # for task in zero_in_degree(p.dag):
+            #     if not p.is_done(task):
+            #         self.queue.put(task)
 
         if __debug__:
             name = mpi.Get_processor_name()
@@ -81,8 +86,18 @@ class Master(object):
         if task:
             pipeline = self.concrete_pipelines[task._pid]
             pipeline.set_done(task)
+            self.checkpoint("progress/" + str(task._pid) + "/" + task._uid + "/_.done")
             ready_successors = pipeline.get_ready_successors(task)
             for t in ready_successors:
                 self.queue.put(t)
 
         self.workers.append(source)
+
+    def checkpoint(self, path):
+        basedir = dirname(path)
+        if not exists(basedir):
+            makedirs(basedir)
+
+        if __debug__:
+            self.log.debug("Creating checkpoint for %s" % path)
+        open(path, 'a').close()
