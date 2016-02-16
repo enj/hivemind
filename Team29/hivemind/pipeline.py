@@ -33,13 +33,15 @@ class PipelineFramework(object):
 
 class ConcretePipeline(object):
 
-    def __init__(self, pid, framework, data):
+    def __init__(self, pid, framework, data, checkpoint_dir):
         self.dag = framework.dag.copy()
-        self.framework_to_concrete(pid, data)
+        self.framework_to_concrete(data)
+        self.checkpoint_dir = checkpoint_dir
+        self.pid = pid
 
-    def framework_to_concrete(self, pid, data):
+    def framework_to_concrete(self, data):
         for task in self.dag.nodes_iter():
-            task._pid = pid
+            task._pid = self.pid
             all_fields = vars(task)
             for field, value in all_fields.iteritems():
                 if not field.startswith('_'):
@@ -92,27 +94,23 @@ class ConcretePipeline(object):
     def is_done(self, task):
         return self.dag.node[task]['done']
 
-    def is_done_by_file(self, task, root, idx):
-        f = "%s/%d/%s/_.done" % (root, idx, task._uid)
+    def is_done_by_file(self, task):
+        f = "%s/%d/%s/_.done" % (self.checkpoint_dir, self.pid, task._uid)
         if isfile(f):
             self.set_done(task)
             return True
         return False
 
     def get_ready_successors(self, task):
-        ready_successors = []
         for successor in self.dag.successors_iter(task):
             predecessors = self.dag.predecessors_iter(successor)
             predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
             if all(predecessor_state):
-                ready_successors.append(successor)
-        return ready_successors
+                yield successor
 
     def get_ready_tasks(self):
-        ready_tasks = []
         for task in self.dag.nodes_iter():
             predecessors = self.dag.predecessors_iter(task)
             predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
             if not self.is_done(task) and all(predecessor_state):
-                ready_tasks.append(task)
-        return ready_tasks
+                yield task

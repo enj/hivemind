@@ -7,14 +7,14 @@ from Queue import PriorityQueue
 from os.path import dirname, exists
 from os import makedirs
 
-from .util import tags, zero_in_degree
-from .queue import TaskQueue, WorkerQueue
+from .util import tags
+from .queue import WorkerQueue
 
 
 class Master(object):
     """The Master node controls the Worker nodes."""
 
-    def __init__(self, mpi, concrete_pipelines):
+    def __init__(self, mpi, concrete_pipelines, checkpoint_dir, sent_tasks=0):
         """Construct a Master node that will work on the given TaskQueue.
 
         :param mpi: the global MPI object
@@ -25,7 +25,8 @@ class Master(object):
         self.queue = PriorityQueue()
         self.workers = WorkerQueue()
         self.concrete_pipelines = concrete_pipelines
-        self.sent_tasks = 0
+        self.sent_tasks = sent_tasks
+        self.checkpoint_dir = checkpoint_dir
         self.closed_workers = 0
 
         self.mpi = mpi
@@ -77,8 +78,10 @@ class Master(object):
         """Wait to receive a Task from a Worker node."""
         task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
         source = self.status.Get_source()
+
         if __debug__:
             self.log.debug("Received %s from %d" % (task, source))
+
         if task:
             pipeline = self.concrete_pipelines[task._pid]
             pipeline.set_done(task)
@@ -90,11 +93,12 @@ class Master(object):
         self.workers.append(source)
 
     def checkpoint(self, pid, uid):
-        path = "progress/" + str(pid) + "/" + uid + "/_.done"
-        basedir = dirname(path)
+        f = "%s/%d/%s/_.done" % (self.checkpoint_dir, pid, uid)
+        basedir = dirname(f)
         if not exists(basedir):
             makedirs(basedir)
 
         if __debug__:
             self.log.debug("Creating checkpoint for %s" % path)
-        open(path, 'a').close()
+
+        open(f, 'a').close()
