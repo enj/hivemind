@@ -15,7 +15,7 @@ def rank_by_total_successors(framework):
         r = 0
         for successor in framework.dag.successors_iter(task):
             r += rank(successor)
-            r -= 1
+            r += 1
         task._rank = r
         return r
 
@@ -25,10 +25,10 @@ def rank_by_total_successors(framework):
 
 def rank_by_successors(framework):
 
-    for task in framework.dag.nodes():
-        task._rank = -framework.dag.out_degree(task)
+    for task in framework.dag.nodes_iter():
+        task._rank = framework.dag.out_degree(task)
 
 
 def rank_by_fifo(framework):
-    for task in framework.dag.nodes():
+    for task in framework.dag.nodes_iter():
         task._rank = 0

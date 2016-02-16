@@ -51,4 +51,4 @@ class Task(object):
             self._rank == other._rank
 
     def __lt__(self, other):
-        return self._rank < other._rank
+        return self._rank > other._rank

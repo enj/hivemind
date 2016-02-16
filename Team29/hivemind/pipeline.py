@@ -3,11 +3,12 @@
 
 """Represents a Pipeline of Tasks."""
 
+from re import compile as re_compile
+from os.path import isfile
+
 from networkx import DiGraph
-from re import compile
 
 from .util import to_bool
-from .rank import rank_by_total_successors, rank_by_successors, rank_by_fifo
 
 
 class PipelineFramework(object):
@@ -30,9 +31,6 @@ class PipelineFramework(object):
             for req_uid in reqs:
                 self.dag.add_edge(task_dict[req_uid], task)
 
-        rank_by_total_successors(self)
-
-
 class ConcretePipeline(object):
 
     def __init__(self, pid, framework, data):
@@ -40,7 +38,7 @@ class ConcretePipeline(object):
         self.framework_to_concrete(pid, data)
 
     def framework_to_concrete(self, pid, data):
-        for task in self.dag.nodes():
+        for task in self.dag.nodes_iter():
             task._pid = pid
             all_fields = vars(task)
             for field, value in all_fields.iteritems():
@@ -64,7 +62,7 @@ class ConcretePipeline(object):
     def replace_variable(self, string, data):
         if data.get(string) is None:
             return string
-        pattern = compile('|'.join(data.keys()))
+        pattern = re_compile('|'.join(data.keys()))
         return pattern.sub(lambda x: data[x.group()], data[string])
 
     def validate_field(self, field):
@@ -76,7 +74,7 @@ class ConcretePipeline(object):
                 self.validate_field(a)
             return
 
-        pattern = compile('\$\$.*\$\$')
+        pattern = re_compile('\$\$.*\$\$')
         if pattern.match(field):
             raise Exception
 
@@ -94,9 +92,16 @@ class ConcretePipeline(object):
     def is_done(self, task):
         return self.dag.node[task]['done']
 
+    def is_done_by_file(self, task, root, idx):
+        f = "%s/%d/%s/_.done" % (root, idx, task._uid)
+        if isfile(f):
+            self.set_done(task)
+            return True
+        return False
+
     def get_ready_successors(self, task):
         ready_successors = []
-        for successor in self.dag.successors(task):
+        for successor in self.dag.successors_iter(task):
             predecessors = self.dag.predecessors_iter(successor)
             predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
             if all(predecessor_state):
@@ -105,7 +110,7 @@ class ConcretePipeline(object):
 
     def get_ready_tasks(self):
         ready_tasks = []
-        for task in self.dag.nodes():
+        for task in self.dag.nodes_iter():
             predecessors = self.dag.predecessors_iter(task)
             predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
             if not self.is_done(task) and all(predecessor_state):
