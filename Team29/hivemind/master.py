@@ -99,6 +99,6 @@ class Master(object):
             makedirs(basedir)
 
         if __debug__:
-            self.log.debug("Creating checkpoint for %s" % path)
+            self.log.debug("Creating checkpoint for %s" % f)
 
         open(f, 'a').close()
