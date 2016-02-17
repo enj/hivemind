@@ -98,8 +98,7 @@ class ConcretePipeline(object):
         f = "%s/%d/%s/_.done" % (self.checkpoint_dir, self.pid, task._uid)
         if isfile(f):
             self.set_done(task)
-            return True
-        return False
+        return self.is_done(task)
 
     def get_ready_successors(self, task):
         for successor in self.dag.successors_iter(task):
