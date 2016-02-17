@@ -8,7 +8,7 @@ from os.path import isfile
 
 from networkx import DiGraph
 
-from .util import to_bool
+from ..util import to_bool
 
 
 class PipelineFramework(object):

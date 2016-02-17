@@ -7,8 +7,8 @@ from Queue import PriorityQueue
 from os.path import dirname, exists
 from os import makedirs
 
-from .util import tags
-from .queue import WorkerQueue
+from ..util import tags
+from ..queue import WorkerQueue
 
 
 class Master(object):

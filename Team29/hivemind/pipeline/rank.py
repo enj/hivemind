@@ -3,8 +3,6 @@
 
 """Custom rank functions."""
 
-from .util import zero_in_degree
-
 
 def rank_by_total_successors(framework):
 
@@ -22,13 +20,15 @@ def rank_by_total_successors(framework):
     for task in zero_in_degree(framework.dag):
         rank(task)
 
-
 def rank_by_successors(framework):
-
     for task in framework.dag.nodes_iter():
         task._rank = framework.dag.out_degree(task)
-
 
 def rank_by_fifo(framework):
     for task in framework.dag.nodes_iter():
         task._rank = 0
+
+def zero_in_degree(dag):
+    for task, in_degree in dag.in_degree_iter():
+        if in_degree == 0:
+            yield task

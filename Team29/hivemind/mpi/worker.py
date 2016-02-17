@@ -3,7 +3,7 @@
 
 """Represents a Worker node."""
 
-from .util import tags, MASTER
+from ..util import tags, MASTER
 
 
 class Worker(object):

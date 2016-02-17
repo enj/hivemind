@@ -5,11 +5,9 @@
 
 from mpi4py import MPI
 
-from hivemind.pipeline import PipelineFramework, ConcretePipeline
+from hivemind.pipeline import PipelineFramework, ConcretePipeline, rank_by_total_successors as ranker
 from hivemind.util import MASTER, tags, json_to_tasks, read_csv
-from hivemind.master import Master
-from hivemind.worker import Worker
-from hivemind.rank import rank_by_total_successors as ranker
+from hivemind.mpi import Master, Worker
 
 if __debug__:
     from logging import basicConfig, getLogger, DEBUG

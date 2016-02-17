@@ -6,8 +6,6 @@
 from json import load
 from csv import DictReader
 
-from .task import Task
-
 
 def enum(*sequential, **named):
     """Handy way to fake an enumerated type in Python.
@@ -30,6 +28,8 @@ tags = enum('WORK', 'EXIT')
 MASTER = 0
 
 def json_to_tasks(f):
+
+    from .pipeline import Task
 
     def task_decoder(t):
         return (
@@ -77,8 +77,3 @@ def to_bool(val):
         raise Exception
 
     return out
-
-def zero_in_degree(dag):
-    for task, in_degree in dag.in_degree_iter():
-        if in_degree == 0:
-            yield task
