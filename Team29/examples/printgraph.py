@@ -14,7 +14,7 @@ tasks = json_to_tasks('sarah.json')
 
 dg = DataGenerator()
 #framework = PipelineFramework(tasks)
-framework = dg.get_disconnected_pipeline()
+framework = dg.get_loose_pipeline()
 
 patients = read_csv('sarah.csv')
 concrete_pipelines = []

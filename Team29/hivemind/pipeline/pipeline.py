@@ -6,7 +6,7 @@
 from re import compile as re_compile
 from os.path import isfile
 
-from networkx import DiGraph
+from networkx import DiGraph, is_directed_acyclic_graph as is_dag
 
 from ..util import to_bool
 
@@ -24,12 +24,26 @@ class PipelineFramework(object):
         self.dag = DiGraph()
         task_dict = {}
         for task, _ in tasks_reqs:
+            if self.dag.has_node(task):
+                raise Exception
             self.dag.add_node(task, done=False)
             task_dict[task._uid] = task
 
         for task, reqs in tasks_reqs:
             for req_uid in reqs:
                 self.dag.add_edge(task_dict[req_uid], task)
+
+        if not is_dag(self.dag):
+            raise Exception
+
+    def __len__(self):
+        """Determine the length of the Pipeline.
+
+        :returns: the number of Tasks in this Pipeline
+        :rtype: {int}
+        """
+        return self.dag.__len__()
+
 
 class ConcretePipeline(object):
 
