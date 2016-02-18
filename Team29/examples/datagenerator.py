@@ -61,3 +61,54 @@ class DataGenerator(object):
             (Task("D", False, "", "", []), ["C"]),
             (Task("E", False, "", "", []), ["C"])
         ])
+
+    def get_unbalanced_pipeline(self):
+        return PipelineFramework([
+            (Task("A", False, "", "", []), []),
+            (Task("B", False, "", "", []), ["A"]),
+            (Task("C", False, "", "", []), ["A"]),
+            (Task("D", False, "", "", []), ["B"]),
+            (Task("E", False, "", "", []), ["D"]),
+            (Task("F", False, "", "", []), ["D"]),
+            (Task("G", False, "", "", []), ["D"])
+        ])
+
+    def get_ranktree_pipeline(self):
+        """Differently unbalanced depending on ranking method"""
+        return PipelineFramework([
+            (Task("A", False, "", "", []), []),
+            (Task("B", False, "", "", []), ["A"]),
+            (Task("C", False, "", "", []), ["A"]),
+            (Task("D", False, "", "", []), ["B"]),
+            (Task("E", False, "", "", []), ["B"]),
+            (Task("F", False, "", "", []), ["D"]),
+            (Task("G", False, "", "", []), ["D"]),
+            (Task("H", False, "", "", []), ["E"]),
+            (Task("I", False, "", "", []), ["E"]),
+            (Task("J", False, "", "", []), ["C"]),
+            (Task("K", False, "", "", []), ["C"]),
+            (Task("L", False, "", "", []), ["C"]),
+            (Task("M", False, "", "", []), ["C"]),
+            (Task("N", False, "", "", []), ["C"])
+        ])
+
+    def get_self_ref_pipeline(self):
+        return PipelineFramework([
+            (Task("A", False, "", "", []), ["A"])
+        ])
+
+    def get_duplicate_node_pipeline(self):
+        return PipelineFramework([
+            (Task("A", False, "", "", []), []),
+            (Task("A", False, "", "", []), [])
+        ])
+
+    def get_loose_pipeline(self):
+        return PipelineFramework([
+            (Task("A", False, "", "", []), []),
+            (Task("B", False, "", "", []), []),
+            (Task("C", False, "", "", []), []),
+            (Task("D", False, "", "", []), []),
+            (Task("E", False, "", "", []), []),
+            (Task("F", False, "", "", []), [])
+        ])
