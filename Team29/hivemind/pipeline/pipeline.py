@@ -113,3 +113,10 @@ class ConcretePipeline(object):
             predecessor_state = (self.is_done(predecessor) for predecessor in predecessors)
             if not self.is_done(task) and all(predecessor_state):
                 yield task
+
+    def get_completed_tasks(self):
+        completed_tasks = 0
+        for task in self.dag.nodes_iter():
+            if self.is_done_by_file(task):
+                completed_tasks += 1
+        return completed_tasks

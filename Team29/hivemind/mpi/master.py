@@ -14,7 +14,7 @@ from ..queue import WorkerQueue
 class Master(object):
     """The Master node controls the Worker nodes."""
 
-    def __init__(self, mpi, concrete_pipelines, checkpoint_dir, sent_tasks=0):
+    def __init__(self, mpi, concrete_pipelines):
         """Construct a Master node that will work on the given TaskQueue.
 
         :param mpi: the global MPI object
@@ -25,8 +25,8 @@ class Master(object):
         self.queue = PriorityQueue()
         self.workers = WorkerQueue()
         self.concrete_pipelines = concrete_pipelines
-        self.sent_tasks = sent_tasks
-        self.checkpoint_dir = checkpoint_dir
+        self.sent_tasks = sum(p.get_completed_tasks() for p in concrete_pipelines)
+        self.checkpoint_dir = concrete_pipelines[0].checkpoint_dir
         self.closed_workers = 0
 
         self.mpi = mpi

@@ -32,17 +32,12 @@ if rank == MASTER:
     framework = PipelineFramework(tasks)
     ranker(framework)
 
-    concrete_pipelines = []
-    completed_tasks = 0
+    concrete_pipelines = [
+        ConcretePipeline(i, framework, data, checkpoint_dir)
+        for i, data in enumerate(patients)
+    ]
 
-    for i, data in enumerate(patients):
-        p = ConcretePipeline(i, framework, data, checkpoint_dir)
-        concrete_pipelines.append(p)
-        for task in p.dag.nodes_iter():
-            if p.is_done_by_file(task):
-                completed_tasks += 1
-
-    m = Master(MPI, concrete_pipelines, checkpoint_dir, completed_tasks)
+    m = Master(MPI, concrete_pipelines)
     while m.closed_workers != m.total_workers:
         m.receive()
         m.orchestrate()
