@@ -8,7 +8,7 @@ from os.path import isfile
 
 from networkx import DiGraph, is_directed_acyclic_graph as is_dag
 
-from ..util import to_bool
+from ..util import to_bool, make_path
 
 
 class PipelineFramework(object):
@@ -56,6 +56,7 @@ class ConcretePipeline(object):
     def framework_to_concrete(self, data):
         for task in self.dag.nodes_iter():
             task._pid = self.pid
+            task._checkpoint_dir = self.checkpoint_dir
             all_fields = vars(task)
             for field, value in all_fields.iteritems():
                 if not field.startswith('_'):
@@ -72,6 +73,8 @@ class ConcretePipeline(object):
             return value
         elif isinstance(value, unicode):
             return self.replace_variable(value.encode('ascii', 'ignore'), data)
+        elif value is None:
+            return None
         else:
             raise Exception
 
@@ -82,8 +85,9 @@ class ConcretePipeline(object):
 
         for match in matches:
             if not data.get(match):
-                return string
-            string = re_sub(r'(.*){0}(.*)'.format(escape(match)), r'\g<1>{0}\g<2>'.format(data[match]), string)
+                continue
+                #return string
+            string = re_sub(ur'(.*){0}(.*)'.format(escape(match)), ur'\g<1>{0}\g<2>'.format(data[match]), string)
         return string
 
         #pattern = re_compile('|'.join(escape(key) for key in data.keys()))
