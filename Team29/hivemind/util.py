@@ -5,6 +5,8 @@
 
 from json import load
 from csv import DictReader
+from os.path import dirname, exists
+from os import makedirs
 
 
 def enum(*sequential, **named):
@@ -27,6 +29,7 @@ tags = enum('WORK', 'EXIT')
 # The MPI rank of the master
 MASTER = 0
 
+
 def json_to_tasks(f):
 
     from .pipeline import Task
@@ -36,8 +39,9 @@ def json_to_tasks(f):
             Task(
                 t["_uid"],
                 t.get("skip", False),
-                t["exe_path"],
                 t["exe"],
+                t.get("verify_exe", None),
+                t["wd"],
                 *t.get("args", [])
             ),
             t.get("_requires", []),
@@ -46,9 +50,11 @@ def json_to_tasks(f):
     with open(f, 'r') as fp:
         return load(fp, object_hook=task_decoder)
 
+
 def read_csv(f):
     with open(f, 'r') as fp:
         return list(DictReader(fp, delimiter=','))
+
 
 def to_bool(val):
     if isinstance(val, bool):
@@ -77,3 +83,9 @@ def to_bool(val):
         raise Exception
 
     return out
+
+
+def make_path(f):
+    basedir = dirname(f)
+    if not exists(basedir):
+        makedirs(basedir)
