@@ -112,3 +112,17 @@ class DataGenerator(object):
             (Task("E", False, "", "", []), []),
             (Task("F", False, "", "", []), [])
         ])
+
+    def get_args(self):
+        return {
+            "$$a1$$": "val_for_a1",
+            "$$a2$$": "secondParameter",
+            "$$a3$$": "a_3rd_one",
+            "$$a4$$": "4",
+            "$$skip1$$": "t",
+            "$$skip2$$": "TRUE",
+            "$$skip3$$": "1",
+            "$$skip4$$": 1,
+            "$$skip5$$": "f",
+            "$$skip6$$": "False"
+        }

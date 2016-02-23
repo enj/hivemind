@@ -1,7 +1,7 @@
 import unittest
 import networkx as nx
 
-from hivemind.pipeline import PipelineFramework, ConcretePipeline
+from hivemind.pipeline import PipelineFramework, ConcretePipeline, Task, rank_by_fifo as rank
 from datagenerator import DataGenerator
 
 
@@ -73,6 +73,76 @@ class TestPipeline(unittest.TestCase):
     def test_duplicate_node_framework(self):
         with self.assertRaises(Exception):
             self.dg.get_duplicate_node_pipeline()
+
+    def test_replace_none(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("A", False, "path", "exe", "none", "are", "replaced"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./exe none are replaced")
+        self.assertEquals(task.exe_path, "path")
+        self.assertFalse(task.skip)
+
+    def test_replace_simple(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("B", "$$skip1$$", "path", "exe", "-blah", "$$a1$$"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./exe -blah val_for_a1")
+        self.assertEquals(task.exe_path, "path")
+        self.assertTrue(task.skip)
+
+    def test_replace_multiple(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("C", "$$skip2$$", "$$a1$$", "$$a2$$", "$$a3$$", "$$a4$$"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./secondParameter a_3rd_one 4")
+        self.assertEquals(task.exe_path, "val_for_a1")
+        self.assertTrue(task.skip)
+
+    def test_replace_repeated(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("D", "$$skip3$$", "$$a1$$", "$$a1$$", "$$a1$$", "$$a1$$"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./val_for_a1 val_for_a1 val_for_a1")
+        self.assertEquals(task.exe_path, "val_for_a1")
+        self.assertTrue(task.skip)
+
+    def test_replace_partial(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("E", "$$skip4$$", "$$a4$$a4$$", "$$a1$$"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./val_for_a1")
+        self.assertEquals(task.exe_path, "4a4$$")
+        self.assertTrue(task.skip)
+
+    def test_replace_back_to_back(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("F", "$$skip5$$", "$$a2$$", "$$a4$$$$a4$$"), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./44")
+        self.assertEquals(task.exe_path, "secondParameter")
+        self.assertFalse(task.skip)
+
+    def test_replace_substring(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("G", "$$skip6$$", "/path/$$a2$$/more", "exe", "-$$a3$$", "\"$$a4$$\""), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./exe -a_3rd_one \"4\"")
+        self.assertEquals(task.exe_path, "/path/secondParameter/more")
+        self.assertFalse(task.skip)
 
 
 if __name__ == '__main__':

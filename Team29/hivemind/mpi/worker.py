@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """Represents a Worker node."""
+from time import time
 
 from ..util import tags, MASTER
 
@@ -23,6 +24,7 @@ class Worker(object):
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
         self.tag = tags.WORK
+        self.wait_time = 0
 
         if __debug__:
             name = mpi.Get_processor_name()
@@ -39,11 +41,15 @@ class Worker(object):
         :param task: the Task to send
         :type task: Task
         """
+        t = time()
         self.comm.send(task, dest=MASTER, tag=self.tag)
+        self.wait_time += time() - t
 
     def receive(self):
         """Receive and act upon a message from the Master node."""
+        t = time()
         task = self.comm.recv(source=MASTER, tag=self.mpi.ANY_TAG, status=self.status)
+        self.wait_time += time() - t
         self.tag = self.status.Get_tag()
 
         if self.tag == tags.WORK:

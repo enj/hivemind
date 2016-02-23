@@ -3,7 +3,7 @@
 
 """Represents a Pipeline of Tasks."""
 
-from re import compile as re_compile
+from re import escape, compile as re_compile, sub as re_sub, findall
 from os.path import isfile
 
 from networkx import DiGraph, is_directed_acyclic_graph as is_dag
@@ -76,10 +76,18 @@ class ConcretePipeline(object):
             raise Exception
 
     def replace_variable(self, string, data):
-        if data.get(string) is None:
+        matches = findall(r"(\$\$.*?\$\$)", string)
+        if not matches:
             return string
-        pattern = re_compile('|'.join(data.keys()))
-        return pattern.sub(lambda x: data[x.group()], data[string])
+
+        for match in matches:
+            if not data.get(match):
+                return string
+            string = re_sub(r'(.*){0}(.*)'.format(escape(match)), r'\g<1>{0}\g<2>'.format(data[match]), string)
+        return string
+
+        #pattern = re_compile('|'.join(escape(key) for key in data.keys()))
+        #return pattern.sub(lambda x: data[x.group()], data[string])
 
     def validate_field(self, field):
         if field is None or isinstance(field, bool):
@@ -92,7 +100,7 @@ class ConcretePipeline(object):
 
         pattern = re_compile('\$\$.*\$\$')
         if pattern.match(field):
-            raise Exception
+            raise Exception("Field:" + field)
 
     def __len__(self):
         """Determine the length of the Pipeline.

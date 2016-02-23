@@ -4,6 +4,7 @@
 """Demo of running a MPI Pipeline."""
 
 from mpi4py import MPI
+from time import sleep
 
 from hivemind.pipeline import PipelineFramework, ConcretePipeline, rank_by_total_successors as ranker
 from hivemind.util import MASTER, tags, json_to_tasks, read_csv
@@ -23,8 +24,8 @@ if __debug__:
 if rank == MASTER:
 
     checkpoint_dir = 'progress'
-    json_file = 'sarah.json'
-    csv_file = 'sarah.csv'
+    json_file = 'pipeline.json'
+    csv_file = 'test.csv'
 
     tasks = json_to_tasks(json_file)
     patients = read_csv(csv_file)
@@ -42,11 +43,14 @@ if rank == MASTER:
         m.receive()
         m.orchestrate()
 else:
+    sleep(10)
     w = Worker(MPI)
     w.send()
     while w.tag != tags.EXIT:
         w.receive()
         w.run()
+    if __debug__:
+        log.debug("Worker %d spent %d seconds waiting for the master" % (rank, w.wait_time))
 
 if __debug__:
     log.debug("Node %d running on processor %s EXITing" % (rank, MPI.Get_processor_name()))
