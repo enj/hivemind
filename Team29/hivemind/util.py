@@ -80,7 +80,7 @@ def to_bool(val):
 
     out = convert.get(val)
     if out is None:
-        raise Exception
+        raise ValueError("{} cannot be converted to a bool.".format(val))
 
     return out
 
