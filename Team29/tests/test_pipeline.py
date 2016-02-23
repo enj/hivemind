@@ -117,12 +117,8 @@ class TestPipeline(unittest.TestCase):
     def test_replace_partial(self):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("E", "$$skip4$$", "$$a4$$a4$$", "$$a1$$"), [])])
-        cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
-        task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./val_for_a1")
-        self.assertEquals(task.exe_path, "4a4$$")
-        self.assertTrue(task.skip)
+        with self.assertRaises(Exception):
+            ConcretePipeline(0, p, data, "blah")
 
     def test_replace_back_to_back(self):
         data = self.dg.get_args()

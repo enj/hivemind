@@ -3,7 +3,7 @@
 
 """Represents a Pipeline of Tasks."""
 
-from re import escape, compile as re_compile, sub as re_sub, findall
+from re import escape, match as re_match, sub as re_sub, findall
 from os.path import isfile
 
 from networkx import DiGraph, is_directed_acyclic_graph as is_dag
@@ -98,8 +98,7 @@ class ConcretePipeline(object):
                 self.validate_field(a)
             return
 
-        pattern = re_compile('\$\$.*\$\$')
-        if pattern.match(field):
+        if re_match(r'\$\$', field):
             raise Exception("Field:" + field)
 
     def __len__(self):
