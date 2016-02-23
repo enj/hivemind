@@ -31,9 +31,9 @@ class Worker(object):
             rank = self.comm.Get_rank()
 
             from logging import getLogger
-            self.log = getLogger("%s %s %d" % (__name__, name, rank))
+            self.log = getLogger("{} {} {}".format(__name__, name, rank))
 
-    def send(self, task=None):
+    def send(self, message=None):
         """Send the given Task to the Master node using the supplied Tag.
 
         :param tag: the Tag of the message
@@ -42,7 +42,7 @@ class Worker(object):
         :type task: Task
         """
         t = time()
-        self.comm.send(task, dest=MASTER, tag=self.tag)
+        self.comm.send(message, dest=MASTER, tag=self.tag)
         self.wait_time += time() - t
 
     def receive(self):
@@ -65,12 +65,12 @@ class Worker(object):
             return
 
         if __debug__:
-            self.log.debug("Start Task %s" % self.task)
+            self.log.debug("Start Task {}".format(self.task))
 
         if self.task.skip is False:  # TODO should we log this?
             self.task.run()
 
         if __debug__:
-            self.log.debug("Finished Task %s" % self.task)
+            self.log.debug("Finished Task {}".format(self.task))
 
-        self.send(self.task)
+        self.send((self.task._pid, self.task._uid))

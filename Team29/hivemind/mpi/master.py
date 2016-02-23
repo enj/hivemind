@@ -3,12 +3,9 @@
 
 """Represents the Master node."""
 
-from Queue import PriorityQueue
-from os.path import dirname, exists
-from os import makedirs
+from Queue import PriorityQueue, Queue
 
-from ..util import tags
-from ..queue import WorkerQueue
+from ..util import tags, make_path
 
 
 class Master(object):
@@ -23,9 +20,10 @@ class Master(object):
         :type queue: TaskQueue
         """
         self.queue = PriorityQueue()
-        self.workers = WorkerQueue()
+        self.workers = Queue()
         self.concrete_pipelines = concrete_pipelines
         self.sent_tasks = sum(p.get_completed_tasks() for p in concrete_pipelines)
+        self.out_tasks = {}
         self.checkpoint_dir = concrete_pipelines[0].checkpoint_dir
         self.closed_workers = 0
 
@@ -43,19 +41,20 @@ class Master(object):
             name = mpi.Get_processor_name()
 
             from logging import getLogger
-            self.log = getLogger("%s %s" % (__name__, name))
+            self.log = getLogger("{} {}".format(__name__, name))
 
     def orchestrate(self):
         """TODO"""
-        while not self.queue.empty() and self.workers:
-            w = self.workers.popleft()
-            t = self.queue.get(True)
+        while not self.queue.empty() and not self.workers.empty():
+            w = self.workers.get()
+            t = self.queue.get()
             self.send(w, t, tags.WORK)
+            self.out_tasks[(t._pid, t._uid)] = t
             self.sent_tasks += 1
 
         if self.sent_tasks == self.num_tasks:
-            while self.workers:
-                w = self.workers.popleft()
+            while not self.workers.empty():
+                w = self.workers.get()
                 self.send(w, None, tags.EXIT)
                 self.closed_workers += 1
 
@@ -70,35 +69,37 @@ class Master(object):
         :type tag: Tag Enum
         """
         if __debug__:
-            self.log.debug("Sending %s to %d with Tag %d" % (task, target, tag))
+            self.log.debug("Sending {} to {} with Tag {}".format(task, target, tag))
 
         self.comm.send(task, dest=target, tag=tag)
 
     def receive(self):
         """Wait to receive a Task from a Worker node."""
-        task = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
+        message = self.comm.recv(source=self.mpi.ANY_SOURCE, tag=self.mpi.ANY_TAG, status=self.status)
         source = self.status.Get_source()
 
         if __debug__:
-            self.log.debug("Received %s from %d" % (task, source))
+            self.log.debug("Received {} from {}".format(message, source))
 
-        if task:
-            pipeline = self.concrete_pipelines[task._pid]
+        if message:
+            task = self.out_tasks[message]
+            del self.out_tasks[message]
+
+            pid, uid = message
+            pipeline = self.concrete_pipelines[pid]
             pipeline.set_done(task)
-            self.checkpoint(task._pid, task._uid)
+            self.checkpoint(pid, uid)
             ready_successors = pipeline.get_ready_successors(task)
             for t in ready_successors:
                 self.queue.put(t)
 
-        self.workers.append(source)
+        self.workers.put(source)
 
     def checkpoint(self, pid, uid):
-        f = "%s/%d/%s/_.done" % (self.checkpoint_dir, pid, uid)
-        basedir = dirname(f)
-        if not exists(basedir):
-            makedirs(basedir)
+        f = "{}/{}/{}/_.done".format(self.checkpoint_dir, pid, uid)
+        make_path(f)
 
         if __debug__:
-            self.log.debug("Creating checkpoint for %s" % f)
+            self.log.debug("Creating checkpoint for {}".format(f))
 
-        open(f, 'a').close()
+        open(f, "a").close()
