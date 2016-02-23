@@ -1,0 +1,34 @@
+[
+    {
+        "_uid": "A0",
+        "args": [
+            "-f",
+            "/pvfs2/srbaucom/bin/$$file$$"
+        ],
+        "exe": "rm",
+        "wd": "/bin"
+    },
+    {
+        "args": [
+            "This ",
+            "$$file$$"
+        ],
+        "exe": "/pvfs2/srbaucom/bin/app",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_uid": "A1",
+        "_requires": ["A0"]
+    },
+    {
+        "args": [
+            "sentence.",
+            "$$file$$"
+        ],
+        "exe": "/pvfs2/srbaucom/bin/app",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_uid": "A5",
+        "_requires": [
+            "A4"
+        ],
+        "verify_exe": "/pvfs2/srbaucom/bin/verify.py"
+    }
+]

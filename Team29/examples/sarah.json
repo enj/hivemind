@@ -1,56 +1,38 @@
 [
     {
         "args": [
-            "This ",
-            "$$file$$"
-        ],
-        "exe": "app",
-        "exe_path": "/pvfs2/srbaucom/bin",
-        "_uid": "A1"
-    },
-    {
-        "args": [
             "is ",
             "$$file$$"
         ],
-        "exe": "app",
-        "exe_path": "/pvfs2/srbaucom/bin",
+        "exe": "/pvfs2/srbaucom/bin/app",
+        "wd": "/pvfs2/srbaucom/bin",
         "_uid": "A2",
         "_requires": [
             "A1"
         ]
-    },{
+    },
+    {
         "args": [
-            "$$name$$",
+            "$$name$$'s",
             "$$file$$"
         ],
-        "exe": "app",
-        "exe_path": "/pvfs2/srbaucom/bin",
+        "exe": "/pvfs2/srbaucom/bin/app",
+        "wd": "/pvfs2/srbaucom/bin",
         "_uid": "A3",
         "_requires": [
             "A2"
         ]
-    },{
+    },
+    {
         "args": [
             " test ",
             "$$file$$"
         ],
-        "exe": "app",
-        "exe_path": "/pvfs2/srbaucom/bin",
+        "exe": "/pvfs2/srbaucom/bin/app",
+        "wd": "/pvfs2/srbaucom/bin",
         "_uid": "A4",
         "_requires": [
             "A3"
-        ]
-    },{
-        "args": [
-            "sentence.",
-            "$$file$$"
-        ],
-        "exe": "app",
-        "exe_path": "/pvfs2/srbaucom/bin",
-        "_uid": "A5",
-        "_requires": [
-            "A4"
         ]
     }
 ]
