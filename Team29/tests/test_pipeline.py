@@ -144,6 +144,43 @@ class TestPipeline(unittest.TestCase):
         self.assertEquals(task.exe_path, "/path/secondParameter/more")
         self.assertFalse(task.skip)
 
+    def test_replace_unicode(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("G", False, u"/path/$$a2$$/more", u"exe", u"-$$a3$$", u"\"$$a4$$\""), [])])
+        cp = ConcretePipeline(0, p, data, "blah")
+        rank(cp)
+        task = cp.dag.nodes()[0]
+        self.assertEquals(str(task), "./exe -a_3rd_one \"4\"")
+        self.assertEquals(task.exe_path, "/path/secondParameter/more")
+        self.assertFalse(task.skip)
+
+    def test_replace_invalid_var(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("G", "$$skip6$$", "/path/$$a2$$/more", "exe", "-$$a3$$", "$$a5$$"), [])])
+        with self.assertRaises(Exception):
+            ConcretePipeline(0, p, data, "blah")
+
+    def test_replace_invalid_type(self):
+        data = self.dg.get_args()
+        p = PipelineFramework([(Task("G", "$$skip6$$", None, "exe", "-$$a3$$", "$$a4$$"), [])])
+        with self.assertRaises(Exception):
+            ConcretePipeline(0, p, data, "blah")
+
+    def test_done(self):
+        data = self.dg.get_args()
+        p = self.dg.get_dag_pipeline()
+        cp = ConcretePipeline(0, p, data, "blah")
+        ready = list(cp.get_ready_tasks())
+        self.assertEquals(len(ready), 2)
+        task = [t for t in ready if t._uid is "A"][0]
+
+        self.assertFalse(list(cp.get_ready_successors(task)))
+        self.assertFalse(cp.is_done(task))
+        cp.set_done(task)
+        self.assertTrue(cp.is_done(task))
+        self.assertEquals(list(cp.get_ready_successors(task))[0]._uid, "C")
+        self.assertEquals(cp.get_completed_tasks(), 1)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestPipeline)
