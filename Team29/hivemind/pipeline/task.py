@@ -34,8 +34,8 @@ class Task(object):
 
     def run(self):
         """Run the executable associated with this Task."""
-        out = "%s/%d/%s/out.log" % (self._checkpoint_dir, self._pid, self._uid)
-        err = "%s/%d/%s/err.log" % (self._checkpoint_dir, self._pid, self._uid)
+        out = "{}/{}/{}/out.log".format(self._checkpoint_dir, self._pid, self._uid)
+        err = "{}/{}/{}/err.log".format(self._checkpoint_dir, self._pid, self._uid)
         with open(out, 'a') as stdout, open(err, 'a') as stderr:
             check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
             if self.verify_exe:
