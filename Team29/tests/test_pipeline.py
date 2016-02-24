@@ -16,25 +16,21 @@ class TestPipeline(unittest.TestCase):
 
     def test_single_node_framework(self):
         p = self.dg.get_single_node_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 1)
         self.assertTrue(nx.is_tree(p.dag))
 
     def test_linear_framework(self):
         p = self.dg.get_linear_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 3)
         self.assertTrue(nx.is_tree(p.dag))
 
     def test_tree_framework(self):
         p = self.dg.get_tree_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 7)
         self.assertTrue(nx.is_tree(p.dag))
 
     def test_dag_framework(self):
         p = self.dg.get_dag_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 7)
         self.assertTrue(nx.is_directed_acyclic_graph(p.dag))
 
@@ -44,25 +40,21 @@ class TestPipeline(unittest.TestCase):
 
     def test_disconnected_framework(self):
         p = self.dg.get_disconnected_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 5)
         self.assertTrue(nx.is_directed_acyclic_graph(p.dag))
 
     def test_unbalanced_framework(self):
         p = self.dg.get_unbalanced_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 7)
         self.assertTrue(nx.is_tree(p.dag))
 
     def test_ranktree_framework(self):
         p = self.dg.get_ranktree_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 14)
         self.assertTrue(nx.is_tree(p.dag))
 
     def test_loose_framework(self):
         p = self.dg.get_loose_pipeline()
-        self.assertTrue(type(p) is PipelineFramework)
         self.assertEquals(len(p), 6)
         self.assertTrue(nx.is_directed_acyclic_graph(p.dag))
 
@@ -168,6 +160,7 @@ class TestPipeline(unittest.TestCase):
         cp = ConcretePipeline(0, p, data, "blah")
         ready = list(cp.get_ready_tasks())
         self.assertEquals(len(ready), 2)
+        #Get the "A" task
         task = [t for t in ready if t._uid is "A"][0]
 
         self.assertFalse(list(cp.get_ready_successors(task)))
