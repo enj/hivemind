@@ -20,7 +20,7 @@
     },
     {
         "args": [
-            "sentence.",
+            "sentence.\n",
             "$$file$$"
         ],
         "exe": "/pvfs2/srbaucom/bin/app",

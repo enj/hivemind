@@ -59,6 +59,8 @@ class ConcretePipeline(object):
             task._checkpoint_dir = self.checkpoint_dir
             all_fields = vars(task)
             for field, value in all_fields.iteritems():
+                if field is "verify_exe" and value is None:
+                    continue
                 if not field.startswith('_'):
                     all_fields[field] = self.replace_values(value, data)
                     self.validate_field(all_fields[field])
@@ -73,8 +75,8 @@ class ConcretePipeline(object):
             return value
         elif isinstance(value, unicode):
             return self.replace_variable(value.encode('ascii', 'ignore'), data)
-        elif value is None:
-            return None
+        #elif value is None:
+        #    return None
         else:
             raise Exception
 

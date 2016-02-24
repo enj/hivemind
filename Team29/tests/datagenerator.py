@@ -15,102 +15,102 @@ class DataGenerator(object):
         return PipelineFramework([()])
 
     def get_single_node_pipeline(self):
-        return PipelineFramework([(Task("A", False, "", "", []), [])])
+        return PipelineFramework([(Task("A", False, "", None, ""), [])])
 
     def get_linear_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), ["B"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), ["B"])
         ])
 
     def get_tree_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), ["A"]),
-            (Task("D", False, "", "", []), ["B"]),
-            (Task("E", False, "", "", []), ["B"]),
-            (Task("F", False, "", "", []), ["C"]),
-            (Task("G", False, "", "", []), ["C"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), ["A"]),
+            (Task("D", False, "", None, ""), ["B"]),
+            (Task("E", False, "", None, ""), ["B"]),
+            (Task("F", False, "", None, ""), ["C"]),
+            (Task("G", False, "", None, ""), ["C"])
         ])
 
     def get_dag_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), []),
-            (Task("C", False, "", "", []), ["A"]),
-            (Task("D", False, "", "", []), ["C"]),
-            (Task("E", False, "", "", []), ["C"]),
-            (Task("F", False, "", "", []), ["B", "C"]),
-            (Task("G", False, "", "", []), ["D", "F"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), []),
+            (Task("C", False, "", None, ""), ["A"]),
+            (Task("D", False, "", None, ""), ["C"]),
+            (Task("E", False, "", None, ""), ["C"]),
+            (Task("F", False, "", None, ""), ["B", "C"]),
+            (Task("G", False, "", None, ""), ["D", "F"])
         ])
 
     def get_cyclic_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), ["C"]),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), ["B"])
+            (Task("A", False, "", None, ""), ["C"]),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), ["B"])
         ])
 
     def get_disconnected_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), []),
-            (Task("D", False, "", "", []), ["C"]),
-            (Task("E", False, "", "", []), ["C"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), []),
+            (Task("D", False, "", None, ""), ["C"]),
+            (Task("E", False, "", None, ""), ["C"])
         ])
 
     def get_unbalanced_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), ["A"]),
-            (Task("D", False, "", "", []), ["B"]),
-            (Task("E", False, "", "", []), ["D"]),
-            (Task("F", False, "", "", []), ["D"]),
-            (Task("G", False, "", "", []), ["D"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), ["A"]),
+            (Task("D", False, "", None, ""), ["B"]),
+            (Task("E", False, "", None, ""), ["D"]),
+            (Task("F", False, "", None, ""), ["D"]),
+            (Task("G", False, "", None, ""), ["D"])
         ])
 
     def get_ranktree_pipeline(self):
         """Differently unbalanced depending on ranking method"""
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), ["A"]),
-            (Task("C", False, "", "", []), ["A"]),
-            (Task("D", False, "", "", []), ["B"]),
-            (Task("E", False, "", "", []), ["B"]),
-            (Task("F", False, "", "", []), ["D"]),
-            (Task("G", False, "", "", []), ["D"]),
-            (Task("H", False, "", "", []), ["E"]),
-            (Task("I", False, "", "", []), ["E"]),
-            (Task("J", False, "", "", []), ["C"]),
-            (Task("K", False, "", "", []), ["C"]),
-            (Task("L", False, "", "", []), ["C"]),
-            (Task("M", False, "", "", []), ["C"]),
-            (Task("N", False, "", "", []), ["C"])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), ["A"]),
+            (Task("C", False, "", None, ""), ["A"]),
+            (Task("D", False, "", None, ""), ["B"]),
+            (Task("E", False, "", None, ""), ["B"]),
+            (Task("F", False, "", None, ""), ["D"]),
+            (Task("G", False, "", None, ""), ["D"]),
+            (Task("H", False, "", None, ""), ["E"]),
+            (Task("I", False, "", None, ""), ["E"]),
+            (Task("J", False, "", None, ""), ["C"]),
+            (Task("K", False, "", None, ""), ["C"]),
+            (Task("L", False, "", None, ""), ["C"]),
+            (Task("M", False, "", None, ""), ["C"]),
+            (Task("N", False, "", None, ""), ["C"])
         ])
 
     def get_self_ref_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), ["A"])
+            (Task("A", False, "", None, ""), ["A"])
         ])
 
     def get_duplicate_node_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("A", False, "", "", []), [])
+            (Task("A", False, "", None, ""), []),
+            (Task("A", False, "", None, ""), [])
         ])
 
     def get_loose_pipeline(self):
         return PipelineFramework([
-            (Task("A", False, "", "", []), []),
-            (Task("B", False, "", "", []), []),
-            (Task("C", False, "", "", []), []),
-            (Task("D", False, "", "", []), []),
-            (Task("E", False, "", "", []), []),
-            (Task("F", False, "", "", []), [])
+            (Task("A", False, "", None, ""), []),
+            (Task("B", False, "", None, ""), []),
+            (Task("C", False, "", None, ""), []),
+            (Task("D", False, "", None, ""), []),
+            (Task("E", False, "", None, ""), []),
+            (Task("F", False, "", None, ""), [])
         ])
 
     def get_args(self):

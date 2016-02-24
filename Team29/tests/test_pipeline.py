@@ -76,89 +76,89 @@ class TestPipeline(unittest.TestCase):
 
     def test_replace_none(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("A", False, "path", "exe", "none", "are", "replaced"), [])])
+        p = PipelineFramework([(Task("A", False, "exe", None, "path", "none", "are", "replaced"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./exe none are replaced")
-        self.assertEquals(task.exe_path, "path")
+        self.assertEquals(str(task), "exe none are replaced")
+        self.assertEquals(task.wd, "path")
         self.assertFalse(task.skip)
 
     def test_replace_simple(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("B", "$$skip1$$", "path", "exe", "-blah", "$$a1$$"), [])])
+        p = PipelineFramework([(Task("B", "$$skip1$$", "exe", None, "path", "-blah", "$$a1$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./exe -blah val_for_a1")
-        self.assertEquals(task.exe_path, "path")
+        self.assertEquals(str(task), "exe -blah val_for_a1")
+        self.assertEquals(task.wd, "path")
         self.assertTrue(task.skip)
 
     def test_replace_multiple(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("C", "$$skip2$$", "$$a1$$", "$$a2$$", "$$a3$$", "$$a4$$"), [])])
+        p = PipelineFramework([(Task("C", "$$skip2$$", "$$a2$$", None, "$$a1$$", "$$a3$$", "$$a4$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./secondParameter a_3rd_one 4")
-        self.assertEquals(task.exe_path, "val_for_a1")
+        self.assertEquals(str(task), "secondParameter a_3rd_one 4")
+        self.assertEquals(task.wd, "val_for_a1")
         self.assertTrue(task.skip)
 
     def test_replace_repeated(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("D", "$$skip3$$", "$$a1$$", "$$a1$$", "$$a1$$", "$$a1$$"), [])])
+        p = PipelineFramework([(Task("D", "$$skip3$$", "$$a1$$", None, "$$a1$$", "$$a1$$", "$$a1$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./val_for_a1 val_for_a1 val_for_a1")
-        self.assertEquals(task.exe_path, "val_for_a1")
+        self.assertEquals(str(task), "val_for_a1 val_for_a1 val_for_a1")
+        self.assertEquals(task.wd, "val_for_a1")
         self.assertTrue(task.skip)
 
     def test_replace_partial(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("E", "$$skip4$$", "$$a4$$a4$$", "$$a1$$"), [])])
+        p = PipelineFramework([(Task("E", "$$skip4$$", "$$a1$$", None, "$$a4$$a4$$"), [])])
         with self.assertRaises(Exception):
             ConcretePipeline(0, p, data, "blah")
 
     def test_replace_back_to_back(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("F", "$$skip5$$", "$$a2$$", "$$a4$$$$a4$$"), [])])
+        p = PipelineFramework([(Task("F", "$$skip5$$", "$$a4$$$$a4$$", None, "$$a2$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./44")
-        self.assertEquals(task.exe_path, "secondParameter")
+        self.assertEquals(str(task), "44")
+        self.assertEquals(task.wd, "secondParameter")
         self.assertFalse(task.skip)
 
     def test_replace_substring(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("G", "$$skip6$$", "/path/$$a2$$/more", "exe", "-$$a3$$", "\"$$a4$$\""), [])])
+        p = PipelineFramework([(Task("G", "$$skip6$$", "exe", None, "/path/$$a2$$/more", "-$$a3$$", "\"$$a4$$\""), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./exe -a_3rd_one \"4\"")
-        self.assertEquals(task.exe_path, "/path/secondParameter/more")
+        self.assertEquals(str(task), "exe -a_3rd_one \"4\"")
+        self.assertEquals(task.wd, "/path/secondParameter/more")
         self.assertFalse(task.skip)
 
     def test_replace_unicode(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("G", False, u"/path/$$a2$$/more", u"exe", u"-$$a3$$", u"\"$$a4$$\""), [])])
+        p = PipelineFramework([(Task("G", False, u"exe", None, u"/path/$$a2$$/more", u"-$$a3$$", u"\"$$a4$$\""), [])])
         cp = ConcretePipeline(0, p, data, "blah")
         rank(cp)
         task = cp.dag.nodes()[0]
-        self.assertEquals(str(task), "./exe -a_3rd_one \"4\"")
-        self.assertEquals(task.exe_path, "/path/secondParameter/more")
+        self.assertEquals(str(task), "exe -a_3rd_one \"4\"")
+        self.assertEquals(task.wd, "/path/secondParameter/more")
         self.assertFalse(task.skip)
 
     def test_replace_invalid_var(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("G", "$$skip6$$", "/path/$$a2$$/more", "exe", "-$$a3$$", "$$a5$$"), [])])
+        p = PipelineFramework([(Task("G", "$$skip6$$", "exe", None, "/path/$$a2$$/more", "-$$a3$$", "$$a5$$"), [])])
         with self.assertRaises(Exception):
             ConcretePipeline(0, p, data, "blah")
 
     def test_replace_invalid_type(self):
         data = self.dg.get_args()
-        p = PipelineFramework([(Task("G", "$$skip6$$", None, "exe", "-$$a3$$", "$$a4$$"), [])])
+        p = PipelineFramework([(Task("G", "$$skip6$$", "exe", None, None, "-$$a3$$", "$$a4$$"), [])])
         with self.assertRaises(Exception):
             ConcretePipeline(0, p, data, "blah")
 
