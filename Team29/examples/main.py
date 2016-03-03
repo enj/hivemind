@@ -67,6 +67,7 @@ try:
     if __debug__:
         log.debug("Node {} running on processor {} EXITing".format(rank, MPI.Get_processor_name()))
 
-except:
-    print_exc()
+except BaseException as e:
+    if not isinstance(e, SystemExit):
+        print_exc()
     MPI.COMM_WORLD.Abort(1)
