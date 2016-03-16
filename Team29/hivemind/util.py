@@ -7,6 +7,7 @@ from json import load
 from csv import DictReader
 from os.path import dirname, exists
 from os import makedirs
+from datetime import datetime
 
 
 def enum(*sequential, **named):
@@ -89,3 +90,7 @@ def make_path(f):
     basedir = dirname(f)
     if not exists(basedir):
         makedirs(basedir)
+
+
+def tmp_checkpoint_dir():
+    return "/tmp/hivemind/{}".format(datetime.now().isoformat())

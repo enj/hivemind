@@ -5,13 +5,14 @@
 
 from Queue import PriorityQueue, Queue
 
-from ..util import tags, make_path
+from ..util import tags, make_path, tmp_checkpoint_dir
+from ..pipeline import PipelineFramework, ConcretePipeline
 
 
 class Master(object):
     """The Master node controls the Worker nodes."""
 
-    def __init__(self, mpi, concrete_pipelines):
+    def __init__(self, mpi, tasks, patients, ranker=None, checkpoint_dir=None):
         """Construct a Master node that will work on the given TaskQueue.
 
         :param mpi: the global MPI object
@@ -19,18 +20,31 @@ class Master(object):
         :param queue: the TaskQueue to work on
         :type queue: TaskQueue
         """
+
+        self.checkpoint_dir = checkpoint_dir or tmp_checkpoint_dir()
+        framework = PipelineFramework(tasks)
+        if ranker:
+            ranker(framework)
+
+        self.concrete_pipelines = [
+            ConcretePipeline(i, framework, data, self.checkpoint_dir)
+            for i, data in enumerate(patients)
+        ]
+
         self.queue = PriorityQueue()
         self.workers = Queue()
-        self.concrete_pipelines = concrete_pipelines
-        self.sent_tasks = sum(p.get_completed_tasks() for p in concrete_pipelines)
+        self.sent_tasks = sum(p.get_completed_tasks() for p in self.concrete_pipelines)
         self.out_tasks = {}
-        self.checkpoint_dir = concrete_pipelines[0].checkpoint_dir
         self.closed_workers = 0
 
         self.mpi = mpi
         self.comm = mpi.COMM_WORLD
         self.status = mpi.Status()
-        self.total_workers = self.comm.Get_size() - 1
+
+        size = self.comm.Get_size()
+        for w in xrange(1, size):
+            self.workers.put(w)
+        self.total_workers = size - 1
 
         self.num_tasks = sum(len(p) for p in self.concrete_pipelines)
         for p in self.concrete_pipelines:
@@ -82,15 +96,12 @@ class Master(object):
             self.log.debug("Received {} from {}".format(message, source))
 
         if message:
-            task = self.out_tasks[message]
-            del self.out_tasks[message]
-
+            task = self.out_tasks.pop(message)
             pid, uid = message
             pipeline = self.concrete_pipelines[pid]
             pipeline.set_done(task)
             self.checkpoint(pid, uid)
-            ready_successors = pipeline.get_ready_successors(task)
-            for t in ready_successors:
+            for t in pipeline.get_ready_successors(task):
                 self.queue.put(t)
 
         self.workers.put(source)
@@ -103,3 +114,9 @@ class Master(object):
             self.log.debug("Creating checkpoint for {}".format(f))
 
         open(f, "a").close()
+
+    def loop(self):
+        self.orchestrate()
+        while self.closed_workers != self.total_workers:
+            self.receive()
+            self.orchestrate()

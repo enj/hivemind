@@ -74,3 +74,8 @@ class Worker(object):
             self.log.debug("Finished Task {}".format(self.task))
 
         self.send((self.task._pid, self.task._uid))
+
+    def loop(self):
+        while self.tag != tags.EXIT:
+            self.receive()
+            self.run()
