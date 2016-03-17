@@ -51,7 +51,7 @@
     },
     {
         "_uid": "createTargetsL001",
-        "_requires": ["indexBAML001"],
+        "_requires": ["markDupL001"],
         "wd": "/pvfs2/srbaucom/dna",
         "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
         "args": [
@@ -180,7 +180,7 @@
     },
     {
         "_uid": "createTargetsL002",
-        "_requires": ["indexBAML002"],
+        "_requires": ["markDupL002"],
         "wd": "/pvfs2/srbaucom/dna",
         "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
         "args": [
@@ -309,7 +309,7 @@
     },
     {
         "_uid": "createTargetsL003",
-        "_requires": ["indexBAML003"],
+        "_requires": ["markDupL003"],
         "wd": "/pvfs2/srbaucom/dna",
         "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
         "args": [
@@ -438,7 +438,7 @@
     },
     {
         "_uid": "createTargetsL004",
-        "_requires": ["indexBAML004"],
+        "_requires": ["markDupL004"],
         "wd": "/pvfs2/srbaucom/dna",
         "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
         "args": [
