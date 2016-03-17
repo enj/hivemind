@@ -1,18 +1,13 @@
 <!doctype html>
 
 <meta charset="utf-8">
-<title>Dagre Interactive Demo</title>
+<title>D3 Pipeline</title>
 
 <script src="js/d3.v3.js"></script>
 <script src="js/graphlib-dot.js"></script>
 <script src="js/dagre-d3.js"></script>
 
-<style>
-svg {
-  border: 1px solid #999;
-  overflow: hidden;
-}
-
+<style id="svgCSS">
 .node {
   white-space: nowrap;
 }
@@ -40,12 +35,17 @@ svg {
 </style>
 
 <style>
+svg {
+  border: 1px solid #999;
+}
+
 h1, h2 {
   color: #333;
 }
 
 textarea {
-  width: 800px;
+  display: block;
+  width: 1000px;
 }
 
 label {
@@ -66,10 +66,9 @@ label {
 
 <form>
   <label for="inputGraph">Graphviz Definition</label>
-  <textarea id="inputGraph" rows="10" style="display: block; width:1000px;" onKeyUp="tryDraw();">
+  <textarea id="inputGraph" rows="10" onKeyUp="tryDraw();">
   </textarea>
-
-  <a id="svgLink" href="#" onclick="getLink();">SVG Link for this graph</a>
+  <a id="svgLink" href="#" onclick="getLink();" target="_blank">SVG for this graph</a>
 </form>
 
 <h2>Graph Visualization</h2>
@@ -81,19 +80,7 @@ label {
 <script>
 // Input related code goes here
 
-var inputGraph = document.querySelector("#inputGraph");
-
 var oldInputGraphValue;
-
-var graphRE = /[?&]graph=([^&]+)/;
-var graphMatch = window.location.search.match(graphRE);
-if (graphMatch) {
-  inputGraph.value = decodeURIComponent(graphMatch[1]);
-}
-var debugAlignmentRE = /[?&]alignment=([^&]+)/;
-var debugAlignmentMatch = window.location.search.match(debugAlignmentRE);
-var debugAlignment;
-if (debugAlignmentMatch) debugAlignment = debugAlignmentMatch[1];
 
 // Set up zoom support
 var svg = d3.select("svg"),
@@ -150,22 +137,21 @@ function getLink() {
     var serializer = new XMLSerializer();
     var source = serializer.serializeToString(svg);
 
-    //add name spaces.
-    if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
-        source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
-    }
-    if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
-        source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
-    }
+    //remove junk URL information before arrowheads
+    source = source.split(window.location.href).join("");
+
+    //inject CSS
+    var css = '<defs><style type="text/css"><![CDATA[_]]></style></defs>';
+    css = css.replace("_", document.getElementById("svgCSS").innerText);
+    source = source.replace('">', '">' + css);
 
     //add xml declaration
-    source = '<?xml version="1.0" standalone="yes"?>\r\n' + source;
+    source = '<?xml version="1.0" standalone="yes"?>\n' + source;
 
     //convert svg source to URI data scheme.
     var url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
 
     //set url value to a element's href attribute.
     document.getElementById("svgLink").href = url;
-    //you can download svg file by right click menu.
 }
 </script>
