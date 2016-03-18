@@ -4,6 +4,7 @@
 """D3 Pipeline Printer."""
 
 from random import seed, choice
+from argparse import ArgumentParser
 
 from networkx import DiGraph
 from networkx.drawing.nx_pydot import write_dot
@@ -13,8 +14,14 @@ from hivemind.util import json_to_tasks
 
 from http_server import load_url
 
-seed(2016)
-tasks = json_to_tasks("../dna.json")
+parser = ArgumentParser(description="Utility for 'printing' a pipeline")
+parser.add_argument('-j', '--json', action='append', help="JSON files", required=True)
+parser.add_argument('-s', '--seed', type=int, default=2016, help="Optional seed for random coloring")
+args = parser.parse_args()
+
+seed(args.seed)
+tasks = [task for j in args.json for task in json_to_tasks(j)]
+
 framework = PipelineFramework(tasks)
 
 with open("colors.txt", "rb") as f:
