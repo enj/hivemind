@@ -6,7 +6,7 @@
 		"args": [
 			"--inputimage",
 			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/001/preprocess-orig/image-001.nhdr",
-			"--outputimage"
+			"--outputimage",
 			"/pvfs2/hakoprly/ksrt/001/preprocess/image-001-correct.nhdr",
 			"--outputbiasfield",
 			"/pvfs2/hakoprly/ksrt/001/preprocess/bias-001.nhdr"
@@ -66,5 +66,5 @@
 			"4,4,1",
 			"/pvfs2/hakoprly/ksrt/001/preprocess/cor_t1_correct_scale_smooth_small.nhdr"
 		]
-	},
+	}
 ]
