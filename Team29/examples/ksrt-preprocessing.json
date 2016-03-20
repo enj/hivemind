@@ -14,6 +14,7 @@
 	},
 	{
 		"_uid": "ScaleInten",
+		"_requires": ["FldCorrection"],
 		"wd": "/pvfs2/hakoprly/ksrt",
 		"exe": "/pvfs2/ksrt_backup/ksrt/ksrt-build/KSRT-Build/bin/ksrtScaleIntensities",
 		"args": [
@@ -25,6 +26,7 @@
 	},
 	{
 		"_uid": "ImgMath",
+		"_requires": ["ScaleInten"],
 		"wd": "/pvfs2/hakoprly/ksrt",
 		"exe": "/pvfs2/ksrt_backup/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
 		"args": [
@@ -39,6 +41,7 @@
 	},
 	{
 		"_uid": "CrvturAnsotropcDfusion",
+		"_requires": ["ImgMath"],
 		"wd": "/pvfs2/hakoprly/ksrt",
 		"exe": "/pvfs2/ksrt_backup/ksrt/ksrt-build/KSRT-Build/bin/CurvatureAnisotropicDiffusion",
 		"args": [
@@ -52,6 +55,7 @@
 	},
 	{
 		"_uid": "Resample",
+		"_requires": ["CrvturAnsotropcDfusion"],
 		"wd": "/pvfs2/hakoprly/ksrt",
 		"exe": "/pvfs2/ksrt_backup/ksrt/ksrt-build/KSRT-Build/bin/ksrtResample",
 		"args": [
