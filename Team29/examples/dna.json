@@ -2,7 +2,7 @@
     {
         "_uid": "alignL001",
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "/pvfs2/abahman/Duke/Tools/bwa-0.7.12/bwa",
+        "exe": "/export/home/temp1037/Tools/bwa.kit/bwa",
         "args": [
             "mem",
             "-aM",
@@ -21,7 +21,7 @@
         "_uid": "sortL001",
         "_requires": ["alignL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/SortSam.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/SortSam.jar",
         "args": [
             "I=$$patient$$_L001.sam",
             "O=$$patient$$_L001-sort.bam",
@@ -32,7 +32,7 @@
         "_uid": "markDupL001",
         "_requires": ["sortL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
         "args": [
             "I=$$patient$$_L001-sort.bam",
             "O=$$patient$$_L001-sort-dup.bam",
@@ -43,7 +43,7 @@
         "_uid": "indexBAML001",
         "_requires": ["markDupL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
         "args": [
             "INPUT=$$patient$$_L001-sort-dup.bam",
             "OUTPUT=$$patient$$_L001-sort-dup.bam.bai"
@@ -51,9 +51,9 @@
     },
     {
         "_uid": "createTargetsL001",
-        "_requires": ["markDupL001"],
+        "_requires": ["indexBAML001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "RealignerTargetCreator",
@@ -71,7 +71,7 @@
         "_uid": "reallignL001",
         "_requires": ["createTargetsL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "IndelRealigner",
@@ -92,7 +92,7 @@
         "_uid": "recalL001",
         "_requires": ["reallignL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "BaseRecalibrator",
@@ -114,7 +114,7 @@
         "_uid": "recalBAML001",
         "_requires": ["recalL001"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
@@ -131,7 +131,7 @@
     {
         "_uid": "alignL002",
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "/pvfs2/abahman/Duke/Tools/bwa-0.7.12/bwa",
+        "exe": "/export/home/temp1037/Tools/bwa.kit/bwa",
         "args": [
             "mem",
             "-aM",
@@ -150,7 +150,7 @@
         "_uid": "sortL002",
         "_requires": ["alignL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/SortSam.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/SortSam.jar",
         "args": [
             "I=$$patient$$_L002.sam",
             "O=$$patient$$_L002-sort.bam",
@@ -161,7 +161,7 @@
         "_uid": "markDupL002",
         "_requires": ["sortL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
         "args": [
             "I=$$patient$$_L002-sort.bam",
             "O=$$patient$$_L002-sort-dup.bam",
@@ -172,7 +172,7 @@
         "_uid": "indexBAML002",
         "_requires": ["markDupL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
         "args": [
             "INPUT=$$patient$$_L002-sort-dup.bam",
             "OUTPUT=$$patient$$_L002-sort-dup.bam.bai"
@@ -180,9 +180,9 @@
     },
     {
         "_uid": "createTargetsL002",
-        "_requires": ["markDupL002"],
+        "_requires": ["indexBAML002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "RealignerTargetCreator",
@@ -200,7 +200,7 @@
         "_uid": "reallignL002",
         "_requires": ["createTargetsL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "IndelRealigner",
@@ -221,7 +221,7 @@
         "_uid": "recalL002",
         "_requires": ["reallignL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "BaseRecalibrator",
@@ -243,7 +243,7 @@
         "_uid": "recalBAML002",
         "_requires": ["recalL002"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
@@ -260,7 +260,7 @@
     {
         "_uid": "alignL003",
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "/pvfs2/abahman/Duke/Tools/bwa-0.7.12/bwa",
+        "exe": "/export/home/temp1037/Tools/bwa.kit/bwa",
         "args": [
             "mem",
             "-aM",
@@ -279,7 +279,7 @@
         "_uid": "sortL003",
         "_requires": ["alignL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/SortSam.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/SortSam.jar",
         "args": [
             "I=$$patient$$_L003.sam",
             "O=$$patient$$_L003-sort.bam",
@@ -290,7 +290,7 @@
         "_uid": "markDupL003",
         "_requires": ["sortL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
         "args": [
             "I=$$patient$$_L003-sort.bam",
             "O=$$patient$$_L003-sort-dup.bam",
@@ -301,7 +301,7 @@
         "_uid": "indexBAML003",
         "_requires": ["markDupL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
         "args": [
             "INPUT=$$patient$$_L003-sort-dup.bam",
             "OUTPUT=$$patient$$_L003-sort-dup.bam.bai"
@@ -309,9 +309,9 @@
     },
     {
         "_uid": "createTargetsL003",
-        "_requires": ["markDupL003"],
+        "_requires": ["indexBAML003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "RealignerTargetCreator",
@@ -329,7 +329,7 @@
         "_uid": "reallignL003",
         "_requires": ["createTargetsL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "IndelRealigner",
@@ -350,7 +350,7 @@
         "_uid": "recalL003",
         "_requires": ["reallignL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "BaseRecalibrator",
@@ -372,7 +372,7 @@
         "_uid": "recalBAML003",
         "_requires": ["recalL003"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
@@ -389,7 +389,7 @@
     {
         "_uid": "alignL004",
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "/pvfs2/abahman/Duke/Tools/bwa-0.7.12/bwa",
+        "exe": "/export/home/temp1037/Tools/bwa.kit/bwa",
         "args": [
             "mem",
             "-aM",
@@ -408,7 +408,7 @@
         "_uid": "sortL004",
         "_requires": ["alignL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/SortSam.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/SortSam.jar",
         "args": [
             "I=$$patient$$_L004.sam",
             "O=$$patient$$_L004-sort.bam",
@@ -419,7 +419,7 @@
         "_uid": "markDupL004",
         "_requires": ["sortL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
         "args": [
             "I=$$patient$$_L004-sort.bam",
             "O=$$patient$$_L004-sort-dup.bam",
@@ -430,7 +430,7 @@
         "_uid": "indexBAML004",
         "_requires": ["markDupL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
         "args": [
             "INPUT=$$patient$$_L004-sort-dup.bam",
             "OUTPUT=$$patient$$_L004-sort-dup.bam.bai"
@@ -438,9 +438,9 @@
     },
     {
         "_uid": "createTargetsL004",
-        "_requires": ["markDupL004"],
+        "_requires": ["indexBAML004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "RealignerTargetCreator",
@@ -458,7 +458,7 @@
         "_uid": "reallignL004",
         "_requires": ["createTargetsL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "IndelRealigner",
@@ -479,7 +479,7 @@
         "_uid": "recalL004",
         "_requires": ["reallignL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "BaseRecalibrator",
@@ -501,7 +501,7 @@
         "_uid": "recalBAML004",
         "_requires": ["recalL004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
@@ -519,7 +519,7 @@
         "_uid": "mergeLanes",
         "_requires": ["recalBAML001", "recalBAML002", "recalBAML003", "recalBAML004"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
@@ -543,7 +543,7 @@
         "_uid": "markDupMerged",
         "_requires": ["mergeLanes"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
         "args": [
             "I=$$patient$$-merged.bam",
             "O=$$patient$$-merged-dup.bam",
@@ -554,7 +554,7 @@
         "_uid": "indexBAMMerged",
         "_requires": ["markDupMerged"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
         "args": [
             "INPUT=$$patient$$-merged-dup.bam",
             "OUTPUT=$$patient$$-merged-dup.bam.bai"
@@ -564,7 +564,7 @@
         "_uid": "createTargetsMerged",
         "_requires": ["indexBAMMerged"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "RealignerTargetCreator",
@@ -582,7 +582,7 @@
         "_uid": "reallignMerged",
         "_requires": ["createTargetsMerged"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "IndelRealigner",
@@ -603,7 +603,7 @@
         "_uid": "recalMerged",
         "_requires": ["reallignMerged"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "BaseRecalibrator",
@@ -625,7 +625,7 @@
         "_uid": "recalBAMMerged",
         "_requires": ["recalMerged"],
         "wd": "/pvfs2/srbaucom/dna",
-        "exe": "java -jar /pvfs2/abahman/Duke/Tools/GATK/GenomeAnalysisTK.jar",
+        "exe": "java -jar /export/home/temp1037/Tools/GenomeAnalysisTK.jar",
         "args": [
             "-T",
             "PrintReads",
