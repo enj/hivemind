@@ -1,0 +1,107 @@
+[
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_uid": "A1"
+    },
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_requires": [
+            "A1"
+        ],
+        "_uid": "A2"
+    },
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_requires": [
+            "A2"
+        ],
+        "_uid": "A3"
+    },
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_requires": [
+            "A3"
+        ],
+        "_uid": "A4"
+    },
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_requires": [
+            "A4"
+        ],
+        "_uid": "A5"
+    },
+    {
+        "args": [
+            "-in",
+            "",
+            "-out",
+            "",
+            "-cat",
+            "",
+            "-sleep",
+            ""
+        ],
+        "exe": "catter",
+        "wd": "/pvfs2/srbaucom/bin",
+        "_requires": [
+            "A5"
+        ],
+        "_uid": "A6"
+    }
+]
