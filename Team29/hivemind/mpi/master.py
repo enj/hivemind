@@ -5,7 +5,7 @@
 
 from Queue import PriorityQueue, Queue
 
-from ..util import tags, make_path, tmp_checkpoint_dir
+from ..util import tags, make_path, tmp_checkpoint_dir, join
 from ..pipeline import PipelineFramework, ConcretePipeline
 
 
@@ -33,6 +33,8 @@ class Master(object):
 
         self.queue = PriorityQueue()
         self.workers = Queue()
+
+        # This takes checkpointing into consideration
         self.sent_tasks = sum(p.get_completed_tasks() for p in self.concrete_pipelines)
         self.out_tasks = {}
         self.closed_workers = 0
@@ -60,11 +62,14 @@ class Master(object):
     def orchestrate(self):
         """TODO"""
         while not self.queue.empty() and not self.workers.empty():
-            w = self.workers.get()
+            self.sent_tasks += 1
             t = self.queue.get()
+            if t.skip:
+                self.finish_task(t)
+                continue
+            w = self.workers.get()
             self.send(w, t, tags.WORK)
             self.out_tasks[(t._pid, t._uid)] = t
-            self.sent_tasks += 1
 
         if self.sent_tasks == self.num_tasks:
             while not self.workers.empty():
@@ -95,19 +100,18 @@ class Master(object):
         if __debug__:
             self.log.debug("Received {} from {}".format(message, source))
 
-        if message:
-            task = self.out_tasks.pop(message)
-            pid, uid = message
-            pipeline = self.concrete_pipelines[pid]
-            pipeline.set_done(task)
-            self.checkpoint(pid, uid)
-            for t in pipeline.get_ready_successors(task):
-                self.queue.put(t)
-
+        self.finish_task(self.out_tasks.pop(message))
         self.workers.put(source)
 
-    def checkpoint(self, pid, uid):
-        f = "{}/{}/{}/_.done".format(self.checkpoint_dir, pid, uid)
+    def finish_task(self, task):
+        pipeline = self.concrete_pipelines[task._pid]
+        pipeline.set_done(task)
+        self.checkpoint(task)
+        for t in pipeline.get_ready_successors(task):
+            self.queue.put(t)
+
+    def checkpoint(self, task):
+        f = join(self.checkpoint_dir, str(task._pid), str(task._uid), "_.done")
         make_path(f)
 
         if __debug__:

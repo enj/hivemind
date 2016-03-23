@@ -8,7 +8,7 @@ from os.path import isfile
 
 from networkx import DiGraph, is_directed_acyclic_graph as is_dag
 
-from ..util import to_bool, make_path
+from ..util import to_bool, join
 
 
 class PipelineFramework(object):
@@ -122,7 +122,7 @@ class ConcretePipeline(object):
         return self.dag.node[task]['done']
 
     def is_done_by_file(self, task):
-        f = "%s/%d/%s/_.done" % (self.checkpoint_dir, self.pid, task._uid)
+        f = join(self.checkpoint_dir, str(self.pid), str(task._uid), "_.done")
         if isfile(f):
             self.set_done(task)
         return self.is_done(task)

@@ -5,8 +5,9 @@
 
 from json import load
 from csv import DictReader
-from os.path import dirname, exists
+from os.path import dirname, exists, join
 from os import makedirs
+from tempfile import gettempdir
 from datetime import datetime
 
 
@@ -93,4 +94,4 @@ def make_path(f):
 
 
 def tmp_checkpoint_dir():
-    return "/tmp/hivemind/{}".format(datetime.now().isoformat())
+    return join(gettempdir(), __package__, datetime.now().isoformat())

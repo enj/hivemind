@@ -33,7 +33,7 @@ class Worker(object):
             from logging import getLogger
             self.log = getLogger("{} {} {}".format(__name__, name, rank))
 
-    def send(self, message=None):
+    def send(self, message):
         """Send the given Task to the Master node using the supplied Tag.
 
         :param tag: the Tag of the message
