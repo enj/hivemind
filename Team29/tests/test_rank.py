@@ -125,24 +125,21 @@ class TestRank(unittest.TestCase):
 
     def test_rank_by_fifo_tree(self):
         p = self.dag.get_tree_pipeline()
-        ranker.rank_by_fifo(p)
         ranks = {task._uid: task._rank for task in p.dag.node}
-        expected = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0}
+        expected = {'A': None, 'B': None, 'C': None, 'D': None, 'E': None, 'F': None, 'G': None}
         self.assertEqual(ranks, expected)
 
     def test_rank_by_fifo_unbalanced_pipeline(self):
         p = self.dag.get_unbalanced_pipeline()
-        ranker.rank_by_fifo(p)
         ranks = {task._uid: task._rank for task in p.dag.node}
-        expected = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0}
+        expected = {'A': None, 'B': None, 'C': None, 'D': None, 'E': None, 'F': None, 'G': None}
         self.assertEqual(ranks, expected)
 
     def test_rank_by_fifo_ranktree_pipeline(self):
         p = self.dag.get_ranktree_pipeline()
-        ranker.rank_by_fifo(p)
         ranks = {task._uid: task._rank for task in p.dag.node}
-        expected = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0,
-                    'H': 0, 'I': 0, 'J': 0, 'K': 0, 'L': 0, 'M': 0, 'N': 0}
+        expected = {'A': None, 'B': None, 'C': None, 'D': None, 'E': None, 'F': None, 'G': None,
+                    'H': None, 'I': None, 'J': None, 'K': None, 'L': None, 'M': None, 'N': None}
         self.assertEqual(ranks, expected)
 
 if __name__ == '__main__':

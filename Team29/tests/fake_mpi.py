@@ -66,10 +66,10 @@ class FakeMPIWorld(object):
 
             def __init__(self, size):
                 from Queue import Queue
-                self.data = tuple(Queue() for _ in xrange(size))
+                self.data = tuple(Queue(maxsize=1) for _ in xrange(size))
 
-        self.network = FakeNetwork(size)
-        self.array = [FakeMPI(rank, self.network) for rank in xrange(size)]
+        network = FakeNetwork(size)
+        self.array = [FakeMPI(rank, network) for rank in xrange(size)]
 
-    def __getitem__(self, key):
-        return self.array[key]
+    def __getitem__(self, rank):
+        return self.array[rank]

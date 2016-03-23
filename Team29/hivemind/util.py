@@ -94,4 +94,4 @@ def make_path(f):
 
 
 def tmp_checkpoint_dir():
-    return join(gettempdir(), __package__, datetime.now().isoformat())
+    return join(gettempdir(), __package__, datetime.now().strftime("%Y-%m-%dT%H_%M_%S.%f"))

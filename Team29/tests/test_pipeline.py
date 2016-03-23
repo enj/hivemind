@@ -1,7 +1,7 @@
 import unittest
 import networkx as nx
 
-from hivemind.pipeline import PipelineFramework, ConcretePipeline, Task, rank_by_fifo as rank
+from hivemind.pipeline import PipelineFramework, ConcretePipeline, Task
 from datagenerator import DataGenerator
 
 
@@ -70,7 +70,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("A", False, "exe", None, "path", "none", "are", "replaced"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "exe none are replaced")
         self.assertEquals(task.wd, "path")
@@ -80,7 +79,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("B", "$$skip1$$", "exe", None, "path", "-blah", "$$a1$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "exe -blah val_for_a1")
         self.assertEquals(task.wd, "path")
@@ -90,7 +88,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("C", "$$skip2$$", "$$a2$$", None, "$$a1$$", "$$a3$$", "$$a4$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "secondParameter a_3rd_one 4")
         self.assertEquals(task.wd, "val_for_a1")
@@ -100,7 +97,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("D", "$$skip3$$", "$$a1$$", None, "$$a1$$", "$$a1$$", "$$a1$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "val_for_a1 val_for_a1 val_for_a1")
         self.assertEquals(task.wd, "val_for_a1")
@@ -116,7 +112,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("F", "$$skip5$$", "$$a4$$$$a4$$", None, "$$a2$$"), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "44")
         self.assertEquals(task.wd, "secondParameter")
@@ -126,7 +121,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("G", "$$skip6$$", "exe", None, "/path/$$a2$$/more", "-$$a3$$", "\"$$a4$$\""), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "exe -a_3rd_one \"4\"")
         self.assertEquals(task.wd, "/path/secondParameter/more")
@@ -136,7 +130,6 @@ class TestPipeline(unittest.TestCase):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("G", False, u"exe", None, u"/path/$$a2$$/more", u"-$$a3$$", u"\"$$a4$$\""), [])])
         cp = ConcretePipeline(0, p, data, "blah")
-        rank(cp)
         task = cp.dag.nodes()[0]
         self.assertEquals(str(task), "exe -a_3rd_one \"4\"")
         self.assertEquals(task.wd, "/path/secondParameter/more")
@@ -160,7 +153,7 @@ class TestPipeline(unittest.TestCase):
         cp = ConcretePipeline(0, p, data, "blah")
         ready = list(cp.get_ready_tasks())
         self.assertEquals(len(ready), 2)
-        #Get the "A" task
+        # Get the "A" task
         task = [t for t in ready if t._uid is "A"][0]
 
         self.assertFalse(list(cp.get_ready_successors(task)))
@@ -174,4 +167,3 @@ class TestPipeline(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestPipeline)
     unittest.TextTestRunner(verbosity=2).run(suite)
-    #unittest.main()

@@ -36,8 +36,8 @@ class Task(object):
 
     def run(self):
         """Run the executable associated with this Task."""
-        out = join(self.checkpoint_dir, str(self.pid), str(task._uid), "out.log")
-        err = join(self.checkpoint_dir, str(self.pid), str(task._uid), "err.log")
+        out = join(self._checkpoint_dir, str(self._pid), str(self._uid), "out.log")
+        err = join(self._checkpoint_dir, str(self._pid), str(self._uid), "err.log")
         make_path(out)
 
         for i, s in enumerate(self.cmd):

@@ -7,7 +7,7 @@ from mpi4py import MPI
 from argparse import ArgumentParser
 from traceback import print_exc
 
-from hivemind.pipeline import rank_by_total_successors, rank_by_successors, rank_by_fifo
+from hivemind.pipeline import rank_by_total_successors, rank_by_successors
 from hivemind.util import MASTER, json_to_tasks, read_csv
 from hivemind.mpi import Master, Worker
 
@@ -26,7 +26,7 @@ try:
 
     if rank == MASTER:
 
-        rankers = (rank_by_total_successors, rank_by_successors, rank_by_fifo)
+        rankers = (rank_by_total_successors, rank_by_successors)
         rankers_help = ", ".join("{}: {}".format(i, f.func_name) for i, f in enumerate(rankers))
 
         parser = ArgumentParser(description="Example of running a MPI pipeline")

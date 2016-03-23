@@ -1,32 +1,18 @@
 [
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A1"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_uid": "A1"
     },
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A2"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_requires": [
             "A1"
         ],
@@ -34,17 +20,10 @@
     },
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A3"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_requires": [
             "A2"
         ],
@@ -52,17 +31,10 @@
     },
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A4"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_requires": [
             "A3"
         ],
@@ -70,17 +42,10 @@
     },
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A5"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_requires": [
             "A4"
         ],
@@ -88,20 +53,14 @@
     },
     {
         "args": [
-            "-in",
-            "",
-            "-out",
-            "",
-            "-cat",
-            "",
-            "-sleep",
-            ""
+            "A6"
         ],
-        "exe": "catter",
-        "wd": "/pvfs2/srbaucom/bin",
+        "exe": "echo",
+        "wd": ".",
         "_requires": [
             "A5"
         ],
-        "_uid": "A6"
+        "_uid": "A6",
+        "skip": true
     }
 ]
