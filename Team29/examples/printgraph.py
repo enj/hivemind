@@ -1,6 +1,7 @@
 import networkx as nx
 #import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.ticker import NullLocator
 import cPickle as pickle
 from networkx.drawing.nx_agraph import graphviz_layout
 
@@ -10,12 +11,15 @@ from hivemind.util import json_to_tasks, read_csv
 
 from datagenerator import DataGenerator
 
+from sys import stdout
+from networkx.drawing.nx_pydot import write_dot
+
 
 tasks = json_to_tasks('sarah_pipeline.json')
 
 dg = DataGenerator()
 framework = PipelineFramework(tasks)
-#framework = dg.get_ranktree_pipeline()
+#framework = dg.get_loose_pipeline()
 
 patients = read_csv('dna.csv')
 concrete_pipelines = []
@@ -46,13 +50,16 @@ pos = graphviz_layout(G, prog='dot')
 
 edge_colours = ['black' for edge in G.edges()]
 black_edges = [edge for edge in G.edges()]
-nx.draw_networkx_nodes(G, pos, node_shape='o', node_color=range(G.number_of_nodes()), cmap=plt.cm.Paired, node_size=80)
-nx.draw_networkx_edges(G, pos, arrows=True)
+nx.draw_networkx_nodes(G, pos, node_shape='o', node_color=range(G.number_of_nodes()), linewidths=0.5, cmap=plt.cm.Paired, node_size=100)
+nx.draw_networkx_edges(G, pos, width=.25, arrows=True)
 nx.draw_networkx_labels(G, pos, font_size=4)
 #nx.draw_networkx_labels(p.dag, pos, {task : str(task._uid) + "," + str(task._pid) for task in p.dag.nodes()}, font_size=12)
 
-#plt.show()
-#plt.figure(num=1,figsize=(10,10),dpi=100).savefig("graph.png")
-#plt.show()
 plt.axis("off")
-plt.savefig("graph.png", dpi=200)
+plt.gca().xaxis.set_major_locator(NullLocator())
+plt.gca().yaxis.set_major_locator(NullLocator())
+plt.margins(0,0)
+#plt.figure(dpi=200)
+#plt.show()
+plt.savefig("graph.png", bbox_inches='tight', pad_inches=0, dpi=200)
+#write_dot(G, stdout)

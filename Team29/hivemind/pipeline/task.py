@@ -6,7 +6,7 @@
 from subprocess import check_call
 from functools import total_ordering
 
-from ..util import make_path
+from ..util import make_path, join
 
 
 @total_ordering
@@ -36,11 +36,15 @@ class Task(object):
 
     def run(self):
         """Run the executable associated with this Task."""
-        out = "{}/{}/{}/out.log".format(self._checkpoint_dir, self._pid, self._uid)
-        err = "{}/{}/{}/err.log".format(self._checkpoint_dir, self._pid, self._uid)
+        out = join(self.checkpoint_dir, str(self.pid), str(task._uid), "out.log")
+        err = join(self.checkpoint_dir, str(self.pid), str(task._uid), "err.log")
         make_path(out)
+
+        for i, s in enumerate(self.cmd):
+            self.cmd[i] = s.encode('iso-8859-1')
+
         with open(out, 'a') as stdout, open(err, 'a') as stderr:
-            check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+            check_call(' '.join(map(str, self.cmd)), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
             if self.verify_exe:
                 check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
 

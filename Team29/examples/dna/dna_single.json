@@ -1,0 +1,131 @@
+[
+    {
+        "_uid": "alignL001",
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "/home/temp1037/Tools/bwa.kit/bwa",
+        "args": [
+            "mem",
+            "-aM",
+            "-t",
+            "$$bwacore$$",
+            "-R",
+            "'@RG\\tID:$$patient$$.L001\\tSM:$$patient$$\\tPL:ILLUMINA'",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "data/$$patient$$/L001_R1.fastq.gz",
+            "data/$$patient$$/L001_R2.fastq.gz",
+            ">",
+            "data/$$patient$$_L001.sam"
+        ]
+    },
+    {
+        "_uid": "sortL001",
+        "_requires": ["alignL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/picard-tools-1.119/SortSam.jar",
+        "args": [
+            "I=data/$$patient$$_L001.sam",
+            "O=data/$$patient$$_L001-sort.bam",
+            "SO=coordinate"
+        ]
+    },
+    {
+        "_uid": "markDupL001",
+        "_requires": ["sortL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/picard-tools-1.119/MarkDuplicates.jar",
+        "args": [
+            "I=data/$$patient$$_L001-sort.bam",
+            "O=data/$$patient$$_L001-sort-dup.bam",
+            "M=data/$$patient$$_L001-dup-metrics.txt"
+        ]
+    },
+    {
+        "_uid": "indexBAML001",
+        "_requires": ["markDupL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/picard-tools-1.119/BuildBamIndex.jar",
+        "args": [
+            "INPUT=data/$$patient$$_L001-sort-dup.bam",
+            "OUTPUT=data/$$patient$$_L001-sort-dup.bam.bai"
+        ]
+    },
+    {
+        "_uid": "createTargetsL001",
+        "_requires": ["indexBAML001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/GenomeAnalysisTK.jar",
+        "args": [
+            "-T",
+            "RealignerTargetCreator",
+            "-R",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "-I",
+            "data/$$patient$$_L001-sort-dup.bam",
+            "--known",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf",
+            "-o",
+            "data/$$patient$$_L001-realign.intervals"
+        ]
+    },
+    {
+        "_uid": "reallignL001",
+        "_requires": ["createTargetsL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/GenomeAnalysisTK.jar",
+        "args": [
+            "-T",
+            "IndelRealigner",
+            "-R",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "-I",
+            "data/$$patient$$_L001-sort-dup.bam",
+            "-known",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf",
+            "-targetIntervals",
+            "data/$$patient$$_L001-realign.intervals",
+            "-o",
+            "data/$$patient$$_L001-sort-dup-realign.bam",
+            "--filter_bases_not_stored"
+        ]
+    },
+    {
+        "_uid": "recalL001",
+        "_requires": ["reallignL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/GenomeAnalysisTK.jar",
+        "args": [
+            "-T",
+            "BaseRecalibrator",
+            "-R",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "-I",
+            "data/$$patient$$_L001-sort-dup-realign.bam",
+            "-knownSites",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.hg19.sites.vcf",
+            "-knownSites",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf",
+            "-L",
+            "/pvfs2/abahman/Duke/Tools/data/S04380219_Covered.bed",
+            "-o",
+            "data/$$patient$$_L001-recal-table.txt"
+        ]
+    },
+    {
+        "_uid": "recalBAML001",
+        "_requires": ["recalL001"],
+        "wd": "/pvfs2/srbaucom/dna",
+        "exe": "java -jar /home/temp1037/Tools/GenomeAnalysisTK.jar",
+        "args": [
+            "-T",
+            "PrintReads",
+            "-R",
+            "/pvfs2/abahman/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "-I",
+            "data/$$patient$$_L001-sort-dup-realign.bam",
+            "-BQSR",
+            "data/$$patient$$_L001-recal-table.txt",
+            "-o",
+            "data/$$patient$$_L001-recal.bam"
+        ]
+    }
+]
