@@ -13,7 +13,7 @@ from ..util import make_path, join
 class Task(object):
     """A Task is the smallest unit of work in a pipeline."""
 
-    def __init__(self, uid, skip, exe, verify_exe, wd, *args):
+    def __init__(self, uid, skip, shell, exe, verify_exe, wd, *args):
         """Construct a task based on the given path, executable, and arguments.
 
         :param exe_path: The file system location of the executable
@@ -24,6 +24,7 @@ class Task(object):
         :type *args: iterable of strings
         """
         self.skip = skip
+        self.shell = shell
         self.cmd = [exe]
         self.cmd.extend(args)
         self.verify_exe = verify_exe
@@ -44,7 +45,10 @@ class Task(object):
             self.cmd[i] = s.encode('iso-8859-1')
 
         with open(out, 'a') as stdout, open(err, 'a') as stderr:
-            check_call(' '.join(map(str, self.cmd)), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+            if self.shell:
+                check_call(' '.join(map(str, self.cmd)), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+            else:
+                check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
             if self.verify_exe:
                 check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
 

@@ -65,6 +65,7 @@ class ConcretePipeline(object):
                     all_fields[field] = self.replace_values(value, data)
                     self.validate_field(all_fields[field])
             task.skip = to_bool(task.skip)
+            task.shell = to_bool(task.shell)
 
     def replace_values(self, value, data):
         if isinstance(value, str):

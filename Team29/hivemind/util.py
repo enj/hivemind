@@ -41,6 +41,7 @@ def json_to_tasks(f):
             Task(
                 t["_uid"],
                 t.get("skip", False),
+                t.get("shell", False),
                 t["exe"],
                 t.get("verify_exe", None),
                 t["wd"],
