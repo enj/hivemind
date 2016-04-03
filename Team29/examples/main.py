@@ -30,10 +30,10 @@ try:
         rankers_help = ", ".join("{}: {}".format(i, f.func_name) for i, f in enumerate(rankers))
 
         parser = ArgumentParser(description="Example of running a MPI pipeline")
-        parser.add_argument('-j', '--json', action='append', help="JSON files", required=True)
-        parser.add_argument('-c', '--csv', action='append', help="CSV files", required=True)
-        parser.add_argument('-p', '--checkpoint', help="Optional checkpoint directory")
-        parser.add_argument('-r', '--ranker', type=int, choices=xrange(len(rankers)),
+        parser.add_argument("-j", "--json", nargs="+", help="JSON files", required=True)
+        parser.add_argument("-c", "--csv", nargs="+", help="CSV files", required=True)
+        parser.add_argument("-p", "--checkpoint", help="Optional checkpoint directory")
+        parser.add_argument("-r", "--ranker", type=int, choices=xrange(len(rankers)),
                             help="Optional rank function ID as %(type)s (for task priority) {}".format(rankers_help))
         args = parser.parse_args()
         ranker = rankers[args.ranker] if args.ranker is not None else None
