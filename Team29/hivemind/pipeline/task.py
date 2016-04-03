@@ -41,16 +41,21 @@ class Task(object):
         err = join(self._checkpoint_dir, str(self._pid), str(self._uid), "err.log")
         make_path(out)
 
-        for i, s in enumerate(self.cmd):
-            self.cmd[i] = s.encode('iso-8859-1')
+        # Leaving this here in case we realize it was needed after all
+        # for i, s in enumerate(self.cmd):
+        #     self.cmd[i] = s.encode('iso-8859-1')
 
         with open(out, 'a') as stdout, open(err, 'a') as stderr:
             if self.shell:
-                check_call(' '.join(map(str, self.cmd)), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+                check_call(' '.join(self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
             else:
                 check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+
             if self.verify_exe:
-                check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+                if self.shell:
+                    check_call(' '.join([self.verify_exe] + self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+                else:
+                    check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
 
     def __str__(self):
         return ' '.join(self.cmd)
@@ -66,6 +71,7 @@ class Task(object):
             self._pid == other._pid and \
             self._rank == other._rank and \
             self.skip == other.skip and \
+            self.shell == other.shell and \
             self.verify_exe == other.verify_exe and \
             self.wd == other.wd and \
             self._checkpoint_dir == other._checkpoint_dir and \

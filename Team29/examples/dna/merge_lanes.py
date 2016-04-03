@@ -28,4 +28,4 @@ cmd.extend(['--read_filter', args.read_filter])
 cmd.extend(['-o', args.o])
 
 #print ' '.join(cmd)
-check_call(cmd, shell=False)
+check_call(' '.join(cmd), shell=True)

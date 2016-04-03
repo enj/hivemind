@@ -66,7 +66,7 @@ class Worker(object):
             return
 
         if __debug__:
-            self.log.debug("Start Task {}".format(self.task))
+            self.log.debug("Start Task {}".format(self.task._uid))
 
         if self.task.skip is False:  # TODO should we log this?
             self.task.run()
