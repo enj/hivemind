@@ -1,0 +1,251 @@
+[
+	{
+		"_uid": "ksrtCopy-label",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtCopy",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-input/SKI10/labels-$$patID$$.mhd",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/labels-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImgeMath-label",
+		"_requires": ["ksrtCopy-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/labels-$$patID$$.nhdr",
+			"-changeOrig",
+			"0,0,0",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/labels-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtFlip",
+		"_requires": ["ImgeMath"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtFlip",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/image-$$patID$$.nhdr",
+			"-f",
+			"0,0,$$flip$$",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtFlip-label",
+		"_requires": ["ImgeMath-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtFlip",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/labels-$$patID$$.nhdr",
+			"-f",
+			"0,0,$$flip$$",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/labels-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtFlip-roi",
+		"_requires": ["ImgeMath-roi"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtFlip",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/roi-image-$$patID$$.nhdr",
+			"-f",
+			"0,0,$$flip$$",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/roi-image-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtCopy-roi",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtCopy",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-input/SKI10/roi-image-$$patID$$.mhd",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/roi-image-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImgeMath-roi",
+		"_requires": ["ksrtCopy-roi"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/roi-image-$$patID$$.nhdr",
+			"-changeOrig",
+			"0,0,0",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/roi-image-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "field-correction",
+		"_requires": ["ksrtFlip"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/N4ITKBiasFieldCorrection",
+		"args": [
+		"--outputbiasfield",
+		"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/bias-$$patID$$.nhdr",
+		"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$.nhdr",
+		"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct.nhdr"
+		]
+	},
+	{
+		"_uid": "scale-Intensities",
+		"_requires": ["field-correction"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtScaleIntensities",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale.nhdr",
+			"-m",
+			"100"
+		]
+	},
+	{
+		"_uid": "anisotropic-smoothing",
+		"_requires": ["scale-Intensities"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale.nhdr",
+			"-smooth",
+			"-curveEvol",
+			"-iter",
+			"20",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr"
+		]
+	},
+	{
+		"_uid": "Curvature-Anisotropic-Diffusion",
+		"_requires": ["anisotropic-smoothing"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/CurvatureAnisotropicDiffusion",
+		"args": [
+			"--timeStep",
+			"0.01",
+			"--iterations",
+			"50",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrt-resample",
+		"_requires": ["Curvature-Anisotropic-Diffusion"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtResample",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-r",
+			"newSize",
+			"-v",
+			"100,100,100",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth-small.nhdr"
+		]
+	},
+	{
+		"_uid": "ImageMath-extract-label-1",
+		"_requires": ["ksrtFlip-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/labels-$$patID$$.nhdr",
+			"-extractLabel",
+			"1",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/femur-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImageMath-extract-label-2",
+		"_requires": ["ksrtFlip-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/labels-$$patID$$.nhdr",
+			"-extractLabel",
+			"2",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/fem-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImageMath-extract-label-3",
+		"_requires": ["ksrtFlip-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/labels-$$patID$$.nhdr",
+			"-extractLabel",
+			"3",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/tibia-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImageMath-extract-label-4",
+		"_requires": ["ksrtFlip-label"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/labels-$$patID$$.nhdr",
+			"-extractLabel",
+			"4",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/tib-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtResample-femur",
+		"_requires": ["ImageMath-extract-label-1"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtResample",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/femur-$$patID$$.nhdr",
+			"-r",
+			"newSize",
+			"-v",
+			"100,100,100",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/femur-$$patID$$-small.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtResample-tibia",
+		"_requires": ["ImageMath-extract-label-3"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtResample",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/tibia-$$patID$$.nhdr",
+			"-r",
+			"newSize",
+			"-v",
+			"100,100,100",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/tibia-$$patID$$-small.nhdr"
+		]
+	},
+	{
+		"_uid": "ksrtCopy",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtCopy",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-input/SKI10/image-$$patID$$.mhd",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/image-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "ImgeMath",
+		"_requires": ["ksrtCopy"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/image-$$patID$$.nhdr",
+			"-changeOrig",
+			"0,0,0",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess-orig/image-$$patID$$.nhdr"
+		]
+	}
+]
