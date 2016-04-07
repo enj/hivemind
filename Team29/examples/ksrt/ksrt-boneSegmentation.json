@@ -1,0 +1,283 @@
+[
+	{
+		"_uid": "Empty-image-femur",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-sub",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Empty-image-tibia",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-sub",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg",
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_A.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_A.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg",
+		"_requires":["Compute-knee-affine-reg"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_A.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_A.nhdr",
+			"--outputtransform",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_A.tfm"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur",
+		"_requires":["Compute-knee-affine-reg"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_A.tfm",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/femur-$$patID$$_A.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_A.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia",
+		"_requires":["Compute-knee-affine-reg"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_A.tfm",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/tibia-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_A.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur",
+		"_requires":["Transform-seg-femur"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_A.tfm",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_A.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_A.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia",
+		"_requires":["Transform-seg-tibia"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_A.tfm",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_A.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_A.nhdr"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion1",
+		"_requires":["Empty-image-femur"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_A.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion2",
+		"_requires":["Empty-image-tibia"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_A.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-maps1",
+		"_requires":["Add-to-fusion1"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"$n",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-maps2",
+		"_requires":["Add-to-fusion2"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"$n",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-assumption",
+		"_requires":["Apply-Bspline-trans-tibia"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ksrtComputeBoneProbabilityUsingAssumption",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/pBone-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "compute-bone-label-cost",
+		"_requires":["compute-bone-assumption","compute-bone-prob-maps1","compute-bone-prob-maps2"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ksrtComputeBoneLabelingCost",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/pBone-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-cost-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bkgrd-cost-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-cost-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "three-label-bone-seg",
+		"_requires":["compute-bone-label-cost"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ksrtSegmentation_3label",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-cost-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/bkgrd-cost-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-cost-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"-g",
+			"0.5"
+		]
+	},
+	{
+		"_uid": "extract-largest-component-femur",
+		"_requires":["three-label-bone-seg"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ExtractLargestConnectedComponentFromBinaryImage",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "extract-largest-component-tibia",
+		"_requires":["three-label-bone-seg"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ExtractLargestConnectedComponentFromBinaryImage",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "cut-femur",
+		"_requires":["extract-largest-component-tibia"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ksrtCutFemur",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"45",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "after-cut-femur",
+		"_requires":["cut-femur"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"-mul",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "cut-tibia",
+		"_requires":["extract-largest-component-femur"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ksrtCutTibia",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"45",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "after-cut-tibia",
+		"_requires":["cut-tibia"],
+		"wd": "/home/hussein/repo/hakoprly",
+		"exe": "/home/hussein/repo/ksrt-build/ImageMath",
+		"args": [
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"-mul",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr",
+			"-outfile",
+			"/home/hussein/repo/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr"
+		]
+	}
+]
