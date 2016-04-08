@@ -6,7 +6,7 @@
 from re import escape, match as re_match, sub as re_sub, findall
 from os.path import isfile
 
-from networkx import DiGraph, is_directed_acyclic_graph as is_dag
+from networkx import DiGraph, is_directed_acyclic_graph as is_dag, maximal_independent_set, transitive_closure
 
 from ..util import to_bool, join
 
@@ -43,6 +43,27 @@ class PipelineFramework(object):
         :rtype: {int}
         """
         return self.dag.__len__()
+
+    def is_done(self, task):
+        return self.dag.node[task]['done']
+
+    def get_max_concurrency(self):
+        # Get the transitive closure of the subgraph of uncompleted tasks
+        SG = self.dag.subgraph(n for n, _ in self.dag.node.iteritems() if not self.is_done(n))
+        G = transitive_closure(SG).to_undirected()
+
+        # Can't get the independent set of an empty graph, so return 0
+        if G.number_of_nodes() == 0:
+            return SG.number_of_nodes()
+
+        conc = 0
+        # There are many independent sets. Loop through 64 times to get 99.9999% chance of getting correct value
+        for i in xrange(64):
+            l = maximal_independent_set(G)
+            if len(l) > conc:
+                conc = len(l)
+
+        return conc
 
 
 class ConcretePipeline(object):
@@ -148,3 +169,21 @@ class ConcretePipeline(object):
             if self.is_done_by_file(task):
                 completed_tasks += 1
         return completed_tasks
+
+    def get_max_concurrency(self):
+        # Get the transitive closure of the subgraph of uncompleted tasks
+        SG = self.dag.subgraph(n for n, _ in self.dag.node.iteritems() if not self.is_done(n))
+        G = transitive_closure(SG).to_undirected()
+
+        # Can't get the independent set of an empty graph, so return 0
+        if G.number_of_nodes() == 0:
+            return SG.number_of_nodes()
+
+        conc = 0
+        # There are many independent sets. Loop through 64 times to get 99.9999% chance of getting correct value
+        for i in xrange(64):
+            l = maximal_independent_set(G)
+            if len(l) > conc:
+                conc = len(l)
+
+        return conc

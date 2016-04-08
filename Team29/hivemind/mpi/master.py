@@ -71,11 +71,17 @@ class Master(object):
             self.send(w, t, tags.WORK)
             self.out_tasks[(t._pid, t._uid)] = t
 
-        if self.sent_tasks == self.num_tasks:
-            while not self.workers.empty():
-                w = self.workers.get()
-                self.send(w, None, tags.EXIT)
-                self.closed_workers += 1
+        while not self.workers.empty() and ((self.total_workers - self.closed_workers) > self.max_concurrency()):
+            #print "Current workers: {}\tMax Concurrency:{}".format(self.total_workers - self.closed_workers, self.max_concurrency())
+            w = self.workers.get()
+            self.send(w, None, tags.EXIT)
+            self.closed_workers += 1
+
+        # if self.sent_tasks == self.num_tasks:
+        #     while not self.workers.empty():
+        #         w = self.workers.get()
+        #         self.send(w, None, tags.EXIT)
+        #         self.closed_workers += 1
 
     def send(self, target, task, tag):
         """Send the given Task to the target Worker node with the specified Tag.
@@ -118,6 +124,12 @@ class Master(object):
             self.log.debug("Creating checkpoint for {}".format(f))
 
         open(f, "a").close()
+
+    def max_concurrency(self):
+        max_c = 0
+        for p in self.concrete_pipelines:
+            max_c += p.get_max_concurrency()
+        return max_c
 
     def loop(self):
         self.orchestrate()
