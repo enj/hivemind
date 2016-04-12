@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 tasks = [task for j in args.json for task in json_to_tasks(j)]
 
-for t in tasks:  # Do no parse booleans
+for t, _ in tasks:  # Do no parse booleans
     t.skip = t.shell = False
 
 framework = PipelineFramework(tasks)
