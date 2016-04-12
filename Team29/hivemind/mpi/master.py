@@ -73,7 +73,7 @@ class Master(object):
             self.out_tasks[(t._pid, t._uid)] = t
 
         while not self.workers.empty() and ((self.total_workers - self.closed_workers) > self.max_concurrency()):
-            #print "Current workers: {}\tMax Concurrency:{}".format(self.total_workers - self.closed_workers, self.max_concurrency())
+            # print "Current workers: {}\tMax Concurrency:{}".format(self.total_workers - self.closed_workers, self.max_concurrency())
             w = self.workers.get()
             self.send(w, None, tags.EXIT)
             self.closed_workers += 1
@@ -111,9 +111,10 @@ class Master(object):
         self.workers.put(source)
 
     def finish_task(self, task):
+        self.checkpoint(task)
         pipeline = self.concrete_pipelines[task._pid]
         pipeline.set_done(task)
-        self.checkpoint(task)
+        pipeline.update_max_concurrency()
         for t in pipeline.get_ready_successors(task):
             self.queue.put(t)
 
@@ -130,10 +131,7 @@ class Master(object):
         open(f, "a").close()
 
     def max_concurrency(self):
-        max_c = 0
-        for p in self.concrete_pipelines:
-            max_c += p.get_max_concurrency()
-        return max_c
+        return sum(p.mc for p in self.concrete_pipelines)
 
     def loop(self):
         self.orchestrate()
