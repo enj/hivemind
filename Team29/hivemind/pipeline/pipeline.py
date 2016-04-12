@@ -10,6 +10,10 @@ from networkx import DiGraph, is_directed_acyclic_graph as is_dag, maximal_indep
 
 from ..util import to_bool, join
 
+# MIS only works for standard graphs because of how 'neighbors' is implemented
+# It is better to copy a function pointer instead of the whole graph
+DiGraph.neighbors = lambda graph, task: graph.successors(task) + graph.predecessors(task)
+
 
 class PipelineFramework(object):
     """A Pipeline is a series of sequential Tasks."""
@@ -44,35 +48,18 @@ class PipelineFramework(object):
         """
         return self.dag.__len__()
 
-    def is_done(self, task):
-        return self.dag.node[task]['done']
-
-    def get_max_concurrency(self):
-        # Get the transitive closure of the subgraph of uncompleted tasks
-        SG = self.dag.subgraph(n for n, _ in self.dag.node.iteritems() if not self.is_done(n))
-        G = transitive_closure(SG).to_undirected()
-
-        # Can't get the independent set of an empty graph, so return 0
-        if G.number_of_nodes() == 0:
-            return SG.number_of_nodes()
-
-        conc = 0
-        # There are many independent sets. Loop through 64 times to get 99.9999% chance of getting correct value
-        for i in xrange(64):
-            l = maximal_independent_set(G)
-            if len(l) > conc:
-                conc = len(l)
-
-        return conc
-
 
 class ConcretePipeline(object):
+
+    MAX_ROUNDS = 64
 
     def __init__(self, pid, framework, data, checkpoint_dir):
         self.pid = pid
         self.checkpoint_dir = checkpoint_dir
         self.dag = framework.dag.copy()
         self.framework_to_concrete(data)
+        self.tc = transitive_closure(self.dag)
+        self.update_max_concurrency()
 
     def framework_to_concrete(self, data):
         for task in self.dag.nodes_iter():
@@ -97,7 +84,7 @@ class ConcretePipeline(object):
             return value
         elif isinstance(value, unicode):
             return self.replace_variable(value.encode('ascii', 'ignore'), data)
-        #elif value is None:
+        # elif value is None:
         #    return None
         else:
             raise Exception
@@ -110,12 +97,12 @@ class ConcretePipeline(object):
         for match in matches:
             if not data.get(match):
                 continue
-                #return string
+                # return string
             string = re_sub(ur'(.*){0}(.*)'.format(escape(match)), ur'\g<1>{0}\g<2>'.format(data[match]), string)
         return string
 
-        #pattern = re_compile('|'.join(escape(key) for key in data.keys()))
-        #return pattern.sub(lambda x: data[x.group()], data[string])
+        # pattern = re_compile('|'.join(escape(key) for key in data.keys()))
+        # return pattern.sub(lambda x: data[x.group()], data[string])
 
     def validate_field(self, field):
         if field is None or isinstance(field, bool):
@@ -170,20 +157,15 @@ class ConcretePipeline(object):
                 completed_tasks += 1
         return completed_tasks
 
-    def get_max_concurrency(self):
-        # Get the transitive closure of the subgraph of uncompleted tasks
-        SG = self.dag.subgraph(n for n, _ in self.dag.node.iteritems() if not self.is_done(n))
-        G = transitive_closure(SG).to_undirected()
+    def update_max_concurrency(self):
+        # Get the subgraph of the transitive closure based on the uncompleted tasks
+        sg = self.tc.subgraph(n for n in self.dag.nodes_iter() if not self.is_done(n))
 
-        # Can't get the independent set of an empty graph, so return 0
-        if G.number_of_nodes() == 0:
-            return SG.number_of_nodes()
+        # Cannot get the independent set of an empty graph
+        if len(sg) == 0:
+            self.mc = 0
+            return
 
-        conc = 0
-        # There are many independent sets. Loop through 64 times to get 99.9999% chance of getting correct value
-        for i in xrange(64):
-            l = maximal_independent_set(G)
-            if len(l) > conc:
-                conc = len(l)
-
-        return conc
+        # There are many independent sets. Loop through MAX_ROUNDS times to get longest
+        # With 64 rounds it has 99.9999% chance of getting the correct value
+        self.mc = max(len(maximal_independent_set(sg)) for _ in xrange(self.MAX_ROUNDS))
