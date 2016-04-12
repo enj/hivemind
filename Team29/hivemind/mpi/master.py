@@ -38,6 +38,7 @@ class Master(object):
         self.sent_tasks = sum(p.get_completed_tasks() for p in self.concrete_pipelines)
         self.out_tasks = {}
         self.closed_workers = 0
+        self.dryrun = False
 
         self.mpi = mpi
         self.comm = mpi.COMM_WORLD
@@ -117,6 +118,9 @@ class Master(object):
             self.queue.put(t)
 
     def checkpoint(self, task):
+        if self.dryrun:
+            return
+
         f = join(self.checkpoint_dir, str(task._pid), str(task._uid), "_.done")
         make_path(f)
 

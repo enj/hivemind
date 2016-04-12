@@ -29,6 +29,7 @@ class Task(object):
         self.cmd.extend(args)
         self.verify_exe = verify_exe
         self.wd = wd
+        self.dryrun = False
 
         self._uid = uid
         self._pid = None
@@ -37,6 +38,11 @@ class Task(object):
 
     def run(self):
         """Run the executable associated with this Task."""
+
+        if self.dryrun:
+            print ' '.join(self.cmd)
+            return
+
         out = join(self._checkpoint_dir, str(self._pid), str(self._uid), "out.log")
         err = join(self._checkpoint_dir, str(self._pid), str(self._uid), "err.log")
         make_path(out)
