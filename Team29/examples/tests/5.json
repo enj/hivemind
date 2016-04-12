@@ -1,0 +1,79 @@
+[
+    {
+        "_uid": "A",
+        "wd": "/",
+        "exe": "nan"
+    },
+    {
+        "_uid": "B",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "C",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "D",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "E",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["B", "C", "D"]
+    },
+    {
+        "_uid": "F",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "G",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "H",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "I",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "J",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "K",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["F"]
+    },
+    {
+        "_uid": "L",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["F", "G", "H", "I", "J"]
+    },
+    {
+        "_uid": "M",
+        "wd": "/",
+        "exe": "nan",
+        "_requires": ["J"]
+    }
+]
