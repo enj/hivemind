@@ -1,0 +1,63 @@
+[
+    {
+        "_uid": "A",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["0"]    },
+    {
+        "_uid": "B",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["10"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "C",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["0"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "D",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["20"],
+        "_requires": ["C"]
+    },
+    {
+        "_uid": "E",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["0"],
+        "_requires": ["C"]
+    },
+    {
+        "_uid": "F",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["30"],
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "G",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["0"],
+        "_requires": ["E"]
+    },
+    {
+        "_uid": "H",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["40"],
+        "_requires": ["G"]
+    },
+    {
+        "_uid": "I",
+        "wd": "/",
+        "exe": "sleep",
+        "args": ["50"],
+        "_requires": ["G"]
+    }
+]
