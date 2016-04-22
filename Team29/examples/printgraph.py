@@ -21,7 +21,7 @@ dg = DataGenerator()
 framework = PipelineFramework(tasks)
 #framework = dg.get_loose_pipeline()
 
-patients = read_csv('dna.csv')
+patients = read_csv('dna/dna.csv')
 concrete_pipelines = []
 for i, row in enumerate(patients):
     concrete_pipelines.append(ConcretePipeline(i, framework, row, ""))

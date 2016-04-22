@@ -36,7 +36,7 @@ try:
         parser.add_argument("-r", "--ranker", type=int, choices=xrange(len(rankers)),
                             help="Optional rank function ID as %(type)s (for task priority) {}".format(rankers_help))
         parser.add_argument("--dryrun", dest="dryrun", action="store_true")
-        parser.set_defaults(dryrun=False)
+        parser.set_defaults(dryrun=False, help="Only print commands rather than run them")
 
         args = parser.parse_args()
         ranker = rankers[args.ranker] if args.ranker is not None else None

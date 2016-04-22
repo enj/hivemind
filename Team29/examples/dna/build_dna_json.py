@@ -4,31 +4,37 @@
 from json import dump
 
 output_json = "test.json"
+#AWS
+#wd = "/home/ubuntu/dna"
+#tools = "/home/ubuntu/Duke/Tools/"
+#ARC
 wd = "/home/temp1037/dna"
+tools = "/home/temp1037/Duke/Tools/"
 
 #Reference Files
-fasta = "/home/temp1037/Duke/Tools/data/hg19/ucsc.hg19.fasta"
-knownindel = "/home/temp1037/Duke/Tools/data/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf"
-knownvcf = "/home/temp1037/Duke/Tools/data/hg19/NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.hg19.sites.vcf"
-capture = "/home/temp1037/Duke/Tools/data/S04380219_Covered.bed"
-cosmic = "/home/temp1037/Duke/Tools/data/hg19/Cosmic/Cosmic.hg19.vcf"
-dbsnp = "/home/temp1037/Duke/Tools/data/hg19/dbsnp_138.hg19.vcf"
+fasta = tools + "data/hg19/ucsc.hg19.fasta"
+knownindel = tools + "data/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf"
+knownvcf = tools + "data/hg19/NA12878.HiSeq.WGS.bwa.cleaned.raw.subset.hg19.sites.vcf"
+capture = tools + "data/S04380219_Covered.bed"
+cosmic = tools + "data/hg19/Cosmic/Cosmic.hg19.vcf"
+dbsnp = tools + "data/hg19/dbsnp_138.hg19.vcf"
 
 #Programs
-bwa = "/home/temp1037/Duke/Tools/bwa.kit/bwa"
-bwa_cores = "16"
-sortsam = "/home/temp1037/Duke/Tools/picard-tools-1.119/SortSam.jar"
-markdup = "/home/temp1037/Duke/Tools/picard-tools-1.119/MarkDuplicates.jar"
-buildbam = "/home/temp1037/Duke/Tools/picard-tools-1.119/BuildBamIndex.jar"
-gatk = "/home/temp1037/Duke/Tools/GenomeAnalysisTK.jar"
-mutect = "/home/temp1037/Duke/Tools/MuTect/muTect-1.1.4.jar"
-merge_lanes = "python /home/temp1037/bin/merge_lanes.py"
+bwa = tools + "bwa.kit/bwa"
+bwa_cores = "1"
+sortsam = tools + "picard-tools-1.119/SortSam.jar"
+markdup = tools + "picard-tools-1.119/MarkDuplicates.jar"
+buildbam = tools + "picard-tools-1.119/BuildBamIndex.jar"
+gatk = tools + "GenomeAnalysisTK.jar"
+mutect = tools + "MuTect/muTect-1.1.4.jar"
 java6 = "/usr/java/jdk1.6.0_16/bin/java"
+#java6 = "/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"
+merge_lanes = "python /home/temp1037/bin/merge_lanes.py"
 
 #Lane
 patient_path = "data/$$patient$$/"
-f1 = "_R1.fastq.gz"
-f2 = "_R2.fastq.gz"
+f1 = "-R1.fastq"
+f2 = "-R2.fastq"
 bwa_rg = "'@RG\\tID:$$patient$$P###.L###\\tSM:$$patient$$P###\\tPL:ILLUMINA'"
 
 #Files
@@ -50,7 +56,6 @@ intervals = "chr17:1-7577200"
 #intervals = "'$$intervals$$'"
 #intervals = None
 
-#pipeline = []
 pipelines = {}
 
 for t in ["C", "P"]:
@@ -59,7 +64,7 @@ for t in ["C", "P"]:
         pipeline = pipelines["{}{}".format(lane, t)]
         bam = bamfilesort
         dup = bamfilesortdup
-        if lane is not "merged":
+        if lane != "merged":
             stage_align = {
                 "_uid": "align_{}{}".format(lane, t),
                 "wd": wd,
@@ -79,7 +84,7 @@ for t in ["C", "P"]:
                     "{}{}/{}{}".format(patient_path, t, lane, samfile)
                 ]
             }
-            if lane is "L003" or lane is "L004":
+            if lane == "L003" or lane == "L004":
                 stage_align["skip"] = "$$skip_{}$$".format(lane)
             pipeline.append(stage_align)
 
@@ -96,7 +101,7 @@ for t in ["C", "P"]:
                     "SO=coordinate"
                 ]
             }
-            if lane is "L003" or lane is "L004":
+            if lane == "L003" or lane == "L004":
                 stage_sort["skip"] = "$$skip_{}$$".format(lane)
             pipeline.append(stage_sort)
         else:
@@ -144,9 +149,9 @@ for t in ["C", "P"]:
                 "M={}{}/{}{}".format(patient_path, t, lane, metricfile)
             ]
         }
-        if lane is "merged":
+        if lane == "merged":
             stage_markdup["_requires"] = ["mergeLanes_{}".format(t)]
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_markdup["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_markdup)
 
@@ -162,7 +167,7 @@ for t in ["C", "P"]:
                 "OUTPUT={}{}/{}{}.bai".format(patient_path, t, lane, dup)
             ]
         }
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_indexbam["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_indexbam)
 
@@ -186,7 +191,7 @@ for t in ["C", "P"]:
                 "{}{}/{}{}".format(patient_path, t, lane, realignint)
             ]
         }
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_create_targets["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_create_targets)
 
@@ -213,7 +218,7 @@ for t in ["C", "P"]:
                 "--filter_bases_not_stored"
             ]
         }
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_reallign["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_reallign)
 
@@ -241,7 +246,7 @@ for t in ["C", "P"]:
                 "{}{}/{}{}".format(patient_path, t, lane, recaltable)
             ]
         }
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_recal["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_recal)
 
@@ -265,7 +270,7 @@ for t in ["C", "P"]:
                 "{}{}/{}{}".format(patient_path, t, lane, recalbam)
             ]
         }
-        if lane is "L003" or lane is "L004":
+        if lane == "L003" or lane == "L004":
                 stage_recalbam["skip"] = "$$skip_{}$$".format(lane)
         pipeline.append(stage_recalbam)
 
