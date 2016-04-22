@@ -1,3 +1,0 @@
-Name,$$A1IN$$,$$A1OUT$$,$$A1CAT$$,$$SLEEP$$,$$A2OUT$$,$$A2CAT$$,$$A3OUT$$,$$A3CAT$$,$$skipA2$$
-Mo,m1.txt,m2.txt,"This ",5000,m3.txt,"is ",m4.txt,"Mo",False
-Sarah,s1.txt,s2.txt,"This ",7000,s3.txt,"is ",s4.txt,"Sarah",False
