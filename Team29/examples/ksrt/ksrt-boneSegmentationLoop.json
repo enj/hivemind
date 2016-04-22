@@ -1,0 +1,2355 @@
+[
+	{
+		"_uid": "Compute-knee-affine-reg-01",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A1$$/preprocess/image-$$A1$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A1$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-04",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A4$$/preprocess/image-$$A4$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A4$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-09",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A9$$/preprocess/image-$$A9$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A9$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-13",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A13$$/preprocess/image-$$A13$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A13$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-17",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A17$$/preprocess/image-$$A17$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A17$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-21",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A21$$/preprocess/image-$$A21$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-26",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A26$$/preprocess/image-$$A26$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A26$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-29",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A29$$/preprocess/image-$$A29$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A29$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-36",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A36$$/preprocess/image-$$A36$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A36$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-37",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A37$$/preprocess/image-$$A37$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A37$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-41",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A41$$/preprocess/image-$$A41$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A41$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-45",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A45$$/preprocess/image-$$A45$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A45$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-50",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A50$$/preprocess/image-$$A50$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A50$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-53",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A53$$/preprocess/image-$$A53$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A53$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-knee-affine-reg-58",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeKneeAffineRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A58$$/preprocess/image-$$A58$$-correct-scale-smooth.nhdr",
+			"--metric",
+			"MI",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A58$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-01",
+		"_requires":["Compute-knee-affine-reg-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A1$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-04",
+		"_requires":["Compute-knee-affine-reg-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A4$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-09",
+		"_requires":["Compute-knee-affine-reg-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A9$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-13",
+		"_requires":["Compute-knee-affine-reg-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A13$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-17",
+		"_requires":["Compute-knee-affine-reg-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A17$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-21",
+		"_requires":["Compute-knee-affine-reg-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A21$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-26",
+		"_requires":["Compute-knee-affine-reg-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A26$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-29",
+		"_requires":["Compute-knee-affine-reg-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A29$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-36",
+		"_requires":["Compute-knee-affine-reg-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A36$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-37",
+		"_requires":["Compute-knee-affine-reg-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A37$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-41",
+		"_requires":["Compute-knee-affine-reg-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A41$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-45",
+		"_requires":["Compute-knee-affine-reg-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A45$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-50",
+		"_requires":["Compute-knee-affine-reg-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A50$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-53",
+		"_requires":["Compute-knee-affine-reg-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A53$$.tfm"
+		]
+	},
+	{
+		"_uid": "Compute-B-spline-reg-58",
+		"_requires":["Compute-knee-affine-reg-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/BSplineDeformableRegistration",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"--histogrambins",
+			"20",
+			"--spatialsamples",
+			"100000",
+			"--iterations",
+			"200",
+			"--constrain",
+			"--maximumDeformation",
+			"10.0",
+			"--resampledmovingfilename",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"--outputtransform",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A58$$.tfm"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-01",
+		"_requires":["Compute-B-spline-reg-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A1$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A1$$/preprocess/femur-$$A1$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A1$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-04",
+		"_requires":["Compute-B-spline-reg-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A4$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A4$$/preprocess/femur-$$A4$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A4$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-09",
+		"_requires":["Compute-B-spline-reg-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A9$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A9$$/preprocess/femur-$$A9$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A9$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-13",
+		"_requires":["Compute-B-spline-reg-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A13$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A13$$/preprocess/femur-$$A13$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A13$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-17",
+		"_requires":["Compute-B-spline-reg-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A17$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A17$$/preprocess/femur-$$A17$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A17$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-21",
+		"_requires":["Compute-B-spline-reg-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A21$$/preprocess/femur-$$A21$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A21$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-26",
+		"_requires":["Compute-B-spline-reg-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A26$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A26$$/preprocess/femur-$$A26$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A26$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-29",
+		"_requires":["Compute-B-spline-reg-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A29$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A29$$/preprocess/femur-$$A29$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A29$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-36",
+		"_requires":["Compute-B-spline-reg-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A36$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A36$$/preprocess/femur-$$A36$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A36$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-37",
+		"_requires":["Compute-B-spline-reg-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A37$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A37$$/preprocess/femur-$$A37$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A37$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-41",
+		"_requires":["Compute-B-spline-reg-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A41$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A41$$/preprocess/femur-$$A41$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A41$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-45",
+		"_requires":["Compute-B-spline-reg-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A45$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A45$$/preprocess/femur-$$A45$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A45$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-50",
+		"_requires":["Compute-B-spline-reg-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A50$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A50$$/preprocess/femur-$$A50$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A50$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-53",
+		"_requires":["Compute-B-spline-reg-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A53$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A53$$/preprocess/femur-$$A53$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A53$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-femur-58",
+		"_requires":["Compute-B-spline-reg-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A58$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A58$$/preprocess/femur-$$A58$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A58$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-01",
+		"_requires":["Transform-seg-femur-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A1$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A1$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-04",
+		"_requires":["Transform-seg-femur-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A4$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A4$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-09",
+		"_requires":["Transform-seg-femur-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A9$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A9$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-13",
+		"_requires":["Transform-seg-femur-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A13$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A13$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-17",
+		"_requires":["Transform-seg-femur-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A17$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A17$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-21",
+		"_requires":["Transform-seg-femur-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A21$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A21$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-26",
+		"_requires":["Transform-seg-femur-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A26$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A26$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-29",
+		"_requires":["Transform-seg-femur-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A29$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A29$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-36",
+		"_requires":["Transform-seg-femur-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A36$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A36$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-37",
+		"_requires":["Transform-seg-femur-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A37$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A37$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-41",
+		"_requires":["Transform-seg-femur-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A41$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A41$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-45",
+		"_requires":["Transform-seg-femur-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A45$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A45$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-50",
+		"_requires":["Transform-seg-femur-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A50$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A50$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-53",
+		"_requires":["Transform-seg-femur-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A53$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A53$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-femur-58",
+		"_requires":["Transform-seg-femur-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A58$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A58$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-01",
+		"_requires":["Compute-B-spline-reg-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A1$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A1$$/preprocess/tibia-$$A1$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A1$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-04",
+		"_requires":["Compute-B-spline-reg-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A4$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A4$$/preprocess/tibia-$$A4$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A4$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-09",
+		"_requires":["Compute-B-spline-reg-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A9$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A9$$/preprocess/tibia-$$A9$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A9$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-13",
+		"_requires":["Compute-B-spline-reg-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A13$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A13$$/preprocess/tibia-$$A13$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A13$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-17",
+		"_requires":["Compute-B-spline-reg-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A17$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A17$$/preprocess/tibia-$$A17$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A17$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-21",
+		"_requires":["Compute-B-spline-reg-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A21$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A21$$/preprocess/tibia-$$A21$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A21$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-26",
+		"_requires":["Compute-B-spline-reg-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A26$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A26$$/preprocess/tibia-$$A26$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A26$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-29",
+		"_requires":["Compute-B-spline-reg-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A29$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A29$$/preprocess/tibia-$$A29$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A29$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-36",
+		"_requires":["Compute-B-spline-reg-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A36$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A36$$/preprocess/tibia-$$A36$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A36$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-37",
+		"_requires":["Compute-B-spline-reg-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A37$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A37$$/preprocess/tibia-$$A37$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A37$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-41",
+		"_requires":["Compute-B-spline-reg-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A41$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A41$$/preprocess/tibia-$$A41$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A41$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-45",
+		"_requires":["Compute-B-spline-reg-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A45$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A45$$/preprocess/tibia-$$A45$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A45$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-50",
+		"_requires":["Compute-B-spline-reg-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A50$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A50$$/preprocess/tibia-$$A50$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A50$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-53",
+		"_requires":["Compute-B-spline-reg-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A53$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A53$$/preprocess/tibia-$$A53$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A53$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Transform-seg-tibia-58",
+		"_requires":["Compute-B-spline-reg-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyAffineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/affine-$$patID$$-$$patID$$_$$A58$$.tfm",
+			"/pvfs2/ksrt_backup/SKI10_out_BACKUP/$$A58$$/preprocess/tibia-$$A58$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A58$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-01",
+		"_requires":["Transform-seg-tibia-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A1$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A1$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-04",
+		"_requires":["Transform-seg-tibia-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A4$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A4$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-09",
+		"_requires":["Transform-seg-tibia-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A9$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A9$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-13",
+		"_requires":["Transform-seg-tibia-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A13$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A13$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-17",
+		"_requires":["Transform-seg-tibia-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A17$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A17$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-21",
+		"_requires":["Transform-seg-tibia-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A21$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A21$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-26",
+		"_requires":["Transform-seg-tibia-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A26$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A26$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-29",
+		"_requires":["Transform-seg-tibia-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A29$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A29$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-36",
+		"_requires":["Transform-seg-tibia-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A36$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A36$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-37",
+		"_requires":["Transform-seg-tibia-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A37$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A37$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-41",
+		"_requires":["Transform-seg-tibia-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A41$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A41$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-45",
+		"_requires":["Transform-seg-tibia-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A45$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A45$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-50",
+		"_requires":["Transform-seg-tibia-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A50$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A50$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-53",
+		"_requires":["Transform-seg-tibia-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A53$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A53$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Apply-Bspline-trans-tibia-58",
+		"_requires":["Transform-seg-tibia-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtApplyBSplineTransform",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bspline-$$patID$$-$$patID$$_$$A58$$.tfm",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A58$$.nhdr"
+		]
+	},
+	{
+		"_uid": "Empty-image-femur",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-sub",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-01",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-04",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-09",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-13",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-17",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-21",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-26",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-29",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-36",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-37",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-41",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-45",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-50",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-53",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-femur-58",
+		"_requires":["Empty-image-femur", "Apply-Bspline-trans-femur-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Empty-image-tibia",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-sub",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-01",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A1$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-04",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A4$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-09",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A9$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-13",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A13$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-17",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A17$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-21",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A21$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-26",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A26$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-29",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A29$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-36",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A36$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-37",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A37$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-41",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A41$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-45",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A45$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-50",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A50$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-53",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A53$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "Add-to-fusion-tibia-58",
+		"_requires":["Empty-image-tibia", "Apply-Bspline-trans-tibia-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-add",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-$$patID$$-$$patID$$_$$A58$$.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-01",
+		"_requires":["Add-to-fusion-femur-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-04",
+		"_requires":["Add-to-fusion-femur-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-09",
+		"_requires":["Add-to-fusion-femur-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-13",
+		"_requires":["Add-to-fusion-femur-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-17",
+		"_requires":["Add-to-fusion-femur-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-21",
+		"_requires":["Add-to-fusion-femur-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-26",
+		"_requires":["Add-to-fusion-femur-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-29",
+		"_requires":["Add-to-fusion-femur-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-36",
+		"_requires":["Add-to-fusion-femur-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-37",
+		"_requires":["Add-to-fusion-femur-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-41",
+		"_requires":["Add-to-fusion-femur-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-45",
+		"_requires":["Add-to-fusion-femur-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-50",
+		"_requires":["Add-to-fusion-femur-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-53",
+		"_requires":["Add-to-fusion-femur-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-femur-58",
+		"_requires":["Add-to-fusion-femur-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-01",
+		"_requires":["Add-to-fusion-tibia-01"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-04",
+		"_requires":["Add-to-fusion-tibia-04"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-09",
+		"_requires":["Add-to-fusion-tibia-09"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-13",
+		"_requires":["Add-to-fusion-tibia-13"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-17",
+		"_requires":["Add-to-fusion-tibia-17"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-21",
+		"_requires":["Add-to-fusion-tibia-21"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-26",
+		"_requires":["Add-to-fusion-tibia-26"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-29",
+		"_requires":["Add-to-fusion-tibia-29"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-36",
+		"_requires":["Add-to-fusion-tibia-36"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-37",
+		"_requires":["Add-to-fusion-tibia-37"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-41",
+		"_requires":["Add-to-fusion-tibia-41"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-45",
+		"_requires":["Add-to-fusion-tibia-45"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-50",
+		"_requires":["Add-to-fusion-tibia-50"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-53",
+		"_requires":["Add-to-fusion-tibia-53"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-prob-map-tibia-58",
+		"_requires":["Add-to-fusion-tibia-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-constOper",
+			"3",
+			"0",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"-type",
+			"float"
+		]
+	},
+	{
+		"_uid": "compute-bone-assumption",
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeBoneProbabilityUsingAssumption",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/preprocess/image-$$patID$$-correct-scale-smooth.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/pBone-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "compute-bone-label-cost",
+		"_requires":["compute-bone-assumption","compute-bone-prob-map-femur-01",
+		"compute-bone-prob-map-femur-04",
+		"compute-bone-prob-map-femur-09",
+		"compute-bone-prob-map-femur-13",
+		"compute-bone-prob-map-femur-17",
+		"compute-bone-prob-map-femur-21",
+		"compute-bone-prob-map-femur-26",
+		"compute-bone-prob-map-femur-29",
+		"compute-bone-prob-map-femur-36",
+		"compute-bone-prob-map-femur-37",
+		"compute-bone-prob-map-femur-41",
+		"compute-bone-prob-map-femur-45",
+		"compute-bone-prob-map-femur-50",
+		"compute-bone-prob-map-femur-53",
+		"compute-bone-prob-map-femur-58",
+		"compute-bone-prob-map-tibia-01",
+		"compute-bone-prob-map-tibia-04",
+		"compute-bone-prob-map-tibia-09",
+		"compute-bone-prob-map-tibia-13",
+		"compute-bone-prob-map-tibia-17",
+		"compute-bone-prob-map-tibia-21",
+		"compute-bone-prob-map-tibia-26",
+		"compute-bone-prob-map-tibia-29",
+		"compute-bone-prob-map-tibia-36",
+		"compute-bone-prob-map-tibia-37",
+		"compute-bone-prob-map-tibia-41",
+		"compute-bone-prob-map-tibia-45",
+		"compute-bone-prob-map-tibia-50",
+		"compute-bone-prob-map-tibia-53",
+		"compute-bone-prob-map-tibia-58"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtComputeBoneLabelingCost",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/pBone-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-fusion-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-fusion-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-cost-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bkgrd-cost-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-cost-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "three-label-bone-seg",
+		"_requires":["compute-bone-label-cost"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtSegmentation_3label",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-cost-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/bkgrd-cost-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-cost-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"-g",
+			"0.5"
+		]
+	},
+	{
+		"_uid": "extract-largest-component-femur",
+		"_requires":["three-label-bone-seg"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ExtractLargestConnectedComponentFromBinaryImage",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "extract-largest-component-tibia",
+		"_requires":["three-label-bone-seg"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ExtractLargestConnectedComponentFromBinaryImage",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr"
+		]
+	},
+	{
+		"_uid": "cut-femur",
+		"_requires":["extract-largest-component-tibia"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtCutFemur",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"45",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "after-cut-femur",
+		"_requires":["cut-femur"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$.nhdr",
+			"-mul",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/femur-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "cut-tibia",
+		"_requires":["extract-largest-component-femur"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ksrtCutTibia",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"45",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr"
+		]
+	},
+	{
+		"_uid": "after-cut-tibia",
+		"_requires":["cut-tibia"],
+		"wd": "/pvfs2/hakoprly",
+		"exe": "/pvfs2/abahman/KSRT/Working/ksrt/ksrt-build/KSRT-Build/bin/ImageMath",
+		"args": [
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$.nhdr",
+			"-mul",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr",
+			"-outfile",
+			"/pvfs2/hakoprly/ksrt-output/$$patID$$/boneseg/tibia-seg-$$patID$$-cut.nhdr"
+		]
+	}
+]
