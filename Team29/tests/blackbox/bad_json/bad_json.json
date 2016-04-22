@@ -1,0 +1,78 @@
+[   {
+        "_uid": "A0",
+        "args": [
+            "-f",
+            "./linear/$$file$$*.txt"
+        ],
+        "exe": "rm",
+        "wd": "/bin"
+    }
+    {
+        "args": [
+            "-cat",
+            "This ",
+            "-out",
+            "linear/$$file$$1.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A1",
+        "_requires": ["A0"]
+    }
+    {
+        "args": [
+            "-in",
+            "linear/$$file$$1.txt",
+            "-cat",
+            "is ",
+            "-out",
+            "linear/$$file$$2.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A2",
+        "_requires": ["A1"]
+    }
+    {
+        "args": [
+            "-in",
+            "linear/$$file$$2.txt",
+            "-cat",
+            "$$name$$'s ",
+            "-out",
+            "linear/$$file$$3.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A3",
+        "_requires": ["A2"]
+    }
+    {
+        "args": [
+            "-in",
+            "linear/$$file$$3.txt",
+            "-cat",
+            "test ",
+            "-out",
+            "linear/$$file$$4.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A4",
+        "_requires": ["A3"]
+    }
+    {
+        "args": [
+            "-in",
+            "linear/$$file$$4.txt",
+            "-cat",
+            "sentence.\n",
+            "-out",
+            "linear/$$file$$5.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A5",
+        "_requires": ["A4"]
+    }
+]

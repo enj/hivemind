@@ -1,0 +1,16 @@
+[
+    {
+        "_uid": "A",
+        "args": ["-arg", "/$$arg$$"],
+        "exe": "bin/task",
+        "wd": "/home/workingDirectory"
+    },
+    {
+        "_uid": "B",
+        "args": ["-arg1", "-arg2", "/$$arg2$$"],
+        "exe": "/bin/task2",
+        "wd": "/home/workingDirectory",
+        "_requires": ["A"],
+        "verify_exe": "/bin/verify"
+    }
+]
