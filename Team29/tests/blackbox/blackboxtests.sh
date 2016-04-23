@@ -46,7 +46,7 @@ fi
 #ErrorCycle
 printf "Running test: Cycle - "
 result="$(mpirun -n 4 python -O ../../examples/main.py -j cycle/*.json -c cycle/*.csv 2>&1)"
-if [[ "${result}" == *"Exception"* ]]; then
+if [[ "${result}" == *"ValueError: Pipeline contains a cycle"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
     printf "${RED}Fail${NC}\n"
@@ -73,7 +73,7 @@ fi
 #ErrorBadCSV
 printf "Running test: Bad CSV - "
 result="$(mpirun -n 4 python -O ../../examples/main.py -j bad_csv/*.json -c bad_csv/*.csv 2>&1)"
-if [[ "${result}" == *"Exception: Field:"* ]]; then
+if [[ "${result}" == *"ValueError: Not all \$\$ variables replaced"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
     printf "${RED}Fail${NC}\n"

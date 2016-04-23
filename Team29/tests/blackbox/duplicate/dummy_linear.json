@@ -45,7 +45,7 @@
         "exe": "./app",
         "wd": ".",
         "_uid": "A3",
-        "_requires": ["A2"]
+        "_requires": ["A1"]
     },
     {
         "args": [
