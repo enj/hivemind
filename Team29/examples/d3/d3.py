@@ -16,7 +16,7 @@ from hivemind.util import json_to_tasks
 from http_server import load_url
 
 
-def get_key(task, choices, cutoff=90):
+def get_key(task, choices, cutoff):
     """Get exe value for color keying."""
     exe = " ".join(task.cmd)
     data = process.extractOne(exe, choices, score_cutoff=cutoff)
@@ -33,6 +33,7 @@ def get_colors():
 parser = ArgumentParser(description="Utility for 'printing' a pipeline")
 parser.add_argument("-j", "--json", nargs="+", help="JSON files", required=True)
 parser.add_argument("-s", "--seed", type=int, default=2016, help="Optional seed for random coloring")
+parser.add_argument("-t", "--cutoff", type=int, default=90, help="Cutoff value for fuzzy string matching")
 args = parser.parse_args()
 
 seed(args.seed)
@@ -49,7 +50,7 @@ G = OrderedDiGraph(
 for task in framework.dag.nodes_iter():
     colors = colors or get_colors()
     G.add_node(task._uid, style=colors_exe.setdefault(
-        get_key(task, colors_exe.iterkeys()),
+        get_key(task, colors_exe.iterkeys(), args.cutoff),
         "fill: {}".format(colors.pop())))
     for successor in framework.dag.successors(task):
         G.add_edge(task._uid, successor._uid,

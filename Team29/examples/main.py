@@ -35,8 +35,7 @@ try:
         parser.add_argument("-p", "--checkpoint", help="Optional checkpoint directory")
         parser.add_argument("-r", "--ranker", type=int, choices=xrange(len(rankers)),
                             help="Optional rank function ID as %(type)s (for task priority) {}".format(rankers_help))
-        parser.add_argument("--dryrun", dest="dryrun", action="store_true")
-        parser.set_defaults(dryrun=False, help="Only print commands rather than run them")
+        parser.add_argument("-d", "--dry_run", dest="dry_run", action="store_true", default=False, help="Only print commands rather than run them")
 
         args = parser.parse_args()
         ranker = rankers[args.ranker] if args.ranker is not None else None
@@ -46,19 +45,15 @@ try:
 
         tasks = [task for j in args.json for task in json_to_tasks(j)]
         for t, _ in tasks:
-            t.dryrun = args.dryrun
+            t._dry_run = args.dry_run
         patients = [patient for c in args.csv for patient in read_csv(c)]
 
-        m = Master(MPI, tasks, patients, ranker, args.checkpoint)
-        m.dryrun = args.dryrun
+        m = Master(MPI, tasks, patients, ranker, args.checkpoint, args.dry_run)
         m.loop()
 
     else:
         w = Worker(MPI)
         w.loop()
-
-        if __debug__:
-            log.debug("Worker {} spent {} seconds waiting for the master".format(rank, w.wait_time))
 
     if __debug__:
         log.debug("Node {} running on processor {} EXITing".format(rank, MPI.Get_processor_name()))
