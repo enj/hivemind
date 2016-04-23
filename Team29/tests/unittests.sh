@@ -1,4 +1,4 @@
 #!/bin/sh
 
-coverage run --source hivemind --omit "*/__init__.py" -m unittest discover . -v
-coverage report
+coverage run --source hivemind -m unittest discover . -v
+coverage report --omit "*/__init__.py"
