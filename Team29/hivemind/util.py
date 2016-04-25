@@ -5,10 +5,11 @@
 
 from json import load
 from csv import DictReader
-from os.path import dirname, exists, join
+from os.path import dirname, join, isdir
 from os import makedirs
 from tempfile import gettempdir
 from datetime import datetime
+import errno
 
 
 def enum(*sequential, **named):
@@ -124,8 +125,15 @@ def make_path(f):
     :type f: string
     """
     basedir = dirname(f)
-    if not exists(basedir):
+
+    # Simple if not exists doesn't work here due to possible race condition over cluster
+    try:
         makedirs(basedir)
+    except OSError as exc:
+        if exc.errno == errno.EEXIST and isdir(basedir):
+            pass
+        else:
+            raise exc
 
 
 def tmp_checkpoint_dir():
