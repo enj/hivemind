@@ -6,6 +6,7 @@
 from mpi4py import MPI
 from argparse import ArgumentParser
 from time import time
+from collections import defaultdict as dd
 
 from networkx import topological_sort
 

@@ -66,6 +66,10 @@ class TestPipeline(unittest.TestCase):
         with self.assertRaises(Exception):
             self.dg.get_duplicate_node_pipeline()
 
+    def test_unknown_uid_framework(self):
+        with self.assertRaisesRegexp(ValueError, "Unknown UID C set as requirement for O K"):
+            self.dg.get_unknown_uid_framework()
+
     def test_replace_none(self):
         data = self.dg.get_args()
         p = PipelineFramework([(Task("A", False, False, "exe", None, "path", "none", "are", "replaced"), [])])
@@ -154,7 +158,7 @@ class TestPipeline(unittest.TestCase):
         ready = list(cp.get_ready_tasks())
         self.assertEquals(len(ready), 2)
         # Get the "A" task
-        task = [t for t in ready if t._uid is "A"][0]
+        task = [t for t in ready if t._uid == "A"][0]
 
         self.assertFalse(list(cp.get_ready_successors(task)))
         self.assertFalse(cp.is_done(task))

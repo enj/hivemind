@@ -9,17 +9,18 @@ from os.path import dirname, join, isdir
 from os import makedirs
 from tempfile import gettempdir
 from datetime import datetime
-import errno
+from errno import EEXIST
 
 
 def enum(*sequential, **named):
     """Handy way to fake an enumerated type in Python.
 
     http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
-    :param *sequential: the values of the enum (required)
-    :type *sequential: iterable of strings
-    :param **named: used to give names to sequential's items
-    :type **named: dictionary
+
+    :param sequential: the values of the enum (required)
+    :type sequential: iterable of strings
+    :param named: used to give names to sequential's items
+    :type named: dictionary
     :returns: a new enum type based on the input
     :rtype: {Enum}
     """
@@ -129,11 +130,10 @@ def make_path(f):
     # Simple if not exists doesn't work here due to possible race condition over cluster
     try:
         makedirs(basedir)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST and isdir(basedir):
-            pass
-        else:
-            raise exc
+    except OSError as e:
+        if e.errno == EEXIST and isdir(basedir):
+            return
+        raise
 
 
 def tmp_checkpoint_dir():

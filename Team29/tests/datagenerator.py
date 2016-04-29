@@ -8,8 +8,6 @@ from hivemind.pipeline import Task
 
 
 class DataGenerator(object):
-    def __init__(self):
-        pass
 
     def get_empty_pipeline(self):
         return PipelineFramework([()])
@@ -101,6 +99,12 @@ class DataGenerator(object):
         return PipelineFramework([
             (Task("A", False, False, "", None, ""), []),
             (Task("A", False, False, "", None, ""), [])
+        ])
+
+    def get_unknown_uid_framework(self):
+        return PipelineFramework([
+            (Task("A", False, False, "", None, ""), []),
+            (Task("B", False, False, "O", None, "", "K"), ["C"])
         ])
 
     def get_loose_pipeline(self):

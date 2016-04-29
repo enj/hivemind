@@ -46,6 +46,10 @@ class TestUtil(unittest.TestCase):
         self.assertTrue(path.exists(expected))
         rm.rmtree("./temp")
 
+    def test_to_bool_error(self):
+        with self.assertRaisesRegexp(ValueError, "Hello there cannot be converted to a bool."):
+            utl.to_bool("Hello there")
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestUtil)
     unittest.TextTestRunner(verbosity=2).run(suite)

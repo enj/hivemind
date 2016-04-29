@@ -79,9 +79,8 @@ class TestMPISingleWorker(unittest.TestCase):
         for pid in xrange(7):
             for task, _ in self.tasks:
                 if task._uid == "A6":
-                    with self.assertRaises(IOError) as cm:
+                    with self.assertRaisesRegexp(IOError, "^\[Errno 2\] No such file or directory"):
                         get_file(self.master.checkpoint_dir, pid, task._uid)
-                    self.assertTrue(str(cm.exception).startswith("[Errno 2] No such file or directory"))
                 else:
                     self.assertEqual(get_file(self.master.checkpoint_dir, pid, task._uid), task._uid + "\n")
 
@@ -157,14 +156,43 @@ class TestMPIMultipleWorker(unittest.TestCase):
         for pid in xrange(7):
             for task, _ in self.tasks:
                 if task._uid == "A6":
-                    with self.assertRaises(IOError) as cm:
+                    with self.assertRaisesRegexp(IOError, "^\[Errno 2\] No such file or directory"):
                         get_file(self.master.checkpoint_dir, pid, task._uid)
-                    self.assertTrue(str(cm.exception).startswith("[Errno 2] No such file or directory"))
                 else:
                     self.assertEqual(get_file(self.master.checkpoint_dir, pid, task._uid), task._uid + "\n")
+
+
+class TestMPIDryRun(unittest.TestCase):
+    """Dry run tests using MPI."""
+
+    def setUp(self):
+        """Create Master, Worker and load data for dry run."""
+        self.tasks = json_to_tasks("mpi.json")  # 6 linear tasks
+        for t, _ in self.tasks:
+            t._dry_run = True
+        patients = read_csv("mpi.csv")  # 7 patients
+        self.world = FakeMPIWorld(2)
+        self.master = Master(self.world[0], self.tasks, patients, rank_by_successors, dry_run=True)
+        self.worker = Worker(self.world[1])
+
+    def test_loop_dry(self):
+        """Test loop with dry run."""
+        master_loop = Thread(target=self.master.loop)
+        worker_loop = Thread(target=self.worker.loop)
+        master_loop.start()
+        worker_loop.start()
+        worker_loop.join()
+        master_loop.join()
+
+        for pid in xrange(7):
+            for task, _ in self.tasks:
+                with self.assertRaisesRegexp(IOError, "^\[Errno 2\] No such file or directory"):
+                    get_file(self.master.checkpoint_dir, pid, task._uid)
+
 
 if __name__ == '__main__':
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestMPISingleWorker)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestMPIMultipleWorker)
-    suite = unittest.TestSuite([suite1, suite2])
+    suite3 = unittest.TestLoader().loadTestsFromTestCase(TestMPIDryRun)
+    suite = unittest.TestSuite([suite1, suite2, suite3])
     unittest.TextTestRunner(verbosity=2).run(suite)

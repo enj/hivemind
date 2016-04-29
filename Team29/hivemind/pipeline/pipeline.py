@@ -57,7 +57,7 @@ class PipelineFramework(object):
 class ConcretePipeline(object):
     """A ConcretePipeline represents a single patient's pipeline."""
 
-    # Number of times to run maximal_independent_set during max concurrency calculation
+    #: Number of times to run maximal_independent_set during max concurrency calculation
     MAX_ROUNDS = 64
 
     def __init__(self, pid, framework, data, checkpoint_dir):
@@ -242,14 +242,21 @@ class ConcretePipeline(object):
         """
         Determine the maximum number of concurrent Tasks that can still run.
 
-        This is based on the maximal independent set of the subgraph
+        This is based on the maximum independent set of the subgraph
         of the transitive closure of the Tasks that are not done.
+        See http://cs.stackexchange.com/a/16829
 
-        The maximal_independent_set based on a random algorithm and thus must
+        The maximal_independent_set is based on a random algorithm and thus must
         be run multiple times to have a high chance of getting the max value.
 
+        There is probably a more robust solution that is optimized for partial orders
+        and is guaranteed to return the maximum independent set.
+
+        networkx.algorithms.approximation.independent_set has a method called
+        maximum_independent_set but it does not seem to work correctly.
+
         The calculation for sg is highly optimized.  The more straightforward implementation is:
-        sg = transitive_closure(self.dag.subgraph(n for n in self.dag.nodes_iter() if not self.is_done(n))).to_undirected()
+        :code:`sg = transitive_closure(self.dag.subgraph(n for n in self.dag.nodes_iter() if not self.is_done(n))).to_undirected()`
 
         This will work even without modifying the neighbors method of DiGraph
         and does not require storing of the transitive closure.  However,

@@ -160,7 +160,7 @@ class Master(object):
             self.log.debug("Creating checkpoint for {}".format(f))
 
         # Create the file if it does not exist
-        open(f, "a").close()
+        open(f, "ab").close()
 
     def max_concurrency(self):
         """Get the max concurrency based on all the concrete pipelines.

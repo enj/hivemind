@@ -28,8 +28,8 @@ class Task(object):
         :type verify_exe: string
         :param wd: The working directory to run the executable in
         :type wd: string
-        :param *args: The list of parameters needed to the run the executable
-        :type *args: iterable of strings
+        :param args: The list of parameters needed to the run the executable
+        :type args: iterable of strings
         """
         self.skip = skip
         self.shell = shell
@@ -59,19 +59,25 @@ class Task(object):
         #     self.cmd[i] = s.encode("iso-8859-1")
 
         with open(out, "ab") as stdout, open(err, "ab") as stderr:
-            if self.shell:
-                check_call(" ".join(self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
-            else:
-                check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+            try:
+                if self.shell:
+                    check_call(" ".join(self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+                else:
+                    check_call(self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+            except BaseException as e:
+                raise RuntimeError("Error '{}' executing Task's command: {}".format(e, vars(self)))
 
             if self.verify_exe:
-                if self.shell:
-                    check_call(" ".join([self.verify_exe] + self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
-                else:
-                    check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+                try:
+                    if self.shell:
+                        check_call(" ".join([self.verify_exe] + self.cmd), shell=True, cwd=self.wd, stdout=stdout, stderr=stderr)
+                    else:
+                        check_call([self.verify_exe] + self.cmd, cwd=self.wd, stdout=stdout, stderr=stderr)
+                except BaseException as e:
+                    raise RuntimeError("Error '{}' executing Task's verification: {}".format(e, vars(self)))
 
     def __str__(self):
-        """Helps with printing.
+        """For printing.
 
         :returns: The string representation of this Task
         :rtype: {string}
