@@ -6,13 +6,15 @@
 from re import escape, match as re_match, sub as re_sub, findall
 from os.path import isfile
 
-from networkx import DiGraph, is_directed_acyclic_graph as is_dag, maximal_independent_set, transitive_closure
+from networkx import DiGraph, is_directed_acyclic_graph as is_dag, \
+    maximal_independent_set, transitive_closure, all_neighbors
 
 from ..util import to_bool, join
 
 # MIS only works for standard graphs because of how 'neighbors' is implemented
 # It is better to copy a method pointer instead of the whole graph
-DiGraph.neighbors = lambda graph, task: graph.successors(task) + graph.predecessors(task)
+# See issue https://github.com/networkx/networkx/issues/2109
+DiGraph.neighbors = lambda graph, node: list(all_neighbors(graph, node))
 
 
 class PipelineFramework(object):
