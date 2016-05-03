@@ -6,15 +6,10 @@
 from re import escape, match as re_match, sub as re_sub, findall
 from os.path import isfile
 
-from networkx import DiGraph, is_directed_acyclic_graph as is_dag, \
-    maximal_independent_set, transitive_closure, all_neighbors
+from networkx import Graph, DiGraph, is_directed_acyclic_graph, transitive_closure
+from networkx.algorithms.bipartite import hopcroft_karp_matching
 
 from ..util import to_bool, join
-
-# MIS only works for standard graphs because of how 'neighbors' is implemented
-# It is better to copy a method pointer instead of the whole graph
-# See issue https://github.com/networkx/networkx/issues/2109
-DiGraph.neighbors = lambda graph, node: list(all_neighbors(graph, node))
 
 
 class PipelineFramework(object):
@@ -44,7 +39,7 @@ class PipelineFramework(object):
                     raise ValueError("Unknown UID {} set as requirement for {}".format(req_uid, task))
                 self.dag.add_edge(uid, task)
 
-        if not is_dag(self.dag):
+        if not is_directed_acyclic_graph(self.dag):
             raise ValueError("Pipeline contains a cycle.")
 
     def __len__(self):
@@ -58,9 +53,6 @@ class PipelineFramework(object):
 
 class ConcretePipeline(object):
     """A ConcretePipeline represents a single patient's pipeline."""
-
-    #: Number of times to run maximal_independent_set during max concurrency calculation
-    MAX_ROUNDS = 64
 
     def __init__(self, pid, framework, data, checkpoint_dir):
         """Build a ConcretePipeline using a PipelineFramework and the CSV data.
@@ -78,7 +70,7 @@ class ConcretePipeline(object):
         self.checkpoint_dir = checkpoint_dir
         self.dag = framework.dag.copy()
         self.framework_to_concrete(data)
-        self.tc = transitive_closure(self.dag)
+        self.bipartite_transitive_closure()
         self.update_max_concurrency()
 
     def framework_to_concrete(self, data):
@@ -179,6 +171,10 @@ class ConcretePipeline(object):
         """
         self.dag.node[task]["done"] = True
 
+        # Keep bipartite transitive closure up to date
+        self.btc.remove_node((0, task))
+        self.btc.remove_node((1, task))
+
     def is_done(self, task):
         """Determine if the given Task is done.  Does NOT take checkpointing into account.
 
@@ -240,41 +236,44 @@ class ConcretePipeline(object):
                 completed_tasks += 1
         return completed_tasks
 
+    def bipartite_transitive_closure(self):
+        """Create the bipartite graph of the transitive closure of this pipeline."""
+        self.btc = Graph()
+        tc = transitive_closure(self.dag)
+
+        for task in tc.nodes_iter():
+            self.btc.add_node((0, task))
+            self.btc.add_node((1, task))
+
+        for u, v in tc.edges_iter():
+            self.btc.add_edge((0, u), (1, v))
+
     def update_max_concurrency(self):
-        """
+        u"""
         Determine the maximum number of concurrent Tasks that can still run.
 
         This is based on the maximum independent set of the subgraph
         of the transitive closure of the Tasks that are not done.
-        See http://cs.stackexchange.com/a/16829
 
-        The maximal_independent_set is based on a random algorithm and thus must
-        be run multiple times to have a high chance of getting the max value.
+        * http://cs.stackexchange.com/a/16829
+        * http://cs.stackexchange.com/a/10303/5323
+        * http://stackoverflow.com/a/10304235
+        * `Hopcroft–Karp algorithm <https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm>`_
+        * `Dilworth's theorem <https://en.wikipedia.org/wiki/Dilworth's_theorem>`_
+        * `Kőnig's theorem <https://en.wikipedia.org/wiki/K%C5%91nig%27s_theorem_(graph_theory)>`_
 
-        There is probably a more robust solution that is optimized for partial orders
-        and is guaranteed to return the maximum independent set.
+        Konig’s theorem proves an equivalence between a maximum matching and
+        a minimum vertex cover in bipartite graphs.  A minimum vertex cover is
+        the complement of a maximum independent set for any graph.
 
         networkx.algorithms.approximation.independent_set has a method called
         maximum_independent_set but it does not seem to work correctly.
-
-        The calculation for sg is highly optimized.  The more straightforward implementation is:
-        :code:`sg = transitive_closure(self.dag.subgraph(n for n in self.dag.nodes_iter() if not self.is_done(n))).to_undirected()`
-
-        This will work even without modifying the neighbors method of DiGraph
-        and does not require storing of the transitive closure.  However,
-        it makes many unnecessary copies of the DAG and thus should be avoided.
-
-        This method is called quite often by the Master, and thus needs to be as
-        fast as possible.  Setting a higher MAX_ROUNDS is not recommended.
         """
-        # Get the subgraph of the transitive closure based on the uncompleted tasks
-        sg = self.tc.subgraph(n for n in self.dag.nodes_iter() if not self.is_done(n))
-
-        # Cannot get the independent set of an empty graph
-        if len(sg) == 0:
+        # Cannot get the length of the max independent set of an empty graph
+        if len(self.btc) == 0:
             self.mc = 0
             return
 
-        # There are many independent sets. Loop through MAX_ROUNDS times to get longest
-        # With 64 rounds it has 99.9999% chance of getting the correct value
-        self.mc = max(len(maximal_independent_set(sg)) for _ in xrange(self.MAX_ROUNDS))
+        # Use the length of the max matching to calculate the length of the max independent set
+        # Divide by two since the bipartite graph has two copies of each Task
+        self.mc = (len(self.btc) - len(hopcroft_karp_matching(self.btc))) / 2
