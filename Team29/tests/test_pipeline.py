@@ -167,6 +167,21 @@ class TestPipeline(unittest.TestCase):
         self.assertEquals(list(cp.get_ready_successors(task))[0]._uid, "C")
         self.assertEquals(cp.get_completed_tasks(), 1)
 
+    def test_mc(self):
+        data = self.dg.get_args()
+
+        def get_mc(p):
+            return ConcretePipeline(0, p, data, "blah").mc
+
+        self.assertEquals(get_mc(PipelineFramework([])), 0)
+        self.assertEquals(get_mc(self.dg.get_single_node_pipeline()), 1)
+        self.assertEquals(get_mc(self.dg.get_linear_pipeline()), 1)
+        self.assertEquals(get_mc(self.dg.get_tree_pipeline()), 4)
+        self.assertEquals(get_mc(self.dg.get_dag_pipeline()), 3)
+        self.assertEquals(get_mc(self.dg.get_disconnected_pipeline()), 3)
+        self.assertEquals(get_mc(self.dg.get_unbalanced_pipeline()), 4)
+        self.assertEquals(get_mc(self.dg.get_ranktree_pipeline()), 9)
+        self.assertEquals(get_mc(self.dg.get_loose_pipeline()), 6)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestPipeline)
