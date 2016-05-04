@@ -3,7 +3,7 @@
 
 """Represents a Pipeline of Tasks."""
 
-from re import escape, match as re_match, sub as re_sub, findall
+from re import escape, sub as re_sub, findall
 from os.path import isfile
 
 from networkx import Graph, DiGraph, is_directed_acyclic_graph, transitive_closure
@@ -152,7 +152,7 @@ class ConcretePipeline(object):
                 self.validate_field(a)
             return
 
-        if re_match(r"\$\$", field):
+        if "$$" in field:
             raise ValueError("Not all $$ variables replaced in {}".format(field))
 
     def __len__(self):
