@@ -9,7 +9,7 @@ SHA='sha256sum'
 
 #Linear
 printf "Running test: Linear - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j linear/*.json -c linear/*.csv 2>&1)"
+result="$(mpirun -n 4 python -O ../../examples/main.py -j linear/linear.json -c linear/linear.csv 2>&1)"
 if [ "${result}" == "" ] && \
     [ "$(${SHA} linear/mo5.txt)" == "08248741d577ec6d0292ab0658b3cc42ff6a91ac25c4e390e44dde63c9b51a3b  linear/mo5.txt" ] && \
     [ "$(${SHA} linear/sarah5.txt)" == "54d99880e91909c8b46207b12b43211a89246bc890efb4be41fcb45aaac41219  linear/sarah5.txt" ] && \
@@ -21,7 +21,7 @@ fi
 
 #DAG
 printf "Running test: DAG - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j dag/*.json -c dag/*.csv 2>&1)"
+result="$(mpirun -n 4 python -O ../../examples/main.py -j dag/dag.json -c dag/dag.csv 2>&1)"
 if [ "${result}" == "" ] && \
     [ "$(${SHA} dag/sarah5_1.txt)" == "a4a15ede33b9399e8238035f2204884906a79735f4530caf206099023167bb9a  dag/sarah5_1.txt" ] && \
     [ "$(${SHA} dag/sarah5_2.txt)" == "294bbafde8905dbad648515f7aef2cc89d97d32b1bba9141bffc120e1a6ad524  dag/sarah5_2.txt" ] && \
@@ -33,7 +33,7 @@ fi
 
 #Disconnected
 printf "Running test: Disconnected - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j disconnected/*.json -c disconnected/*.csv 2>&1)"
+result="$(mpirun -n 4 python -O ../../examples/main.py -j disconnected/disconnected.json -c disconnected/disconnected.csv 2>&1)"
 if [ "${result}" == "" ] && \
     [ "$(${SHA} disconnected/sarah_A2.txt)" == "2f92511275182c337091d21eaf36159bea1c39d08b321da3fa62dd9aa3378298  disconnected/sarah_A2.txt" ] && \
     [ "$(${SHA} disconnected/sarah_B2.txt)" == "6938ce33ab4539f583aea1151b63a7c9a86f13b3774e8256a25243d37b6c59a7  disconnected/sarah_B2.txt" ] && \
@@ -44,8 +44,8 @@ else
 fi
 
 #ErrorCycle
-printf "Running test: Cycle - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j cycle/*.json -c cycle/*.csv 2>&1)"
+printf "Running test: ErrorCycle - "
+result="$(mpirun -n 4 python -O ../../examples/main.py -j cycle/cycle.json -c cycle/cycle.csv 2>&1)"
 if [[ "${result}" == *"ValueError: Pipeline contains a cycle"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
@@ -53,17 +53,26 @@ else
 fi
 
 #ErrorDuplicateNode
-printf "Running test: Duplicate Node - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j duplicate/*.json -c duplicate/*.csv 2>&1)"
-if [[ "${result}" == *"KeyError"* ]]; then
+printf "Running test: ErrorDuplicateNode - "
+result="$(mpirun -n 4 python -O ../../examples/main.py -j duplicate/duplicate.json -c duplicate/duplicate.csv 2>&1)"
+if [[ "${result}" == *"ValueError: Pipeline contains duplicate Task"* ]]; then
+    printf "${GREEN}Pass${NC}\n"
+else
+    printf "${RED}Fail${NC}\n"
+fi
+
+#ErrorMissingRequired
+printf "Running test: ErrorMissingRequired - "
+result="$(mpirun -n 4 python -O ../../examples/main.py -j missing_req/missing_req.json -c missing_req/missing_req.csv 2>&1)"
+if [[ "${result}" == *"KeyError: 'Unknown UID A4_4 set as requirement for A5_3'"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
     printf "${RED}Fail${NC}\n"
 fi
 
 #ErrorBadJSON
-printf "Running test: Bad JSON - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j bad_json/*.json -c bad_json/*.csv 2>&1)"
+printf "Running test: ErrorBadJSON - "
+result="$(mpirun -n 4 python -O ../../examples/main.py -j bad_json/bad_json.json -c bad_json/bad_json.csv 2>&1)"
 if [[ "${result}" == *"ValueError: Expecting , delimiter"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
@@ -71,16 +80,16 @@ else
 fi
 
 #ErrorBadCSV
-printf "Running test: Bad CSV - "
-result="$(mpirun -n 4 python -O ../../examples/main.py -j bad_csv/*.json -c bad_csv/*.csv 2>&1)"
+printf "Running test: ErrorBadCSV - "
+result="$(mpirun -n 4 python -O ../../examples/main.py -j bad_csv/bad_csv.json -c bad_csv/bad_csv.csv 2>&1)"
 if [[ "${result}" == *"ValueError: Not all \$\$ variables replaced"* ]]; then
     printf "${GREEN}Pass${NC}\n"
 else
     printf "${RED}Fail${NC}\n"
 fi
 
-#NoArgs
-printf "Running test: No Args - "
+#ErrorNoArgs
+printf "Running test: ErrorNoArgs - "
 result="$(mpirun -n 4 python -O ../../examples/main.py 2>&1)"
 if [[ "${result}" == "usage: main.py"* ]]; then
     printf "${GREEN}Pass${NC}\n"

@@ -27,8 +27,8 @@ class PipelineFramework(object):
         self.dag = DiGraph()
         task_dict = {}
         for task, _ in tasks_reqs:
-            if self.dag.has_node(task):
-                raise ValueError("Pipeline contains duplicate Task {}".format(task))
+            if task_dict.get(task._uid) is not None:
+                raise ValueError("Pipeline contains duplicate Task {}".format(task._uid))
             self.dag.add_node(task, done=False)
             task_dict[task._uid] = task
 
@@ -36,7 +36,7 @@ class PipelineFramework(object):
             for req_uid in reqs:
                 uid = task_dict.get(req_uid)
                 if uid is None:
-                    raise ValueError("Unknown UID {} set as requirement for {}".format(req_uid, task))
+                    raise KeyError("Unknown UID {} set as requirement for {}".format(req_uid, task._uid))
                 self.dag.add_edge(uid, task)
 
         if not is_directed_acyclic_graph(self.dag):

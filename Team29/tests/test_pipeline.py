@@ -67,7 +67,7 @@ class TestPipeline(unittest.TestCase):
             self.dg.get_duplicate_node_pipeline()
 
     def test_unknown_uid_framework(self):
-        with self.assertRaisesRegexp(ValueError, "Unknown UID C set as requirement for O K"):
+        with self.assertRaisesRegexp(KeyError, "Unknown UID C set as requirement for B"):
             self.dg.get_unknown_uid_framework()
 
     def test_replace_none(self):
