@@ -5,7 +5,7 @@ from hivemind.pipeline import PipelineFramework, ConcretePipeline, Task
 from datagenerator import DataGenerator
 
 
-class TestPipeline(unittest.TestCase):
+class TestPipelineFramework(unittest.TestCase):
 
     def setUp(self):
         self.dg = DataGenerator()
@@ -69,6 +69,12 @@ class TestPipeline(unittest.TestCase):
     def test_unknown_uid_framework(self):
         with self.assertRaisesRegexp(KeyError, "Unknown UID C set as requirement for B"):
             self.dg.get_unknown_uid_framework()
+
+
+class TestConcretePipeline(unittest.TestCase):
+
+    def setUp(self):
+        self.dg = DataGenerator()
 
     def test_replace_none(self):
         data = self.dg.get_args()
@@ -184,5 +190,7 @@ class TestPipeline(unittest.TestCase):
         self.assertEquals(get_mc(self.dg.get_loose_pipeline()), 6)
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestPipeline)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestPipelineFramework)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestConcretePipeline)
     unittest.TextTestRunner(verbosity=2).run(suite)
