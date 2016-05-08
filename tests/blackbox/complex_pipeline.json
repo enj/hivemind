@@ -1,0 +1,183 @@
+[
+    {
+        "_uid": "A",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"]
+    },
+    {
+        "_uid": "B",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "C",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "D",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "E",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "F",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["A"]
+    },
+    {
+        "_uid": "G",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["B", "C", "D", "E"]
+    },
+    {
+        "_uid": "H",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["E", "F"]
+    },
+    {
+        "_uid": "I",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["F"]
+    },
+    {
+        "_uid": "J",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["F"]
+    },
+    {
+        "_uid": "K",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["F"]
+    },
+    {
+        "_uid": "L",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["F"]
+    },
+    {
+        "_uid": "M",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["H"]
+    },
+    {
+        "_uid": "N",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["H"]
+    },
+    {
+        "_uid": "O",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["H"]
+    },
+    {
+        "_uid": "P",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["K"]
+    },
+    {
+        "_uid": "Q",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["K"]
+    },
+    {
+        "_uid": "R",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["K"]
+    },
+    {
+        "_uid": "S",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["G"]
+    },
+    {
+        "_uid": "T",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["M", "O", "Q", "R"]
+    },
+    {
+        "_uid": "U",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["T"]
+    },
+    {
+        "_uid": "V",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["T"]
+    },
+    {
+        "_uid": "W",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["T"]
+    },
+    {
+        "_uid": "X",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["T"]
+    },
+    {
+        "_uid": "Y",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["T"]
+    },
+    {
+        "_uid": "Z",
+        "exe": "sleep",
+        "wd": "/bin",
+        "args": ["1"],
+        "_requires": ["S", "U"]
+    }
+]

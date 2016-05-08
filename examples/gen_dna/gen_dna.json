@@ -1,0 +1,64 @@
+[
+    {
+        "_uid": "mkdir_patient",
+        "wd": "/home/temp1037/dna/data",
+        "exe": "mkdir",
+        "args": ["-p", "$$pid$$"]
+    },
+    {
+        "_uid": "mkdir_C",
+        "wd": "/home/temp1037/dna/data",
+        "exe": "mkdir",
+        "args": ["-p", "$$pid$$/C"],
+        "_requires": ["mkdir_patient"]
+    },
+    {
+        "_uid": "mkdir_P",
+        "wd": "/home/temp1037/dna/data",
+        "exe": "mkdir",
+        "args": ["-p", "$$pid$$/P"],
+        "_requires": ["mkdir_patient"]
+    },
+    {
+        "_uid": "genC",
+        "wd": "/home/temp1037/dna/data",
+        "exe": "/home/temp1037/Duke/Tools/wgsim/wgsim",
+        "args": [
+            "-N",
+            "$$N$$",
+            "-r",
+            "0",
+            "-X",
+            "0",
+            "-1",
+            "101",
+            "-2",
+            "101",
+            "/home/temp1037/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "$$pid$$/C/$$lane$$-R1.fastq",
+            "$$pid$$/C/$$lane$$-R2.fastq"
+        ],
+        "_requires": ["mkdir_C"]
+    },
+    {
+        "_uid": "genP",
+        "wd": "/home/temp1037/dna/data",
+        "exe": "/home/temp1037/Duke/Tools/wgsim/wgsim",
+        "args": [
+            "-N",
+            "$$N$$",
+            "-r",
+            "0",
+            "-X",
+            "0",
+            "-1",
+            "101",
+            "-2",
+            "101",
+            "/home/temp1037/Duke/Tools/data/hg19/ucsc.hg19.fasta",
+            "$$pid$$/P/$$lane$$-R1.fastq",
+            "$$pid$$/P/$$lane$$-R2.fastq"
+        ],
+        "_requires": ["mkdir_P"]
+    }
+]

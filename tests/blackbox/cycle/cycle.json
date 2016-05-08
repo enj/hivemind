@@ -1,0 +1,79 @@
+[   {
+        "_uid": "A0",
+        "args": [
+            "-f",
+            "./dummy_linear/$$file$$*.txt"
+        ],
+        "exe": "rm",
+        "wd": "/bin",
+        "_requires": ["A5"]
+    },
+    {
+        "args": [
+            "-cat",
+            "This ",
+            "-out",
+            "dummy_linear/$$file$$1.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A1",
+        "_requires": ["A0"]
+    },
+    {
+        "args": [
+            "-in",
+            "dummy_linear/$$file$$1.txt",
+            "-cat",
+            "is ",
+            "-out",
+            "dummy_linear/$$file$$2.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A2",
+        "_requires": ["A1"]
+    },
+    {
+        "args": [
+            "-in",
+            "dummy_linear/$$file$$2.txt",
+            "-cat",
+            "$$name$$'s ",
+            "-out",
+            "dummy_linear/$$file$$3.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A3",
+        "_requires": ["A2"]
+    },
+    {
+        "args": [
+            "-in",
+            "dummy_linear/$$file$$3.txt",
+            "-cat",
+            "test ",
+            "-out",
+            "dummy_linear/$$file$$4.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A4",
+        "_requires": ["A3"]
+    },
+    {
+        "args": [
+            "-in",
+            "dummy_linear/$$file$$4.txt",
+            "-cat",
+            "sentence.\n",
+            "-out",
+            "dummy_linear/$$file$$5.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A5",
+        "_requires": ["A4"]
+    }
+]

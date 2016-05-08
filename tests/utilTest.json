@@ -1,0 +1,30 @@
+[
+    {
+        "_uid": "A",
+        "args": ["arg-1", "/$$arg$$"],
+        "exe": "/bin/task-1",
+        "wd": "/wd-A",
+        "verify_exe": "/bin/verify-A"
+    },
+    {
+        "_uid": "B",
+        "args": ["arg-1", "arg-2", "/$$arg$$"],
+        "exe": "/bin/task-2",
+        "wd": "/wd-B",
+        "_requires": ["A"], 
+        "verify_exe": "/bin/verify-B"
+    },
+    {
+        "_uid": "C",
+        "exe": "/bin/task-3",
+        "wd": "/wd-C",
+        "_requires": ["B"]
+    },
+    {
+        "_uid": "D",
+        "args": ["arg-1", "arg-2", "/$$arg$$"],
+        "exe": "/bin/task-4",
+        "wd": "/wd-D",
+        "_requires": ["C"]
+    }
+]

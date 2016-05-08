@@ -1,0 +1,77 @@
+[
+    {
+        "args": [
+            "-cat",
+            "$$name$$ ",
+            "-out",
+            "disconnected/$$file$$_A1.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A1"
+    },
+    {
+        "args": [
+            "-in",
+            "disconnected/$$file$$_A1.txt",
+            "-cat",
+            "A\n",
+            "-out",
+            "disconnected/$$file$$_A2.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "A2",
+        "_requires": ["A1"]
+    },
+    {
+        "args": [
+            "-cat",
+            "$$name$$ ",
+            "-out",
+            "disconnected/$$file$$_B1.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "B1"
+    },
+    {
+        "args": [
+            "-in",
+            "disconnected/$$file$$_B1.txt",
+            "-cat",
+            "B\n",
+            "-out",
+            "disconnected/$$file$$_B2.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "B2",
+        "_requires": ["B1"]
+    },
+    {
+        "args": [
+            "-cat",
+            "$$name$$ ",
+            "-out",
+            "disconnected/$$file$$_C1.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "C1"
+    },
+    {
+        "args": [
+            "-in",
+            "disconnected/$$file$$_C1.txt",
+            "-cat",
+            "C\n",
+            "-out",
+            "disconnected/$$file$$_C2.txt"
+        ],
+        "exe": "./app",
+        "wd": ".",
+        "_uid": "C2",
+        "_requires": ["C1"]
+    }
+]
