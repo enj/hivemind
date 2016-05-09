@@ -11,3 +11,5 @@ See [guides](https://github.com/enj/hivemind/tree/master/guides) directory
 
 ## License
 Apache Version 2.0
+
+Copyright 2016 Monis Khan, Hussein Koprly, Sarah Baucom
